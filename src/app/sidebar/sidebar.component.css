@@ -1,0 +1,231 @@
+/* Main sidebar container */
+.sidebar {
+  width: 250px;
+  height: 100vh;
+  background-color: #1e293b;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  left: 0;
+  top: 0;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  transition: transform 0.3s ease;
+}
+
+/* Sidebar overlay for mobile */
+.sidebar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .sidebar-overlay {
+    display: block;
+  }
+}
+
+/* Logo section */
+.logo-container {
+  padding: 20px;
+  border-bottom: 1px solid #334155;
+  text-align: center;
+}
+
+.logo {
+  max-width: 120px;
+  height: auto;
+}
+
+/* Navigation menu */
+.nav-menu {
+  flex: 1;
+  padding: 20px 0;
+  overflow-y: auto;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  padding: 12px 20px;
+  color: #cbd5e1;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  margin: 4px 10px;
+  border-radius: 6px;
+}
+
+.nav-item:hover {
+  background-color: #334155;
+  color: #fff;
+}
+
+.nav-item.active {
+  background-color: #3b82f6;
+  color: #fff;
+  font-weight: 500;
+}
+
+.nav-item i {
+  margin-right: 12px;
+  font-size: 20px;
+}
+
+/* User profile section */
+.user-profile {
+  padding: 15px 20px;
+  border-top: 1px solid #334155;
+  display: flex;
+  align-items: center;
+  background-color: #1e293b;
+}
+
+.user-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: #3b82f6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 12px;
+}
+
+.user-avatar i {
+  font-size: 20px;
+  color: #fff;
+}
+
+.user-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.user-name {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.2;
+}
+
+.user-role {
+  font-size: 12px;
+  color: #94a3b8;
+  line-height: 1.2;
+}
+
+.logout-btn {
+  background: none;
+  border: none;
+  color: #94a3b8;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.logout-btn:hover {
+  color: #fff;
+  background-color: #334155;
+}
+
+/* Scrollbar styling */
+.nav-menu::-webkit-scrollbar {
+  width: 6px;
+}
+
+.nav-menu::-webkit-scrollbar-track {
+  background: #1e293b;
+}
+
+.nav-menu::-webkit-scrollbar-thumb {
+  background-color: #4b5563;
+  border-radius: 3px;
+}
+
+/* Loading state */
+.loading-state {
+  padding: 10px;
+}
+
+.skeleton-item {
+  display: flex;
+  align-items: center;
+  padding: 12px 20px;
+  margin: 4px 10px;
+  border-radius: 6px;
+}
+
+.skeleton-icon {
+  width: 24px;
+  height: 24px;
+  background-color: #2d3748;
+  border-radius: 4px;
+  margin-right: 12px;
+}
+
+.skeleton-text {
+  height: 16px;
+  background-color: #2d3748;
+  border-radius: 4px;
+  flex: 1;
+}
+
+/* Error state */
+.error-state {
+  padding: 20px;
+  text-align: center;
+  color: #f87171;
+}
+
+.error-state i {
+  font-size: 48px;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.error-state p {
+  margin: 10px 0 15px;
+}
+
+.retry-btn {
+  background-color: #3b82f6;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.retry-btn:hover {
+  background-color: #2563eb;
+}
+
+.retry-btn i {
+  font-size: 16px;
+  color: white;
+  margin: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .sidebar {
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+  }
+  
+  .sidebar.open {
+    transform: translateX(0);
+  }
+}
