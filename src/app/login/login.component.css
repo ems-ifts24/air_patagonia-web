@@ -1,0 +1,307 @@
+.containterFlex{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.contenedorGrid{
+    background-color:  rgba(48, 36, 36, 0.29);;
+    border-radius: 6px;
+    width: 30%;
+    height: 70%;
+    display: grid;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(5,1fr);
+    grid-template-rows: repeat(9,1fr);
+}
+
+.contenedorGrid:hover{
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: 1px lightblue solid;
+    
+}
+
+.contenedorGrid-logo{
+     width: 100%; 
+    height: 100%;
+    grid-column: 2/5;
+    grid-row: 1/4;
+}
+#logoAirPatagonia{
+    width: 100%;
+    height: 100%;
+    
+}
+
+.contenedorGrid-h1-inicioSesion{
+    width: 100%; 
+    height: 100%;
+    grid-column: 1/6;
+    grid-row: 4/5;
+    color: white;
+    
+}
+#tituloIniciarSesion{
+    font-size: 1.8rem;
+    font-weight: 500;
+    text-align: center;
+    padding: 2%;
+}
+
+.contenedorGrid-img-usuarioIcon{
+    
+    grid-column: 1/2;
+    grid-row: 5/6;
+    position: relative;
+}
+#imgUsuarioIcon{
+    height: 30%;
+    padding-left: 80%;
+    position: absolute;
+    top:19%;
+    left:20%
+}
+.contenedorGrid-input-usuario{
+    grid-column: 2/5;
+    grid-row: 5/6;
+    
+}
+#inputUsuario,#inputPassword{
+width: 100%;
+background-color: rgba(29, 27, 27, 1);
+border-radius: 6px;
+color: white;
+height: 70%;
+font-size: 0.5rem;
+}
+#inputUsuario:hover,#inputPassword:hover{
+box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+border: 1px lightblue solid;
+transition: linear 0.5s
+
+
+}
+
+
+#inputUsuario::placeholder, #inputPassword::placeholder {
+  color: grey;
+  text-align: left;
+  padding: 5%; 
+  font-size: 0.5rem;
+}
+
+
+ .contenedorGrid-img-passwordIcon{
+    
+    grid-column: 1/2;
+    grid-row: 6/7;
+    position: relative;
+} 
+#imgPasswordIcon{
+    height: 30%;
+    padding-left: 80%;
+    position: absolute;
+    top:19%;
+    left:20%
+}
+
+ .contenedorGrid-input-password{
+    
+    grid-column: 2/5;
+    grid-row: 6/7;
+    
+} 
+
+.contenedorGrid-a-reset{
+    grid-column: 2/5;
+    grid-row: 7/8;
+    text-align: right;
+    
+}
+#resetPassword{
+    color: white;
+    text-decoration: none;
+    width: 100%;
+    font-size: 0.8rem;
+    
+    
+}
+#resetPassword:hover{
+    color: gray;
+
+
+}
+
+.contenedorGrid-btnIngresar{
+     grid-column: 2/5;
+     grid-row: 8/9;
+     width: 100%;
+     
+}
+#btnIngresar{
+    width: 100%;
+    color: white;
+    border-radius: 0.2rem;
+    background-color: rgba(0, 50, 91, 1);
+    height: 70%;
+    font-weight: 500;
+    
+}
+#btnIngresar:hover{
+
+    background-color: rgba(0, 30, 91, 1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    border: 1px lightblue solid;
+    transition: linear 0.5s
+
+    
+}
+
+/*  (hasta 1024px) */
+@media (max-width: 1024px) {
+  .contenedorGrid {
+    width: 60%;
+    height: auto;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(10, auto);
+    padding: 2%;
+  }
+.contenedorGrid-logo{
+    grid-column: 2/4;
+    display: flex;
+    justify-content: center;
+}
+
+  #tituloIniciarSesion {
+    font-size: 1.5rem;
+  }
+   #logoAirPatagonia{
+
+    width: 50%;
+    
+}
+
+  #inputUsuario,
+  #inputPassword {
+    font-size: 0.7rem;
+    height: 100%;
+    
+  }
+
+  #resetPassword {
+    font-size: 0.7rem;
+    text-align: right;
+    width: 100%;
+  }
+  #btnIngresar{
+    width: 100%;
+    height: 100%;
+    font-size: 0.7rem;
+
+  }
+  .contenedorGrid-btnIngresar{
+     grid-column: 2/4;
+     
+}
+.contenedorGrid-a-reset{
+   
+    grid-column: 2/4;
+}
+.contenedorGrid-input-usuario{
+    grid-column: 2/4;
+ 
+}
+ .contenedorGrid-input-password{
+    
+    grid-column: 2/4;
+    
+    
+} 
+
+
+}
+
+/* Móviles (hasta 768px) */
+@media (max-width: 768px) {
+  .contenedorGrid {
+    width: 90%;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(12, auto);
+    padding: 4%;
+  }
+
+  .contenedorGrid-logo {
+    grid-column: 1 / 3;
+    grid-row: 1 / 1;
+    display: flex;
+    justify-content: center;
+  }
+
+  #logoAirPatagonia{
+
+    width: 30%;
+    
+}
+
+  .contenedorGrid-h1-inicioSesion {
+    grid-column: 1 / 3;
+    grid-row: 3 / 4;
+  }
+
+  .contenedorGrid-img-usuarioIcon,
+  .contenedorGrid-img-passwordIcon {
+    display: none; /* Opcional si no entra bien el ícono */
+  }
+
+  .contenedorGrid-input-usuario {
+    grid-column: 1 / 3;
+    grid-row: 4 / 5;
+    display: flex;
+    justify-content: center;
+  }
+
+  .contenedorGrid-input-password {
+    grid-column: 1 / 3;
+    grid-row: 5 / 6;
+    display: flex;
+    justify-content: center;
+  }
+
+  .contenedorGrid-a-reset {
+    grid-column: 1 / 3;
+    grid-row: 6 / 7;
+    text-align: center;
+  }
+
+  .contenedorGrid-btnIngresar {
+    grid-column: 1 / 3;
+    grid-row: 7 / 8;
+    display: flex;
+    justify-content: center;
+  }
+
+  #tituloIniciarSesion {
+    font-size: 1.3rem;
+  }
+
+  #btnIngresar {
+    font-size: 0.5rem;
+    width: 50%;
+    height: 100%;
+  }
+ 
+
+
+  #inputUsuario,
+  #inputPassword {
+    font-size: 0.9rem;
+    width: 50%;
+    height: 75%;
+  }
+}
+
+
+

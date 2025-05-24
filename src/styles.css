@@ -1,1 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&family=Whisper&display=swap');
+*{
+    box-sizing: border-box;
+    margin: 0;
+    font-family: Roboto,sans-serif;
+}
+body{
+    height: 100vh;
+    width: 100vw;
+    background-image: url(../public/img/fondo.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+}
+
+
