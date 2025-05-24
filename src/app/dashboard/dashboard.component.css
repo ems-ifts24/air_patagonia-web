@@ -1,0 +1,183 @@
+
+.contendorPrincipal{
+    display: flex;
+   
+    
+}
+.mainDashboard{
+    width: 100%;
+    height: 90vh;
+    color: white;
+    border-bottom: 0.5px rgba(255, 255, 255, 0.3) solid;
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    grid-template-rows: repeat(8, 1fr);
+    
+   
+}
+
+div h1{
+    padding-left: 2rem;
+}
+
+div select{
+    padding-right: 2rem;
+    margin-right: 1rem;
+}
+
+.mainDashboard, .select{
+    margin-top: 1rem;
+}
+
+
+
+
+
+.vuelosHoy{
+    grid-column:2/9;
+    grid-row: 1/5;
+    background-color: rgba(61, 107, 146, 0.9);
+    border-radius: 10px;
+    
+    
+}
+.divTabla{
+     flex: 1;
+    overflow-y: auto;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+.divTabla::-webkit-scrollbar {
+  width: 8px;
+}
+
+.divTabla::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.divTabla::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 8px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+
+.divTabla th,
+.divTabla td {
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* Línea horizontal */
+  padding: 0.5rem;
+  color: white;
+}
+.tabla tr:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+
+
+
+.alertaPasajero{
+    grid-column:2/5;
+    grid-row:6/8;
+    background-color:rgba(61, 107, 146, 0.9);
+    border-radius: 10px;
+   
+
+   
+    
+}
+
+.alertaVuelos{
+
+background-color: rgba(61, 107, 146, 0.9);
+border-radius: 10px;
+grid-column:6/9;
+grid-row: 6/8;
+} 
+
+div h2{
+
+text-align: center;
+font-size: 1.2rem;
+
+
+
+}
+div p{
+text-align: center;
+padding: 0.5rem;
+margin: 0.5rem;
+height: 10%;
+font-size: 0.8rem;
+
+}
+
+
+.parPVuelosRepCancel{
+display: flex;
+justify-content: center;
+align-items: center;
+
+}
+
+.divPVuelosCancelados, .divPVuelosReprogramados{
+    height: 100%;
+    width: 100%;
+    
+}
+
+.parPVuelosRepCancel .divPVuelosCancelados p{
+    height: 30%;
+}
+
+#numeroVuelosReprogramados,#numeroVuelosCancelados, #numeroAlertaPasajeros{
+font-size: 1rem;
+}
+
+.alertaPasajero:hover,.alertaVuelos:hover,.vuelosHoy:hover{
+    box-shadow:  5px 5px 10px rgba(0, 0, 0, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    
+}
+
+@media (max-width: 768px) {
+  .contendorPrincipal {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    height: auto;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 1rem;
+  }
+
+  .mainDashboard {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+  }
+
+  .vuelosHoy,
+  .alertaPasajero,
+  .alertaVuelos {
+    grid-column: 1 / -1;
+    grid-row: auto;
+    width: 100%;
+    margin: 1% 0;
+  }
+
+  .parPVuelosRepCancel {
+    flex-direction: column;
+    align-items: stretch;
+    
+  }
+}
+
