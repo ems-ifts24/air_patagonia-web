@@ -1,38 +1,28 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, RouterLink, RouterLinkActive } from '@angular/router';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { Observable, catchError, of } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { catchError, of } from 'rxjs';
 
 @Component({
   selector: 'app-sidebar',
   standalone: true,
-  imports: [CommonModule, RouterModule, RouterLink, RouterLinkActive, HttpClientModule],
+  imports: [CommonModule, RouterModule, RouterLink, RouterLinkActive],
   templateUrl: './sidebar.component.html',
-  styleUrls: ['./sidebar.component.css']
+  styleUrl: './sidebar.component.css'
 })
 export class SidebarComponent implements OnInit {
-  isMobile = false;
-  isOpen = true;
+  isMobile: boolean = false;
+  isOpen: boolean = true;
   activeItem = 'dashboard';
   navItems: any[] = [];
-  loading = true;
   error: string | null = null;
   userRole: string = 'admin';
 
-  // Default items in case the API fails
-  private defaultNavItems = [
-    { id: 'dashboard', icon: 'dashboard', label: 'Dashboard', route: '/dashboard' },
-    { id: 'flights', icon: 'flight', label: 'Vuelos', route: '/flights' },
-    { id: 'hotels', icon: 'hotel', label: 'Hoteles', route: '/hotels' },
-    { id: 'packages', icon: 'beach_access', label: 'Paquetes', route: '/packages' },
-    { id: 'billing', icon: 'account_balance', label: 'Facturación', route: '/billing' },
-    { id: 'reports', icon: 'bar_chart', label: 'Reportes', route: '/reports' },
-    { id: 'settings', icon: 'settings', label: 'Configuración', route: '/settings' },
-  ];
-
   constructor(private http: HttpClient) {}
 
+  // @HostListener: decorador de Angular que escucha eventos del DOM (en este caso: el evento resize de la ventana)
+  // ['$event'] indica que el objeto del evento se pasa como parámetro al método.
   @HostListener('window:resize', ['$event'])
   onResize(event: Event) {
     this.checkScreenSize();
@@ -44,31 +34,30 @@ export class SidebarComponent implements OnInit {
   }
 
   loadNavItems() {
-    this.loading = true;
     this.error = null;
     
-    // Reemplaza 'admin' por una variable que se tome despues de que el usuario haga login
+    // this.http.get<any[]>(`http://192.168.0.23:3003/airpatagonia-rest/nav-items?userRole=${this.userRole}`)
     this.http.get<any[]>(`http://localhost:3003/airpatagonia-rest/nav-items?userRole=${this.userRole}`)
       .pipe(
         catchError(error => {
           console.error('Error loading navigation items:', error);
-          this.error = 'Error al cargar el menú';
-          // Devuelve items por defecto si la API falla -- Revisar/acotar esta lista
-          return of(this.defaultNavItems);
+          this.error = 'Error al cargar el menú. Por favor, intente nuevamente.';
+          return of([]);
         })
       )
       .subscribe({
         next: (items) => {
-          this.navItems = items || this.defaultNavItems;
-          this.loading = false;
+          this.navItems = items;
         },
         error: () => {
-          this.navItems = this.defaultNavItems;
-          this.loading = false;
+          this.navItems = [];
         }
       });
   }
 
+  // Método que verifica el ancho de la pantalla para mostrar el menú
+  // Si la pantalla es menor a 768px, el menú se muestra en forma vertical
+  // Si la pantalla es mayor a 768px, el menú se muestra en forma horizontal
   private checkScreenSize() {
     this.isMobile = window.innerWidth < 768;
     if (!this.isMobile) {
@@ -78,13 +67,16 @@ export class SidebarComponent implements OnInit {
     }
   }
 
-
+  // Solo para mobile. Método que toma el valor de isOpen
+  // y lo invierte para mostrar/ocultar el menú
   toggleSidebar() {
     if (this.isMobile) {
       this.isOpen = !this.isOpen;
     }
   }
 
+  // Método que toma el valor de activeItem y lo establece como el valor de itemId
+  // para resaltar el item seleccionado
   setActiveItem(itemId: string) {
     this.activeItem = itemId;
     if (this.isMobile) {

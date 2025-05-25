@@ -1,21 +1,12 @@
+<!-- [class.className] - Binding de Clases -->
+<!-- Agrega o quita la clase CSS 'open' al elemento, dependiendo del valor de 'isOpen' -->
 <div class="sidebar" [class.open]="isOpen">
-  <!-- Logo -->
   <div class="logo-container">
-    <img src="/public/img/logo.jpg" alt="Logo" class="logo">
+    <img src="img/logo_transparente.svg" alt="Logo" class="logo">
   </div>
 
-  <!-- Navigation Menu -->
   <nav class="nav-menu">
-    <!-- Loading state -->
-    <div *ngIf="loading" class="loading-state">
-      <div class="skeleton-item" *ngFor="let item of [1,2,3,4,5]">
-        <div class="skeleton-icon"></div>
-        <div class="skeleton-text"></div>
-      </div>
-    </div>
-    
-    <!-- Error state -->
-    <div *ngIf="error && !loading" class="error-state">
+    <div *ngIf="error" class="error-state">
       <i class="material-icons">error_outline</i>
       <p>{{ error }}</p>
       <button (click)="loadNavItems()" class="retry-btn">
@@ -24,12 +15,16 @@
       </button>
     </div>
     
-    <!-- Loaded state -->
-    <ng-container *ngIf="!loading && !error">
+    <!-- Si no hay error en el pedido de items, crea un elemento a por cada item de navItems -->
+    <ng-container *ngIf="!error">
+      <!-- routerLink fija la ruta del botón,
+           routerLinkActive agrega la clase 'active' al botón cuando coincide con la ruta actual
+           routerLinkActiveOptions="{exact: true}" asegura que el botón se active solo cuando coincida con la ruta exacta (sin rutas hijas)
+           (click)="setActiveItem(item.id)" activa el item seleccionado
+           [class.active]= agrega la clase 'active' al botón si "activeItem === item.id", si no coincide la quita (está para sacar la clase 'active' del botón cuando hagan click en otro botón) -->
       <a *ngFor="let item of navItems" 
-         [routerLink]="item.route"
+         [routerLink]="item.route"  
          routerLinkActive="active"
-         [routerLinkActiveOptions]="{exact: true}"
          class="nav-item"
          (click)="setActiveItem(item.id)"
          [class.active]="activeItem === item.id">
@@ -53,6 +48,3 @@
     </button>
   </div>
 </div>
-
-<!-- Overlay for mobile -->
-<div class="sidebar-overlay" *ngIf="isMobile && isOpen" (click)="toggleSidebar()"></div>
