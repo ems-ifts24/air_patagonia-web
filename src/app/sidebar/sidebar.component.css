@@ -57,63 +57,6 @@
   font-size: 25px;
 }
 
-/* User profile section */
-.user-profile {
-  padding: 15px 20px;
-  border-top: 1px solid #334155;
-  display: flex;
-  align-items: center;
-  background-color: #1e293b;
-}
-
-.user-avatar {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  background-color: #3b82f6;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-right: 12px;
-}
-
-.user-avatar i {
-  font-size: 20px;
-  color: #fff;
-}
-
-.user-info {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
-
-.user-name {
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 1.2;
-}
-
-.user-role {
-  font-size: 12px;
-  color: #94a3b8;
-  line-height: 1.2;
-}
-
-.logout-btn {
-  background: none;
-  border: none;
-  color: #94a3b8;
-  cursor: pointer;
-  padding: 5px;
-  border-radius: 4px;
-  transition: all 0.3s ease;
-}
-
-.logout-btn:hover {
-  color: #fff;
-  background-color: #334155;
-}
 
 /* Scrollbar styling */
 .nav-menu::-webkit-scrollbar {

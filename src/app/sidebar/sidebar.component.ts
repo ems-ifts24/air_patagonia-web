@@ -19,6 +19,15 @@ export class SidebarComponent implements OnInit {
   error: string | null = null;
   userRole: string = 'admin';
 
+  defaultNavItems = [
+    { id: 'dashboard', icon: 'dashboard', label: 'Dashboard', route: '/dashboard' },
+    { id: 'vuelos', icon: 'flight_takeoff', label: 'Vuelos', route: '/vuelos' },
+    { id: 'empleados', icon: 'groups_2', label: 'Empleados', route: '/empleados' },
+    { id: 'pasajeros', icon: 'airline_seat_recline_extra', label: 'Pasajeros', route: '/pasajeros' },
+    { id: 'reportes', icon: 'description', label: 'Reportes', route: '/reportes' },
+    { id: 'configuracion', icon: 'settings', label: 'Configuración', route: '/configuracion' }
+  ];
+
   constructor(private http: HttpClient) {}
 
   // @HostListener: decorador de Angular que escucha eventos del DOM (en este caso: el evento resize de la ventana)
@@ -30,7 +39,8 @@ export class SidebarComponent implements OnInit {
 
   ngOnInit() {
     this.checkScreenSize();
-    this.loadNavItems();
+    // this.loadNavItems();
+    this.navItems = this.defaultNavItems;
   }
 
   loadNavItems() {

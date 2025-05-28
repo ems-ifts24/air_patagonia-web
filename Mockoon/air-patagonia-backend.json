@@ -1,0 +1,465 @@
+{
+  "uuid": "9677e0f8-8004-4d8d-9cab-9624cc5bf810",
+  "lastMigration": 33,
+  "name": "Air patagonia backend",
+  "endpointPrefix": "airpatagonia-rest",
+  "latency": 0,
+  "port": 3003,
+  "hostname": "",
+  "folders": [],
+  "routes": [
+    {
+      "uuid": "2bc484b2-0938-4700-95b5-9d0b53a408bc",
+      "type": "http",
+      "documentation": "Devuelve los items del menú según el rol del usaurio",
+      "method": "get",
+      "endpoint": "nav-items",
+      "responses": [
+        {
+          "uuid": "02f806e9-557f-419d-84ba-70f70d0617e5",
+          "body": "{\r\n  \"error\": \"Pedido inválido\",\r\n  \"mensaje\": \"No se indicó el Rol del usuario.\"\r\n}",
+          "latency": 0,
+          "statusCode": 400,
+          "label": "Pedido sin parametro",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "query",
+              "modifier": "userRole",
+              "value": "",
+              "invert": false,
+              "operator": "null"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "bc65358c-2d35-4b3e-b16b-b8387e417641",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Admin",
+          "headers": [],
+          "bodyType": "DATABUCKET",
+          "filePath": "",
+          "databucketID": "5z0r",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "query",
+              "modifier": "userRole",
+              "value": "amin",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "77ee6654-0db0-4125-b5fe-f23ba8d434d1",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Operador",
+          "headers": [],
+          "bodyType": "DATABUCKET",
+          "filePath": "",
+          "databucketID": "yu47",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "query",
+              "modifier": "userRole",
+              "value": "operador",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "66b79e8e-c8fd-4deb-b6e6-85d2f229ad7d",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Supervisor",
+          "headers": [],
+          "bodyType": "DATABUCKET",
+          "filePath": "",
+          "databucketID": "yevp",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "userRole",
+              "value": "supervisor",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "cb407b01-7de7-4c1a-aa54-365a25521a33",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Usuario no definido",
+          "headers": [],
+          "bodyType": "DATABUCKET",
+          "filePath": "",
+          "databucketID": "x8hq",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "userRole",
+              "value": "admin, operador, supervisor",
+              "invert": true,
+              "operator": "array_includes"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "f80c005d-0a7e-4e9f-9326-e2e72fd50fd6",
+      "type": "http",
+      "documentation": "Login principal",
+      "method": "post",
+      "endpoint": "login",
+      "responses": [
+        {
+          "uuid": "b4dc81c4-4c0d-454c-ac30-addefcf768c5",
+          "body": "{\r\n  \"error\": \"Solicitud inválida\",\r\n  \"mensaje\": \"El cuerpo debe incluir 'usuario' y 'password'.\"\r\n}",
+          "latency": 0,
+          "statusCode": 400,
+          "label": "Sin Body",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "usuario",
+              "value": "",
+              "invert": false,
+              "operator": "null"
+            },
+            {
+              "target": "body",
+              "modifier": "password",
+              "value": "",
+              "invert": false,
+              "operator": "null"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "e72bd02b-e7bf-44ba-a80e-070e52a04d2d",
+          "body": "{\r\n  \"error\": \"Acceso denegado\",\r\n  \"mensaje\": \"El usuario no tiene permisos para ingresar al sistema.\"\r\n}",
+          "latency": 0,
+          "statusCode": 403,
+          "label": "No autorizado - pepe",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "5z0r",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "usuario",
+              "value": "pepe",
+              "invert": false,
+              "operator": "equals"
+            },
+            {
+              "target": "body",
+              "modifier": "password",
+              "value": "pepe",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "e8159ff1-df0b-4a38-9117-f665b8ae0492",
+          "body": "",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "admin - jperez (copy)",
+          "headers": [],
+          "bodyType": "DATABUCKET",
+          "filePath": "",
+          "databucketID": "5z0r",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "usuario",
+              "value": "jperez",
+              "invert": false,
+              "operator": "equals"
+            },
+            {
+              "target": "body",
+              "modifier": "password",
+              "value": "jperez123",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "a56a6dba-39a0-4ae0-8b5a-83e83db7c70d",
+          "body": "",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "operador- mconti",
+          "headers": [],
+          "bodyType": "DATABUCKET",
+          "filePath": "",
+          "databucketID": "yu47",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "usuario",
+              "value": "mconti",
+              "invert": false,
+              "operator": "equals"
+            },
+            {
+              "target": "body",
+              "modifier": "password",
+              "value": "mconti123",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "5cb74906-ad44-4f1d-a0f9-16aa3221c010",
+          "body": "",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "supervisor - agarcia",
+          "headers": [],
+          "bodyType": "DATABUCKET",
+          "filePath": "",
+          "databucketID": "yevp",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "usuario",
+              "value": "agarcia",
+              "invert": false,
+              "operator": "equals"
+            },
+            {
+              "target": "body",
+              "modifier": "password",
+              "value": "agarcia123",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "0f268478-1881-4659-a195-9f6c4cba1e24",
+          "body": "{\r\n  \"error\": \"Credenciales inválidas\",\r\n  \"mensaje\": \"Usuario o contraseña incorrectos.\"\r\n}\r\n",
+          "latency": 0,
+          "statusCode": 401,
+          "label": "Credenciales inválidas",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "5z0r",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    }
+  ],
+  "rootChildren": [
+    {
+      "type": "route",
+      "uuid": "2bc484b2-0938-4700-95b5-9d0b53a408bc"
+    },
+    {
+      "type": "route",
+      "uuid": "f80c005d-0a7e-4e9f-9326-e2e72fd50fd6"
+    }
+  ],
+  "proxyMode": false,
+  "proxyHost": "",
+  "proxyRemovePrefix": false,
+  "tlsOptions": {
+    "enabled": false,
+    "type": "CERT",
+    "pfxPath": "",
+    "certPath": "",
+    "keyPath": "",
+    "caPath": "",
+    "passphrase": ""
+  },
+  "cors": true,
+  "headers": [
+    {
+      "key": "Content-Type",
+      "value": "application/json"
+    },
+    {
+      "key": "Access-Control-Allow-Origin",
+      "value": "*"
+    },
+    {
+      "key": "Access-Control-Allow-Methods",
+      "value": "GET,POST,PUT,PATCH,DELETE,HEAD,OPTIONS"
+    },
+    {
+      "key": "Access-Control-Allow-Headers",
+      "value": "Content-Type, Origin, Accept, Authorization, Content-Length, X-Requested-With"
+    }
+  ],
+  "proxyReqHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "proxyResHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "data": [
+    {
+      "uuid": "10944fa3-9f5c-4704-a8e4-b346eed4dce4",
+      "id": "5z0r",
+      "name": "user-jperez",
+      "documentation": "Admin Juan perez",
+      "value": "[\n  \"user_name\": \"jperez\",\n  \"icon\": \"admin_panel_settings\",\n  \"token\": \"123asd456fgh\"\n]"
+    },
+    {
+      "uuid": "90fdcf0b-a319-4512-825f-f298b27d5adb",
+      "id": "yu47",
+      "name": "user-mconti",
+      "documentation": "Operador Marcelo Conti",
+      "value": "[\n  \"user_name\": \"mconti\",\n  \"icon\": \"account_circle\",\n  \"token\": \"456qwe789rty\"\n]"
+    },
+    {
+      "uuid": "f2471847-7632-4bae-bd45-4c933c92bac5",
+      "id": "yevp",
+      "name": "user-agarcia",
+      "documentation": "Supervisora Ana Garcia",
+      "value": "[\n  \"user_name\": \"agarcia\",\n  \"icon\": \"policy\",\n  \"token\": \"789zxc456vbn\"\n]"
+    },
+    {
+      "uuid": "a1a5e66a-c9ae-41de-9c2f-9b26e0cca9c4",
+      "id": "2smy",
+      "name": "menu_items-admin",
+      "documentation": "Todos los campos",
+      "value": "[\n  { id: 'dashboard', icon: 'dashboard', label: 'Dashboard', route: '/dashboard' },\n  { id: 'vuelos', icon: 'flight_takeoff', label: 'Vuelos', route: '/vuelos' },\n  { id: 'empleados', icon: 'groups_2', label: 'Empleados', route: '/empleados' },\n  { id: 'pasajeros', icon: 'airline_seat_recline_extra', label: 'Pasajeros', route: '/pasajeros' },\n  { id: 'reportes', icon: 'description', label: 'Reportes', route: '/reportes' },\n  { id: 'configuracion', icon: 'settings', label: 'Configuración', route: '/configuracion' }\n]"
+    },
+    {
+      "uuid": "1ec1e36b-8a03-4443-bd91-474e7a125967",
+      "id": "n15a",
+      "name": "menu_items-operador",
+      "documentation": "Solo ABMs",
+      "value": "[\n  { id: 'dashboard', icon: 'dashboard', label: 'Dashboard', route: '/dashboard' },\n  { id: 'vuelos', icon: 'flight_takeoff', label: 'Vuelos', route: '/vuelos' },\n  { id: 'empleados', icon: 'groups_2', label: 'Empleados', route: '/empleados' },\n  { id: 'pasajeros', icon: 'airline_seat_recline_extra', label: 'Pasajeros', route: '/pasajeros' }\n]"
+    },
+    {
+      "uuid": "af3d7c85-4a76-4f04-a531-4d9ada62c448",
+      "id": "gx1y",
+      "name": "menu_items-supervisor",
+      "documentation": "Solo reportes",
+      "value": "[\n  { id: 'dashboard', icon: 'dashboard', label: 'Dashboard', route: '/dashboard' },\n  { id: 'reportes', icon: 'description', label: 'Reportes', route: '/reportes' }\n]"
+    },
+    {
+      "uuid": "189b9702-be28-4597-82af-fa04da7cc4e3",
+      "id": "x8hq",
+      "name": "menu_items-no_definido",
+      "documentation": "Solo Dashboard",
+      "value": "[\n  { id: 'dashboard', icon: 'dashboard', label: 'Dashboard', route: '/dashboard' }\n]"
+    }
+  ],
+  "callbacks": []
+}
