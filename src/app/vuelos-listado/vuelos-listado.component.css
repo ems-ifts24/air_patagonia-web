@@ -1,0 +1,213 @@
+.contenedorPrincipal{
+    display: flex;
+    height: 75%;
+    width: 75%;
+    
+
+    
+}
+.mainDashboard{
+    width: 100%;
+    height: 75%;
+    border-bottom: 0.5px rgba(255, 255, 255, 0.3) solid;
+    display: grid;
+    grid-template-columns: repeat(8,1fr);
+    grid-template-rows: repeat(13,1fr);
+    background-color: rgba(61, 107, 146, 0.9);
+    border-radius: 6px;
+    
+    
+}
+.divBotonVolver{
+    grid-column: 2/3;
+    grid-row:1/2 ;
+}
+#botonVolver{
+    border-radius: 200px;
+    background-color: rgba(0, 50, 91, 1); ;
+    color: white;
+    
+}
+#botonVolver:hover{
+   background-color:rgb(26, 145, 243);
+   cursor: pointer;
+}
+
+
+.divAeropuertoOrigen{
+    grid-column: 3/5;
+    grid-row: 1/2;
+}
+.divAeropuertoOrigen #aeropuertoOrigen{
+    width: 100%;
+    background-color: rgba(33, 62, 90, 0.38);
+    color: white;
+    height: 100%;
+    border-radius: 6px;
+    
+    
+}
+.divAeropuertoOrigen #aeropuertoOrigen:hover{
+    background-color: rgb(26, 145, 243);
+    cursor: pointer;
+    
+    
+}
+
+
+.divAeropuertoDestino{
+    grid-column: 6/8;
+    grid-row: 1/2;
+}
+
+.divAeropuertoDestino #aeropuertoDestino{
+   width: 100%;
+   background-color: rgba(33, 62, 90, 0.38);
+   color: white;
+   height: 100%;
+   border-radius: 6px;  
+}
+.divAeropuertoDestino #aeropuertoDestino:hover{
+    background-color: rgb(26, 145, 243);
+    cursor: pointer;
+      
+}
+.divDescargar{
+    grid-column: 8/9;
+    grid-row: 1/2;
+    display: flex;
+    justify-content: center;
+}
+#btnDescargarReporte{
+    border-radius: 200px;
+    background-color: rgba(0, 50, 91, 1); ;
+    color: white;
+    
+}
+#btnDescargarReporte:hover{
+    background-color: rgb(26, 145, 243);
+    cursor: pointer;
+}
+
+.divTabla{
+    grid-column: 2/8;
+    grid-row: 3/13;
+    width: 100%;
+    height: 100%;
+    border: 0.1rem solid white;
+    overflow-y: auto;
+    overflow-x: auto;
+    border-radius: 1rem;
+    border-collapse: collapse;
+     padding-right: 3%; 
+    
+   
+    
+    
+}
+
+.divTabla .tabla{
+    width: 100%;
+   
+}
+.divTabla tr{
+    background-color: rgba(61, 107, 146, 0.9);
+    text-align: center;
+}
+
+
+
+.divTabla th,
+.divTabla td {
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* Línea horizontal */
+  padding: 0.5rem;
+  color: white;
+font-size: 1.2rem;
+}
+
+.divTabla::-webkit-scrollbar {
+  width: 8px;
+}
+
+.divTabla::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.divTabla::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 8px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+
+.tabla tr:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+td select{
+    background-color:rgba(33, 62, 90, 0.38);
+    color: white;
+    border-radius: 6px;
+    font-size: 1.2rem;
+    
+}
+
+@media (max-width: 768px) {
+  .contenedorPrincipal {
+    width: 100%;
+    height: auto;
+    flex-direction: column;
+  }
+
+  .mainDashboard {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    height: auto;
+  }
+
+  .divAeropuertoOrigen,
+  .divAeropuertoDestino,
+  .divTabla {
+    grid-column: auto !important;
+    grid-row: auto !important;
+    width: 100% !important;
+    margin-bottom: 1rem;
+    background-color: red;
+    
+  }
+ 
+  .divAeropuertoOrigen,
+  .divAeropuertoDestino {
+    align-items: center;
+  }
+
+  
+.divDescargar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+  
+
+  .divTabla {
+    overflow-x: auto;
+  }
+}
+
+
+
+@media (max-width: 768px){
+    .divAeropuertoDestino #aeropuertoDestino, .divFechaPartida #fechaPartida, .divFechaPartidaLabel #fechaPartida, .divFechaArribo #fechaArribo{
+   width: 80%;
+ 
+   margin-left: 0.5rem;
+   
+}
+}
