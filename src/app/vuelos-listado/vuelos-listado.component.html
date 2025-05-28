@@ -1,24 +1,26 @@
 <div class="contenedorPrincipal">
-      <div class="mainDashboard">
-         
-           <div class="divBotonVolver">
-             <button id="botonVolver">⬅</button>
-           </div>
-           
-           
-
-            <div class="divAeropuertoOrigen">
-                
-               <select id="aeropuertoOrigen" >
-                    <option value="aeoropuertoOrigen">Origen</option>
-                    <option value="EZE">EZE - Aeropuerto Internacional Ministro Pistarini</option>
-                    <option value="AEP">AEP - Aeropuerto Jorge Newbery</option>
-                    <option value="COR">COR - Aeropuerto Internacional Ingeniero Ambrosio L.V. Taravella</option>
-                    <option value="MDZ">MDZ - Aeropuerto Internacional Gobernador Francisco Gabrielli</option>
-                    <option value="ROS">ROS - Aeropuerto Internacional Rosario Islas Malvinas</option>
-                    <option value="SAL">SAL - Aeropuerto Internacional Martín Miguel de Güemes</option>
-                    <option value="TUC">TUC - Aeropuerto Internacional Teniente General Benjamín Matienzo</option>
-                    <option value="BRC">BRC - Aeropuerto Internacional Teniente Luis Candelaria</option>
+  <app-sidebar></app-sidebar>
+  <app-header 
+    [pageTitle]="'Listado de Vuelos'" 
+    [userInfo]="{name: 'Juan perez', email: 'juan.perez@gmail.com', lastLogin: '2025-05-24 12:00:00'}">
+  </app-header>
+  
+  <div class="mainDashboard">
+    <div class="divBotonVolver">
+      <button id="botonVolver">⬅</button>
+    </div>
+    
+    <div class="divAeropuertoOrigen">
+      <select id="aeropuertoOrigen">
+        <option value="aeoropuertoOrigen">Origen</option>
+        <option value="EZE">EZE - Aeropuerto Internacional Ministro Pistarini</option>
+        <option value="AEP">AEP - Aeropuerto Jorge Newbery</option>
+        <option value="COR">COR - Aeropuerto Internacional Ingeniero Ambrosio L.V. Taravella</option>
+        <option value="MDZ">MDZ - Aeropuerto Internacional Gobernador Francisco Gabrielli</option>
+        <option value="ROS">ROS - Aeropuerto Internacional Rosario Islas Malvinas</option>
+        <option value="SAL">SAL - Aeropuerto Internacional Martín Miguel de Güemes</option>
+        <option value="TUC">TUC - Aeropuerto Internacional Teniente General Benjamín Matienzo</option>
+        <option value="BRC">BRC - Aeropuerto Internacional Teniente Luis Candelaria</option>
                     <option value="USH">USH - Aeropuerto Internacional Malvinas Argentinas</option>
                     <option value="IGR">IGR - Aeropuerto Internacional Cataratas del Iguazú</option>
                     <option value="REL">REL - Aeropuerto Almirante Marcos A. Zar</option>

@@ -4,13 +4,13 @@ import { HeaderComponent } from './header/header.component';
 import { RouterOutlet } from '@angular/router';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { DashboardComponent } from "./dashboard/dashboard.component";
-
+import { VuelosListadoComponent } from './vuelos-listado/vuelos-listado.component';
 
 
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, SidebarComponent, LoginComponent, HeaderComponent, DashboardComponent],
+  imports: [RouterOutlet, SidebarComponent, LoginComponent, HeaderComponent, DashboardComponent, VuelosListadoComponent],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
