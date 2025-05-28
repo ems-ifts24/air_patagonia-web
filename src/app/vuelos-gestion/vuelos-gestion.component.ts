@@ -7,5 +7,6 @@ import { Component } from '@angular/core';
   styleUrl: './vuelos-gestion.component.css'
 })
 export class VuelosGestionComponent {
-
+titleCreacion = 'CREACION';
+tileModificacion='MODIFICACION';
 }
