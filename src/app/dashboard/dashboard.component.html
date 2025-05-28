@@ -1,14 +1,13 @@
 <div class="contendorPrincipal">
-        
- 
-    
-            
+  <app-sidebar></app-sidebar>
+  <app-header 
+    [pageTitle]="'Dashboard'" 
+    [userInfo]="{name: 'Juan perez', email: 'juan.perez@gmail.com', lastLogin: '2025-05-24 12:00:00'}">
+  </app-header>
+  
+  <div class="mainDashboard">
+    <div class="vuelosHoy">
 
-        <div class="mainDashboard">
-            
-            
-            <div class="vuelosHoy">
-                
                 <div class="divTabla">
                     <table class="tabla">
                         <tr>
