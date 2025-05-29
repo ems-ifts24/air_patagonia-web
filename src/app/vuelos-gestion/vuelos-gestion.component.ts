@@ -8,5 +8,5 @@ import { Component } from '@angular/core';
 })
 export class VuelosGestionComponent {
 titleCreacion = 'CREACION';
-tileModificacion='MODIFICACION';
+titleModificacion='MODIFICACION';
 }
