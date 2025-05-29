@@ -1,1 +1,231 @@
-<p>vuelos-gestion works!</p>
+<div class="contenedorPrincipal">
+      <div class="mainDashboard">
+         
+           <div class="divBotonVolver">
+             <button id="botonVolverModificacion">⬅</button>
+           </div>
+            <div class="divCreacion">
+                <p id="creacion">{{titleModificacion}}</p>
+            </div>
+            <div class="divBuscarEmpleado">
+                <input type="search" id="inputBuscarEmpleado" placeholder="Buscar Empleado">
+            </div>
+            <div class="divAvion">
+                <select name="avion" id="selectAvion">
+                    <option value="Avion">Avion</option>
+                    <option value="boeing">BOEING</option>
+                </select>
+            </div>
+
+            <div class="divAeropuertoOrigen">
+                
+               <select id="aeropuertoOrigen" >
+                    <option value="aeoropuertoOrigen">Origen</option>
+                    <option value="EZE">EZE - Aeropuerto Internacional Ministro Pistarini</option>
+                    <option value="AEP">AEP - Aeropuerto Jorge Newbery</option>
+                    <option value="COR">COR - Aeropuerto Internacional Ingeniero Ambrosio L.V. Taravella</option>
+                    <option value="MDZ">MDZ - Aeropuerto Internacional Gobernador Francisco Gabrielli</option>
+                    <option value="ROS">ROS - Aeropuerto Internacional Rosario Islas Malvinas</option>
+                    <option value="SAL">SAL - Aeropuerto Internacional Martín Miguel de Güemes</option>
+                    <option value="TUC">TUC - Aeropuerto Internacional Teniente General Benjamín Matienzo</option>
+                    <option value="BRC">BRC - Aeropuerto Internacional Teniente Luis Candelaria</option>
+                    <option value="USH">USH - Aeropuerto Internacional Malvinas Argentinas</option>
+                    <option value="IGR">IGR - Aeropuerto Internacional Cataratas del Iguazú</option>
+                    <option value="REL">REL - Aeropuerto Almirante Marcos A. Zar</option>
+                    <option value="CRD">CRD - Aeropuerto Internacional General Enrique Mosconi</option>
+                    <option value="JUJ">JUJ - Aeropuerto Internacional Gobernador Horacio Guzmán</option> 
+                </select>
+            </div>
+            <div class="divAeropuertoDestino">
+                 <select id="aeropuertoDestino" >
+                    <option value="aeoropuertoDestino">Destino</option>
+                    <option value="EZE">EZE - Aeropuerto Internacional Ministro Pistarini</option>
+                    <option value="AEP">AEP - Aeropuerto Jorge Newbery</option>
+                    <option value="COR">COR - Aeropuerto Internacional Ingeniero Ambrosio L.V. Taravella</option>
+                    <option value="MDZ">MDZ - Aeropuerto Internacional Gobernador Francisco Gabrielli</option>
+                    <option value="ROS">ROS - Aeropuerto Internacional Rosario Islas Malvinas</option>
+                    <option value="SAL">SAL - Aeropuerto Internacional Martín Miguel de Güemes</option>
+                    <option value="TUC">TUC - Aeropuerto Internacional Teniente General Benjamín Matienzo</option>
+                    <option value="BRC">BRC - Aeropuerto Internacional Teniente Luis Candelaria</option>
+                    <option value="USH">USH - Aeropuerto Internacional Malvinas Argentinas</option>
+                    <option value="IGR">IGR - Aeropuerto Internacional Cataratas del Iguazú</option>
+                    <option value="REL">REL - Aeropuerto Almirante Marcos A. Zar</option>
+                    <option value="CRD">CRD - Aeropuerto Internacional General Enrique Mosconi</option>
+                    <option value="JUJ">JUJ - Aeropuerto Internacional Gobernador Horacio Guzmán</option> 
+                </select>
+                
+
+            </div>
+            <div class="divFechaPartidaLabel">
+                <label for="fechaPartida" id="fechaPartidaLabel">Fecha Partida</label>
+            </div>
+            <div class="divFechaPartida">
+                <input type="datetime-local" id="fechaPartida">
+            </div>
+            <div class="divFechaArriboLabel">
+                <label for="fechaArribo" id="fechaArriboLabel">Fecha Arribo</label>
+            </div>
+            <div class="divFechaArribo">
+                <input type="datetime-local" id="fechaArribo">
+            </div>
+            <div class="divEstado">
+                <select name="EstadoVuelo" id="selectEstadoVuelo">
+                    <option value="Estado">Estado</option>
+                    <option value="Cancelado">Cancelado</option>
+                    <option value="Demorado">Demorado</option>
+                </select>
+            </div>
+
+            <div class="divBtnGuardar">
+                <button id="btnGuardar">Guardar</button>
+            </div>
+
+            <div class="divBtnCancelar">
+                <button id="btnCancelar">Cancelar</button>
+            </div>
+            <div class="divTabla">
+                <table class="tabla">
+                <tr class="headerTabla">
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Documento</th>
+                    <th>Rol</th>
+                    <th>Asignar</th>
+                </tr>
+                <tr>
+                    <td>Ezequiel</td>
+                    <td>Lopez</td>
+                    <td>38705210</td>
+                    <td>
+                        <select name="" id="">
+                            <option value="Tripulante">Tripulante</option>
+                            <option value="Tripulante">Tripulante</option>
+                        </select>
+                    </td>
+                    <td><input type="checkbox" name="tripulanteAsignado" class="tripulanteAsignado"></td>
+                </tr>
+                  <tr>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>3</td>
+                    <td>
+                        <select name="" id="">
+                            <option value="Tripulante">Tripulante</option>
+                            <option value="Tripulante">Tripulante</option>
+                        </select>
+                    </td>
+                    <td><input type="checkbox" name="tripulanteAsignado" class="tripulanteAsignado"></td>
+
+                  </tr>  <tr>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>3</td>
+                    <td>
+                        <select name="seleccionTripulante" id="selectTripulante" >
+                            <option value="Tripulante">Tripulante</option>
+                            <option value="Tripulante">Tripulante</option>
+                        </select>
+                    </td>
+                    <td><input type="checkbox" name="tripulanteAsignado"  class="tripulanteAsignado"></td>
+
+                </tr>
+                  <tr>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>3</td>
+                    <td>
+                        <select name="" id="">
+                            <option value="Tripulante">Tripulante</option>
+                            <option value="Tripulante">Tripulante</option>
+                        </select>
+                    </td>
+                    <td><input type="checkbox" name="tripulanteAsignado" class="tripulanteAsignado"></td>
+
+                 </tr>
+                   <tr>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>3</td>
+                    <td>
+                        <select name="" id="">
+                            <option value="Tripulante">Tripulante</option>
+                            <option value="Tripulante">Tripulante</option>
+                        </select>
+                    </td>
+                    <td><input type="checkbox" name="tripulanteAsignado" class="tripulanteAsignado"></td>
+
+                   </tr>
+                   <tr>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>3</td>
+                    <td>
+                        <select name="" id="">
+                            <option value="Tripulante">Tripulante</option>
+                            <option value="Tripulante">Tripulante</option>
+                        </select>
+                    </td>
+                    <td><input type="checkbox" name="tripulanteAsignado" class="tripulanteAsignado"></td>
+
+                   </tr>
+                   <tr>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>3</td>
+                    <td>
+                        <select name="" id="">
+                            <option value="Tripulante">Tripulante</option>
+                            <option value="Tripulante">Tripulante</option>
+                        </select>
+                    </td>
+                    <td><input type="checkbox" name="tripulanteAsignado" class="tripulanteAsignado"></td>
+
+                   </tr>
+                   <tr>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>3</td>
+                    <td>
+                        <select name="" id="">
+                            <option value="Tripulante">Tripulante</option>
+                            <option value="Tripulante">Tripulante</option>
+                        </select>
+                    </td>
+                    <td><input type="checkbox" name="tripulanteAsignado" class="tripulanteAsignado"></td>
+
+                   </tr>
+                   <tr>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>3</td>
+                    <td>
+                        <select name="" id="">
+                            <option value="Tripulante">Tripulante</option>
+                            <option value="Tripulante">Tripulante</option>
+                        </select>
+                    </td>
+                    <td><input type="checkbox" name="tripulanteAsignado" class="tripulanteAsignado"></td>
+
+                   </tr>
+
+            </table>
+            </div>
+            
+                
+            
+            
+
+                
+                
+
+              
+                
+   
+        </div>
+            
+            
+        
+        
+        
+    
+</div>
