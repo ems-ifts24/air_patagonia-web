@@ -5,12 +5,13 @@ import { RouterOutlet } from '@angular/router';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { DashboardComponent } from "./dashboard/dashboard.component";
 import { VuelosListadoComponent } from './vuelos-listado/vuelos-listado.component';
+import { VuelosVistaGeneralComponent } from "./vuelos-vista-general/vuelos-vista-general.component";
 
 
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, SidebarComponent, LoginComponent, HeaderComponent, DashboardComponent, VuelosListadoComponent],
+  imports: [RouterOutlet, SidebarComponent, LoginComponent, HeaderComponent, DashboardComponent, VuelosListadoComponent, VuelosVistaGeneralComponent],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
