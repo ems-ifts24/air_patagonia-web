@@ -1,5 +1,6 @@
 import { Component, Input, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 interface UserInfo {
   name: string;
@@ -16,6 +17,8 @@ interface UserInfo {
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
+  constructor(private router: Router) {}  // constructor para redirigir a otra ruta
+
   @Input() pageTitle: string = 'Dashboard';
   @Input() userInfo: UserInfo = {
     name: 'Usuario',
@@ -35,5 +38,9 @@ export class HeaderComponent {
   toggleUserMenu(event: Event) {
     event.stopPropagation();
     this.isMenuOpen = !this.isMenuOpen;
+  }
+
+  logout() {
+    this.router.navigate(['/login']);
   }
 }
