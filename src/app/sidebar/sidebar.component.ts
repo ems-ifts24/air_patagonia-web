@@ -20,12 +20,12 @@ export class SidebarComponent implements OnInit {
   userRole: string = 'admin';
 
   defaultNavItems = [
-    { id: 'dashboard', icon: 'dashboard', label: 'Dashboard', route: '/dashboard' },
-    { id: 'vuelos', icon: 'flight_takeoff', label: 'Vuelos', route: '/vuelos' },
-    { id: 'empleados', icon: 'groups_2', label: 'Empleados', route: '/empleados' },
-    { id: 'pasajeros', icon: 'airline_seat_recline_extra', label: 'Pasajeros', route: '/pasajeros' },
-    { id: 'reportes', icon: 'description', label: 'Reportes', route: '/reportes' },
-    { id: 'configuracion', icon: 'settings', label: 'Configuración', route: '/configuracion' }
+    { id: 'dashboard', icon: 'dashboard', label: 'Dashboard', route: 'dashboard' },
+    { id: 'vuelos', icon: 'flight_takeoff', label: 'Vuelos', route: 'vuelos' },
+    { id: 'empleados', icon: 'groups_2', label: 'Empleados', route: 'empleados' },
+    { id: 'pasajeros', icon: 'airline_seat_recline_extra', label: 'Pasajeros', route: 'pasajeros' },
+    { id: 'reportes', icon: 'description', label: 'Reportes', route: 'reportes' },
+    { id: 'configuracion', icon: 'settings', label: 'Configuración', route: 'configuracion' }
   ];
 
   constructor(private http: HttpClient) {}
