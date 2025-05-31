@@ -1,8 +1,8 @@
 /* Contenedor principal del header */
 .header-container {
-  width: 75%;
   position: fixed;
   top: 0;
+  left: 250px; /* Igual al ancho del sidebar */
   right: 0;
   z-index: 1000;
   background-color: transparent;
@@ -13,9 +13,81 @@
   display: flex;
   align-items: center;
   padding: 0 24px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   box-sizing: border-box;
-  margin-left: 25%;
+  transition: all 0.3s ease;
+}
+
+/* Estilos responsivos para el header */
+@media (max-width: 1366px) {
+  .header-container {
+    left: 220px;
+    padding: 0 15px;
+    min-height: 70px;
+    max-height: 80px;
+  }
+  
+  .page-title {
+    font-size: 2.2rem;
+    margin-left: 30px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .header-container {
+    left: 220px;
+    padding: 0 20px;
+  }
+}
+
+@media (max-width: 900px) {
+  .header-container {
+    left: 0;
+    padding-left: 80px; /* Aumentado el espacio para el botón del menú */
+  }
+  
+  .header-container.expanded {
+    left: 250px;
+    width: calc(100% - 250px);
+  }
+}
+
+@media (max-width: 600px) {
+  .header-container {
+    padding: 0 15px 0 70px; /* Ajuste para móviles */
+    min-height: 70px;
+  }
+  
+  .page-title {
+    font-size: 1.5rem; /* Tamaño ligeramente menor en móviles */
+    margin-left: 15px; /* Menor margen en móviles */
+  }
+  
+  .header-title {
+    font-size: 1.2rem;
+  }
+  
+  .user-menu {
+    margin-left: auto;
+  }
+}
+
+/* Estilos para el botón de menú en móviles */
+.menu-button {
+  display: none;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.8rem; /* Tamaño aumentado para coincidir con el título */
+  margin-right: 20px; /* Más espacio a la derecha */
+  cursor: pointer;
+  padding: 5px;
+}
+
+@media (max-width: 900px) {
+  .menu-button {
+    display: block;
+  }
 }
 
 /* Ajustes para pantallas medianas */
@@ -67,30 +139,31 @@
 
 /* Contenido del header */
 .header-content {
-  width: 100%;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 0 20px;
+  justify-content: flex-start; /* Alinear a la izquierda */
+  width: 100%;
+  height: 100%;
+  padding: 0;
   box-sizing: border-box;
+  margin-left: -20px; /* Mover todo el contenido a la izquierda */
 }
 
 /* Estilos del título */
 .page-title {
-  margin: 0;
-  padding: 0 20px;
-  font-size: 2.0rem;
+  margin: 0 0 0 40px; /* Añadido margen izquierdo */
+  padding: 0;
+  font-size: 2.9rem;
   font-weight: 600;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   color: #ffffff;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
   white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  flex: 1;
-  min-width: 0;
+  position: relative; /* Cambiado de absolute a relative */
+  left: 0;
+  top: 0;
+  transform: none; /* Eliminada la transformación */
+  z-index: 1;
 }
 
 /* Menú de usuario */

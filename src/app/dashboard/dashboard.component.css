@@ -1,19 +1,19 @@
-
 .contendorPrincipal{
     display: flex;
-   
-    
+    justify-content: center; /* Centrar horizontalmente */
+    min-height: 100vh;
+    padding: 150px 20px 20px 270px; /* Aumentado el padding-top para bajar más el contenido */
+    box-sizing: border-box;
 }
 .mainDashboard{
     width: 100%;
-    height: 90vh;
+    max-width: 1400px; /* Ancho máximo para el contenido */
+    height: calc(100vh - 140px); /* Ajustado para el nuevo padding */
     color: white;
     border-bottom: 0.5px rgba(255, 255, 255, 0.3) solid;
     display: grid;
     grid-template-columns: repeat(9, 1fr);
     grid-template-rows: repeat(8, 1fr);
-    
-   
 }
 
 div h1{
@@ -33,13 +33,46 @@ div select{
 
 
 
-.vuelosHoy{
-    grid-column:2/9;
+.vuelosHoy {
+    grid-column: 2/9;
     grid-row: 1/5;
     background-color: rgba(61, 107, 146, 0.9);
     border-radius: 10px;
-    
-    
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.vuelosHoy h2 {
+    margin: 0 0 15px 0;
+    font-size: 1.5rem;
+    color: white;
+}
+
+.tabla {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: transparent;
+    color: white;
+}
+
+.tabla th, .tabla td {
+    padding: 10px 15px;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.tabla th {
+    font-weight: 500;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.tabla tr:last-child td {
+    border-bottom: none;
+}
+
+.tabla tr:hover {
+    background-color: rgba(255, 255, 255, 0.1);
 }
 .divTabla{
      flex: 1;
@@ -82,68 +115,134 @@ div select{
 
 
 
-.alertaPasajero{
-    grid-column:2/5;
-    grid-row:6/8;
-    background-color:rgba(61, 107, 146, 0.9);
+.alertaPasajero, .alertaVuelos {
+    background-color: rgba(61, 107, 146, 0.9);
     border-radius: 10px;
-   
-
-   
-    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 8px;
+    text-align: center;
+    box-sizing: border-box;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
 }
 
-.alertaVuelos{
+.alertaPasajero {
+    grid-column: 2/5;
+    grid-row: 6/8;
+}
 
-background-color: rgba(61, 107, 146, 0.9);
-border-radius: 10px;
-grid-column:6/9;
-grid-row: 6/8;
+.alertaVuelos {
+    grid-column: 6/9;
+    grid-row: 6/8;
+}
+
+/* Ajustes de tamaño de texto */
+.alertaPasajero h2, .alertaVuelos h2 {
+    font-size: min(1.1rem, 2.5vw);
+    margin: 0 0 3px 0;
+    color: white;
+    line-height: 1.2;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+    padding: 0 2px;
+}
+
+.alertaPasajero p, .alertaVuelos p {
+    font-size: min(0.9rem, 2.2vw);
+    margin: 1px 0;
+    line-height: 1.1;
+    width: 100%;
+    padding: 0 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Ajustes para móviles */
+@media (max-width: 768px) {
+    .alertaPasajero, .alertaVuelos {
+        grid-column: 1/-1;
+        grid-row: auto;
+        padding: 12px;
+    }
+    
+    .alertaPasajero h2, .alertaVuelos h2 {
+        font-size: 1.2rem;
+    }
+    
+    .alertaPasajero p, .alertaVuelos p {
+        font-size: 1rem;
+    }
 } 
 
 div h2{
-
-text-align: center;
-font-size: 1.2rem;
-
-
-
-}
-div p{
-text-align: center;
-padding: 0.5rem;
-margin: 0.5rem;
-height: 10%;
-font-size: 0.8rem;
-
+    text-align: center;
+    font-size: 1.6rem;
+    margin: 0 0 20px 0;
+    padding: 0;
+    line-height: 1.4;
+    font-weight: 600;
 }
 
 
-.parPVuelosRepCancel{
-display: flex;
-justify-content: center;
-align-items: center;
-
-}
-
-.divPVuelosCancelados, .divPVuelosReprogramados{
-    height: 100%;
+.parPVuelosRepCancel {
+    display: flex;
+    justify-content: space-around;
     width: 100%;
-    
+    margin-top: 5px;
+    gap: 5px;
 }
 
-.parPVuelosRepCancel .divPVuelosCancelados p{
-    height: 30%;
+.divPVuelosReprogramados, .divPVuelosCancelados {
+    text-align: center;
+    padding: 12px 5px;
+    border-radius: 8px;
+    flex: 1;
+    margin: 0 2px;
+    min-width: 0; /* Asegura que el contenido no desborde */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
 }
 
-#numeroVuelosReprogramados,#numeroVuelosCancelados, #numeroAlertaPasajeros{
-font-size: 1rem;
+.divPVuelosReprogramados p, .divPVuelosCancelados p {
+    margin: 3px 0;
+    white-space: normal; /* Permite salto de línea */
+    overflow: visible;
+    text-overflow: clip;
+    width: 100%;
+    text-align: center;
+    word-wrap: break-word;
+    font-size: 0.85rem;
+    line-height: 1.2;
+}
+
+#numeroVuelosReprogramados, #numeroVuelosCancelados, #numeroAlertaPasajeros {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+div p {
+    text-align: center;
+    padding: 0.5rem;
+    margin: 0.5rem;
+    font-size: 1rem;
 }
 
 .alertaPasajero:hover,.alertaVuelos:hover,.vuelosHoy:hover{
     box-shadow:  5px 5px 10px rgba(0, 0, 0, 0.7);
     border: 1px solid rgba(255, 255, 255, 0.3);
-    
 }
 
 @media (max-width: 768px) {
