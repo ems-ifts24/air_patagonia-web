@@ -1,0 +1,10 @@
+<app-header 
+[pageTitle]="'Dashboard'" 
+[userInfo]="{name: 'Juan perez', email: 'juan.perez@gmail.com', lastLogin: '2025-05-24 12:00:00'}">
+</app-header>
+<div class="container">
+    <app-sidebar></app-sidebar>
+    <div class="content">
+        <router-outlet/>
+    </div>
+</div>

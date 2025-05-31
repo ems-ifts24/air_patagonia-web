@@ -1,0 +1,22 @@
+.container {
+    display: flex;
+    height: calc(100vh - 60px); /* Resta el alto del header */
+}
+
+.sidebar {
+    width: 20%;
+    height: 100vh;
+    background-color: #2c528f;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    left: 0;
+    top: 0;
+    transition: transform 0.3s ease;
+}
+
+.content {
+    flex: 1;
+    padding: 1rem;
+}
