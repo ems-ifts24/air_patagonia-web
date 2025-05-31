@@ -4,6 +4,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { VuelosVistaGeneralComponent } from './vuelos-vista-general/vuelos-vista-general.component';
 import { VuelosListadoComponent } from './vuelos-listado/vuelos-listado.component';
 import { LayoutComponent } from './layout/layout.component';
+import { VuelosGestionComponent } from './vuelos-gestion/vuelos-gestion.component';
 
 export const routes: Routes = [
     { path: '', component: LoginComponent },    // Ruta por defecto :: Login
@@ -16,11 +17,11 @@ export const routes: Routes = [
             // Eso entra en conflicto con las reglas de abajo. Por eso se coloca explicitamente pathMatch: 'full'
             { path: 'dashboard', component: DashboardComponent },
             { path: 'vuelos', component: VuelosVistaGeneralComponent },
-            { path: 'vuelos-listado', component: VuelosListadoComponent },
+            { path: 'vuelos-gestion', component: VuelosGestionComponent},
             { path: 'empleados', component: DashboardComponent },   // Hasta que se realice este componente, se usara el DashboardComponent
             { path: 'pasajeros', component: DashboardComponent },   // Hasta que se realice este componente, se usara el DashboardComponent
-            { path: 'reportes', component: DashboardComponent },   // Hasta que se realice este componente, se usara el DashboardComponent
-            { path: 'configuracion', component: DashboardComponent },   // Hasta que se realice el componente de configuracion, se usara el DashboardComponent
+            { path: 'reportes', component: VuelosListadoComponent },
+            { path: 'configuracion', component: DashboardComponent }   // Hasta que se realice el componente de configuracion, se usara el DashboardComponent
         ]
     },
     { path: '**', redirectTo: '' }  // Cualquier ruta desconocida redirige al login
