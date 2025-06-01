@@ -1,60 +1,59 @@
 
 .contenedorPrincipal{
     display: flex;
-    height: 80%;
-    width: 75%;
-    
-
-    
-}
-.mainDashboard{
-    width: 100%;
+    justify-content: center;
+    align-items: center;
     height: 100%;
+    width: 100%;
+}
+
+.mainDashboard{
+    width: 80%;
+    height: 60%;
     border-bottom: 0.5px rgba(255, 255, 255, 0.3) solid;
     display: grid;
     grid-template-columns: repeat(8,1fr);
     grid-template-rows: repeat(13,1fr);
     background-color: rgba(61, 107, 146, 0.9);
     border-radius: 6px;
-    
-    
 }
+
 .divBotonVolver{
-    grid-column: 2/3;
+    grid-column: 1/2;
     grid-row:1/2 ;
+    display: flex;
+    justify-content: center;
 }
+
 #botonVolver{
     border-radius: 6rem;
     background-color: rgba(0, 50, 91, 1); ;
     color: white;
-    
+    height: 100%;
+    width: 60%;
 }
 #botonVolver:hover{
    background-color:rgb(26, 145, 243);
    cursor: pointer;
 }
 
-
 .divAeropuertoOrigen{
     grid-column: 3/5;
     grid-row: 1/2;
 }
+
 .divAeropuertoOrigen #aeropuertoOrigen{
     width: 100%;
     background-color: rgba(33, 62, 90, 0.38);
     color: white;
     height: 100%;
     border-radius: 6px;
-    
-    
 }
+
 .divAeropuertoOrigen #aeropuertoOrigen:hover{
     background-color: rgb(26, 145, 243);
     cursor: pointer;
-    
-    
 }
-
 
 .divAeropuertoDestino{
     grid-column: 6/8;

@@ -1,153 +1,151 @@
 
 .contenedorPrincipal{
-    display: flex;
-    height: 100%;
-    width: 80%;
-   
-    
-
-    
+  display: flex;
+  height: 100%;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
 }
+
 .mainDashboard{
-    width: 100%;
-    border-bottom: 0.5px rgba(255, 255, 255, 0.3) solid;
-    display: grid;
-    grid-template-columns: repeat(8,1fr);
-    grid-template-rows: repeat(13,1fr);
-    background-color: rgba(61, 107, 146, 0.9);
-    border-radius: 6px;
-    margin: 0 0.5rem;
-    
+  width: 80%;
+  height: 60%;
+  border-bottom: 0.5px rgba(255, 255, 255, 0.3) solid;
+  display: grid;
+  grid-template-columns: repeat(8,1fr);
+  grid-template-rows: repeat(13,1fr);
+  background-color: rgba(61, 107, 146, 0.9);
+  border-radius: 6px;
+  margin: 0 0.5rem;
+  
+  
 }
 .divBotonCrear{
-    grid-column: 1/2;
-    grid-row:1/2 ;
+  grid-column: 1/2;
+  grid-row:1/2 ;
 }
 #botonCrear{
-    border-radius: 0.5rem;
-    background-color: rgba(0, 50, 91, 1); ;
-    color: white;
-    height: 100%;
-    
+  border-radius: 0.5rem;
+  background-color: rgba(0, 50, 91, 1); ;
+  color: white;
+  height: 100%;
+  
 }
 #botonCrear:hover{
-   /* background-color:rgb(26, 145, 243); */
-   background-color: rgba(26, 145, 243,0.2);
-   cursor: pointer;
+ /* background-color:rgb(26, 145, 243); */
+ background-color: rgba(26, 145, 243,0.2);
+ cursor: pointer;
 }
 
 .divInputBusqueda{
-      grid-column: 6/9;
-    grid-row: 1/2;
+    grid-column: 6/9;
+  grid-row: 1/2;
 }
 .divInputBusqueda #inputBusqueda{
-    width: 100%;
-    background-color: rgba(33, 62, 90, 0.38);
-    color: white;
-    height: 100%;
-    border-radius: 6px;
+  width: 100%;
+  background-color: rgba(33, 62, 90, 0.38);
+  color: white;
+  height: 100%;
+  border-radius: 6px;
 }
 .divInputBusqueda #inputBusqueda::placeholder{
-  color: rgba(255, 255, 255, 0.4)
+color: rgba(255, 255, 255, 0.4)
 }
 
 .divInputBusqueda #inputBusqueda:hover{
-    background-color: rgba(26, 145, 243,0.2);
-    cursor: pointer;
-      
+  background-color: rgba(26, 145, 243,0.2);
+  cursor: pointer;
+    
 }
 
 .divTabla{
-    grid-column: 1/9;
-    grid-row: 3/13;
-    width: 100%;
-    height: 100%;
-    border: 0.1rem solid white;
-    overflow-y: auto;
-    overflow-x: auto;
-    border-radius: 1rem;
-    border-collapse: collapse;
-     padding-right: 3%; 
-    
-   
-    
-    
+  grid-column: 1/9;
+  grid-row: 3/14;
+  width: 100%;
+  height: 100%;
+  border: 0.1rem solid white;
+  overflow-y: auto;
+  overflow-x: auto;
+  border-radius: 1rem;
+  border-collapse: collapse;
+
+  
 }
 
 .divTabla .tabla{
-    width: 100%;
-   
+  width: 100%;
+ 
 }
 .divTabla tr{
-    background-color: rgba(61, 107, 146, 0.9);
-    text-align: center;
+  background-color: rgba(61, 107, 146, 0.9);
+  text-align: center;
 }
 
 
 
 .divTabla th,
 .divTabla td {
-  border-top: none;
-  border-left: none;
-  border-right: none;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* Línea horizontal */
-  padding: 0.5rem;
-  color: white;
-font-size: 1.2rem;
+border-top: none;
+border-left: none;
+border-right: none;
+border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* Línea horizontal */
+padding: 0.5rem;
+color: white;
+font-size: 0.8rem;
 }
 
 .divTabla::-webkit-scrollbar {
-  width: 0.7rem;
+width: 0.7rem;
 }
 
 .divTabla::-webkit-scrollbar-track {
-  background: transparent;
+background: transparent;
 }
 
 .divTabla::-webkit-scrollbar-thumb {
-  background-color: rgba(255, 255, 255, 0.4);
-  border-radius: 0.5rem;
-  border: 2px solid transparent;
-  background-clip: content-box;
+background-color: rgba(255, 255, 255, 0.4);
+border-radius: 0.5rem;
+border: 2px solid transparent;
+background-clip: content-box;
 }
 
 .tabla tr:hover {
-  background-color: rgba(255, 255, 255, 0.2);
-  box-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+background-color: rgba(255, 255, 255, 0.2);
+box-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
+transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 
 
 @media (max-width: 768px) {
-  .contenedorPrincipal{
-      display: flex;
-      width: 100%;  
-      height: 100%;
+.contenedorPrincipal{
+    display: flex;
+    width: 100%;  
+    height: 100%;
 } 
-  .divInputBusqueda{
-      grid-column: 1/9;
-      grid-row: 2/3;
-      height: 75%;
-    }
-    .divBotonCrear{
-      grid-column: 4/6;
-      grid-row:1/2 ;
-      height: 80%;
-      width: 100%;
-     }
-     #botonCrear{
-      border-radius: 0.5rem;
-      background-color: rgba(0, 50, 91, 1); ;
-      color: white;
-      width: 100%;
-    
-    }
-    .divTabla th,
-    .divTabla td {
+.divInputBusqueda{
+    grid-column: 1/9;
+    grid-row: 2/3;
+    height: 75%;
+  }
+  .divBotonCrear{
+    grid-column: 4/6;
+    grid-row:1/2 ;
+    height: 80%;
+    width: 100%;
+   }
+   #botonCrear{
+    border-radius: 0.5rem;
+    background-color: rgba(0, 50, 91, 1); ;
+    color: white;
+    width: 100%;
   
-      font-size: 0.6rem;
-    }
+  }
+  .divTabla th,
+  .divTabla td {
+
+    font-size: 0.6rem;
+  }
 
 }
 
@@ -155,33 +153,33 @@ font-size: 1.2rem;
 
 
 @media (max-width: 1024px) {
-  .contenedorPrincipal{
-      display: flex;
-      width: 100%;  
-      height: 100%;
+.contenedorPrincipal{
+    display: flex;
+    width: 100%;  
+    height: 100%;
 } 
-  .divInputBusqueda{
-      grid-column: 1/9;
-      grid-row: 2/3;
-      height: 70%;
-    }
-    .divBotonCrear{
-      grid-column: 4/6;
-      grid-row:1/2 ;
-      height: 70%;
-      width: 100%;
-     }
-     #botonCrear{
-      border-radius: 0.5rem;
-      background-color: rgba(0, 50, 91, 1); ;
-      color: white;
-      width: 100%;
-    
-    }
-    .divTabla th,
-    .divTabla td {
+.divInputBusqueda{
+    grid-column: 1/9;
+    grid-row: 2/3;
+    height: 70%;
+  }
+  .divBotonCrear{
+    grid-column: 4/6;
+    grid-row:1/2 ;
+    height: 70%;
+    width: 100%;
+   }
+   #botonCrear{
+    border-radius: 0.5rem;
+    background-color: rgba(0, 50, 91, 1); ;
+    color: white;
+    width: 100%;
   
-      font-size: 0.6rem;
-    }
+  }
+  .divTabla th,
+  .divTabla td {
+
+    font-size: 0.7rem;
+  }
 
 }
