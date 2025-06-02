@@ -1,37 +1,68 @@
 .contenedorPrincipal {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
+    min-height: calc(100vh - 120px);
     height: 100%;
+    padding: 20px 10px 0;
     width: 100%;
+    box-sizing: border-box;
+    overflow-x: hidden;
 }
 
 .mainDashboard {
-    width: 80%;
-    height: 60%;
+    width: 98%; /* Más ancho en móviles */
+    max-width: 2000px; /* Aumentado de 1600px a 2000px */
+    min-height: 70vh;
+    max-height: calc(100vh - 180px); /* Altura máxima para evitar desbordamiento */
     border-bottom: 0.5px rgba(255, 255, 255, 0.3) solid;
     display: grid;
     grid-template-columns: repeat(8, 1fr);
-    grid-template-rows: repeat(13, 1fr);
+    grid-template-rows: auto auto 1fr; /* Ajuste para mejor flujo */
+    gap: 15px;
     background-color: rgba(61, 107, 146, 0.9);
-    border-radius: 6px;
-    padding: 10px;
+    border-radius: 10px;
+    padding: 15px;
+    box-sizing: border-box;
+    margin: 0 auto;
+    overflow: hidden; /* Evita el doble scroll */
+    
+    /* Media Queries */
+    @media (min-width: 768px) {
+        width: 95%;
+        padding: 20px;
+    }
+    
+    @media (min-width: 1024px) {
+        width: 90%;
+        padding: 25px;
+    }
 }
 
 .divBotonVolver {
     grid-column: 1/2;
     grid-row: 1/2;
     display: flex;
-    justify-content: center;
+    align-items: center; /* Alinear verticalmente */
+    justify-content: flex-start; /* Alinear a la izquierda */
+    padding-left: 30px; /* Pequeño margen izquierdo */
 }
 
 #botonVolver {
-    border-radius: 6rem;
-    background-color: rgba(0, 50, 91, 1);
-    ;
+    border-radius: 50%;
+    background-color: rgba(33, 62, 90, 0.38);
     color: white;
-    height: 100%;
-    width: 60%;
+    height: 45px; /* Misma altura que los selectores */
+    width: 45px; /* Mismo ancho que alto */
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+    font-size: 20px;
+    cursor: pointer;
+    transition: all 0.2s ease;
 }
 
 #botonVolver:hover {
@@ -39,78 +70,156 @@
     cursor: pointer;
 }
 
-.divAeropuertoOrigen {
-    grid-column: 3/5;
-    grid-row: 1/2;
-}
-
-.divAeropuertoOrigen #aeropuertoOrigen {
-    width: 100%;
-    background-color: rgba(33, 62, 90, 0.38);
-    color: white;
+/* Estilos para los contenedores de los selectores */
+.divAeropuertoOrigen, .divAeropuertoDestino {
+    display: flex;
+    align-items: center;
     height: 100%;
-    border-radius: 6px;
+    position: relative;
+    width: 100%; /* Asegura que ocupen todo el ancho de su celda */
 }
 
-.divAeropuertoOrigen #aeropuertoOrigen:hover {
-    background-color: rgb(26, 145, 243);
-    cursor: pointer;
+.divAeropuertoOrigen {
+    grid-column: 2/4;
+    grid-row: 1/2;
+    margin-right: 5px;
 }
 
 .divAeropuertoDestino {
-    grid-column: 6/8;
+    grid-column: 4/6;
     grid-row: 1/2;
+    margin-left: 5px;
 }
 
-.divAeropuertoDestino #aeropuertoDestino {
+/* Estilos comunes para los selectores */
+#aeropuertoOrigen, #aeropuertoDestino {
     width: 100%;
     background-color: rgba(33, 62, 90, 0.38);
     color: white;
-    height: 100%;
+    height: 45px; 
     border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 0 15px; 
+    font-size: 0.9rem; /* Tamaño de fuente ligeramente más pequeño */
+    transition: all 0.3s ease;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23FFFFFF%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center; /* Ajuste de posición del ícono */
+    background-size: 10px auto; /* Tamaño del ícono reducido */
+    cursor: pointer;
+    max-width: 100%; /* Asegura que no se salga del contenedor */
+    box-sizing: border-box;
 }
 
-.divAeropuertoDestino #aeropuertoDestino:hover {
-    background-color: rgb(26, 145, 243);
-    cursor: pointer;
+/* Media Queries para los selectores */
+@media (max-width: 768px) {
+    .divAeropuertoOrigen, .divAeropuertoDestino {
+        grid-column: 1/-1; /* Ocupa todo el ancho en móviles */
+        margin: 5px 0;
+    }
+    
+    .divBotonVolver {
+        grid-column: 1/-1; /* Ocupa todo el ancho en móviles */
+        justify-content: center;
+        padding: 5px 0;
+    }
+    
+    .divDescargar {
+        grid-column: 1/-1; /* Ocupa todo el ancho en móviles */
+        justify-content: center;
+        padding: 5px 0;
+    }
+}
 
+@media (min-width: 769px) and (max-width: 1024px) {
+    .divAeropuertoOrigen, .divAeropuertoDestino {
+        grid-column: span 3; /* Ajuste para tablets */
+    }
+}
+
+/* Efecto hover para los selectores */
+#aeropuertoOrigen:hover, #aeropuertoDestino:hover {
+    background-color: rgba(26, 145, 243, 0.6);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Estilo cuando el selector está enfocado */
+#aeropuertoOrigen:focus, #aeropuertoDestino:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(26, 145, 243, 0.5);
+}
+
+/* Estilo para las opciones del selector */
+#aeropuertoOrigen option, #aeropuertoDestino option {
+    background-color: #1a3a5f;
+    color: white;
+    padding: 10px;
+}
+
+/* Contenedor del botón de limpiar */
+.divAeropuertoDestino {
+    position: relative;
 }
 
 .divDescargar {
     grid-column: 8/9;
     grid-row: 1/2;
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 30px; 
 }
 
 #btnDescargarReporte {
-    border-radius: 6rem;
-    background-color: rgba(0, 50, 91, 1);
-    ;
+    border-radius: 50%;
+    background-color: rgba(33, 62, 90, 0.38);
     color: white;
-
+    height: 45px;
+    width: 45px;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+    font-size: 20px;
+    cursor: pointer;
+    transition: all 0.2s ease;
 }
 
 #btnDescargarReporte:hover {
     background-color: rgb(26, 145, 243);
-    cursor: pointer;
+    transform: scale(1.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+#btnDescargarReporte:active {
+    transform: scale(0.95);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilos para el ícono de Material */
+#btnDescargarReporte .material-icons {
+    font-size: 24px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .divTabla {
-    grid-column: 2/8;
-    grid-row: 3/13;
+    grid-column: 1/-1;
+    grid-row: 3/4;
     width: 100%;
+    padding: 10px 0;
     height: 100%;
-    border: 0.1rem solid white;
-    overflow-y: auto;
     overflow-x: auto;
-    border-radius: 1rem;
-    border-collapse: collapse;
-    padding-right: 3%;
-
-
-
-
+    border-radius: 0.5rem;
+    box-sizing: border-box;
+    -webkit-overflow-scrolling: touch;
 }
 
 .divTabla .tabla {
@@ -163,7 +272,6 @@ td select {
     color: white;
     border-radius: 6px;
     font-size: 1.2rem;
-
 }
 
 @media (max-width: 768px) {
@@ -171,12 +279,15 @@ td select {
         width: 100%;
         height: 100%;
         margin: 0 0.5rem;
-
+        padding: 10px 5px 0;
+        min-height: calc(100vh - 100px);
+        height: auto;
     }
-
+    
     .mainDashboard {
         width: 100%;
-
+        min-height: 60vh;
+        max-height: none;
     }
 
 
@@ -293,9 +404,8 @@ td select {
     }
 }
 
-
 #btnLimpiarFiltros {
-    background:  rgba(0, 50, 91, 1);
+    background: rgba(0, 50, 91, 1);
     color: white;
     border: none;
     border-radius: 50%;
@@ -303,9 +413,10 @@ td select {
     height: 25px;
     cursor: pointer;
     font-size: 16px;
+    margin-left: 10px; 
+    position: relative; 
 }
 
 #btnLimpiarFiltros:hover {
     background: #21429e;
-    transform: scale(1.1);
 }
