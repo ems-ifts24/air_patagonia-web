@@ -66,4 +66,12 @@ export class VuelosListadoComponent {
       );
     }
   }
+
+  // limpiar filtros
+  limpiarFiltros() {
+
+    this.origenSeleccionado = '';
+    this.destinoSeleccionado = '';
+    this.filtrarVuelos();  //invoco a funcion de filtrar
+  }
 }
