@@ -16,6 +16,7 @@
     grid-template-rows: repeat(13,1fr);
     background-color: rgba(61, 107, 146, 0.9);
     border-radius: 6px;
+    padding: 10px;
 }
 
 .divBotonVolver{
