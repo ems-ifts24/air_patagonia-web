@@ -24,124 +24,27 @@
                         <th>Estado</th>
                         <th>Acción</th>
                     </tr>
-                     <tr>
-                        <td>AP1978</td>
-                        <td>747</td>
-                        <td>Buenos Aires</td>
-                        <td>Bariloche</td>
-                        <td>25/05/2025</td>
-                        <td>25/05/2025</td>
-                        <td>Finalizado</td>
-                        <td>
-                            <a href="#"><img src="../img/icon_modify.svg" alt="iconoAccion"></a>
-                            <a href="#"><img src="../img/icon_delete.svg" alt="iconoAccion"></a>
-                        </td>
-                    </tr>
-                      <tr>
-                        <td>AP1978</td>
-                        <td>747</td>
-                        <td>Buenos Aires</td>
-                        <td>Bariloche</td>
-                        <td>25/05/2025</td>
-                        <td>25/05/2025</td>
-                        <td>Finalizado</td>
-                        <td>
-                            <a href="#"><img src="../img/icon_modify.svg" alt="iconoAccion"></a>
-                            <a href="#"><img src="../img/icon_delete.svg" alt="iconoAccion"></a>
-                        </td>
-                        
-                    </tr>
-                      <tr>
-                        <td>AP1978</td>
-                        <td>747</td>
-                        <td>Buenos Aires</td>
-                        <td>Bariloche</td>
-                        <td>25/05/2025</td>
-                        <td>25/05/2025</td>
-                        <td>Finalizado</td>
-                        <td>
-                            <a href="#"><img src="../img/icon_modify.svg" alt="iconoAccion"></a>
-                            <a href="#"><img src="../img/icon_delete.svg" alt="iconoAccion"></a>
-                        </td>
-                    </tr>
-                      <tr>
-                        <td>AP1978</td>
-                        <td>747</td>
-                        <td>Buenos Aires</td>
-                        <td>Bariloche</td>
-                        <td>25/05/2025</td>
-                        <td>25/05/2025</td>
-                        <td>Finalizado</td>
-                        <td>
-                            <a href="#"><img src="../img/icon_modify.svg" alt="iconoAccion"></a>
-                            <a href="#"><img src="../img/icon_delete.svg" alt="iconoAccion"></a>
-                        </td>
-                    </tr>
-                      <tr>
-                        <td>AP1978</td>
-                        <td>747</td>
-                        <td>Buenos Aires</td>
-                        <td>Bariloche</td>
-                        <td>25/05/2025</td>
-                        <td>25/05/2025</td>
-                        <td>Finalizado</td>
-                        <td>
-                            <a href="#"><img src="../img/icon_modify.svg" alt="iconoAccion"></a>
-                            <a href="#"><img src="../img/icon_delete.svg" alt="iconoAccion"></a>
-                        </td>
-                    </tr>
-                      <tr>
-                        <td>AP1978</td>
-                        <td>747</td>
-                        <td>Buenos Aires</td>
-                        <td>Bariloche</td>
-                        <td>25/05/2025</td>
-                        <td>25/05/2025</td>
-                        <td>Finalizado</td>
-                        <td>
-                            <a href="#"><img src="../img/icon_modify.svg" alt="iconoAccion"></a>
-                            <a href="#"><img src="../img/icon_delete.svg" alt="iconoAccion"></a>
-                        </td>
-                    </tr>
-                      <tr>
-                        <td>AP1978</td>
-                        <td>747</td>
-                        <td>Buenos Aires</td>
-                        <td>Bariloche</td>
-                        <td>25/05/2025</td>
-                        <td>25/05/2025</td>
-                        <td>Finalizado</td>
-                        <td>
-                            <a href="#"><img src="../img/icon_modify.svg" alt="iconoAccion"></a>
-                            <a href="#"><img src="../img/icon_delete.svg" alt="iconoAccion"></a>
-                        </td>
-                    </tr>
-                      <tr>
-                        <td>AP1978</td>
-                        <td>747</td>
-                        <td>Buenos Aires</td>
-                        <td>Bariloche</td>
-                        <td>25/05/2025</td>
-                        <td>25/05/2025</td>
-                        <td>Finalizado</td>
-                        <td>
-                            <a href="#"><img src="../img/icon_modify.svg" alt="iconoAccion"></a>
-                            <a href="#"><img src="../img/icon_delete.svg" alt="iconoAccion"></a>
-                        </td>
-                    </tr>
-                      <tr>
-                        <td>AP1978</td>
-                        <td>747</td>
-                        <td>Buenos Aires</td>
-                        <td>Bariloche</td>
-                        <td>25/05/2025</td>
-                        <td>25/05/2025</td>
-                        <td>Finalizado</td>
-                        <td>
-                            <a href="#"><img src="../img/icon_modify.svg" alt="iconoAccion"></a>
-                            <a href="#"><img src="../img/icon_delete.svg" alt="iconoAccion"></a>
-                        </td>
-                    </tr>
+                    @for(vuelo of vuelos; track $index){
+                        <tr id={{vuelo.id}}>
+                            <td>{{vuelo.vuelo}}</td>
+                            <td>{{vuelo.modelo}}</td>
+                            <td>{{vuelo.origen}}</td>
+                            <td>{{vuelo.destino}}</td>
+                            <td>{{vuelo.partida}}</td>
+                            <td>{{vuelo.arribo}}</td>
+                            <td>{{vuelo.estado}}</td>
+                            <td>
+                                <span class="accion-simple" (click)="editarVuelo(vuelo.id)">
+                                    <i class="material-icons">edit</i>
+                                    <span>Editar</span>
+                                </span>
+                                <span class="accion-simple" (click)="eliminarVuelo(vuelo.id)">
+                                    <i class="material-icons">delete</i>
+                                    <span>Eliminar</span>
+                                </span>
+                            </td>
+                        </tr>
+                    }
                 </table>
             </div>        
         </div> 
