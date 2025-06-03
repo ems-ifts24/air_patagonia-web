@@ -92,122 +92,23 @@
                     <th>Rol</th>
                     <th>Asignar</th>
                 </tr>
-                <tr>
-                    <td>Ezequiel</td>
-                    <td>Lopez</td>
-                    <td>38705210</td>
+                <tr *ngFor="let empleado of listaEmpleadosParaAsignar; let i = index">
+                    <td>{{ empleado.nombre }}</td>
+                    <td>{{ empleado.apellido }}</td>
+                    <td>{{ empleado.dni }}</td>
                     <td>
-                        <select name="" id="">
-                            <option value="Tripulante">Tripulante</option>
-                            <option value="Tripulante">Tripulante</option>
+                        <select [(ngModel)]="empleado.rol" [name]="'rolEmpleado_' + i">
+                            <option value="">Rol</option>
+                            <option *ngFor="let rol of rolesDisponibles" [value]="rol">
+                                {{ rol }}
+                            </option>
                         </select>
                     </td>
-                    <td><input type="checkbox" name="tripulanteAsignado" class="tripulanteAsignado"></td>
+                    <td>
+                        <input type="checkbox" [(ngModel)]="empleado.asignado" [name]="'asignadoEmpleado_' + i"
+                            class="tripulanteAsignado">
+                    </td>
                 </tr>
-                  <tr>
-                    <td>1</td>
-                    <td>2</td>
-                    <td>3</td>
-                    <td>
-                        <select name="" id="">
-                            <option value="Tripulante">Tripulante</option>
-                            <option value="Tripulante">Tripulante</option>
-                        </select>
-                    </td>
-                    <td><input type="checkbox" name="tripulanteAsignado" class="tripulanteAsignado"></td>
-
-                  </tr>  <tr>
-                    <td>1</td>
-                    <td>2</td>
-                    <td>3</td>
-                    <td>
-                        <select name="seleccionTripulante" id="selectTripulante" >
-                            <option value="Tripulante">Tripulante</option>
-                            <option value="Tripulante">Tripulante</option>
-                        </select>
-                    </td>
-                    <td><input type="checkbox" name="tripulanteAsignado"  class="tripulanteAsignado"></td>
-
-                </tr>
-                  <tr>
-                    <td>1</td>
-                    <td>2</td>
-                    <td>3</td>
-                    <td>
-                        <select name="" id="">
-                            <option value="Tripulante">Tripulante</option>
-                            <option value="Tripulante">Tripulante</option>
-                        </select>
-                    </td>
-                    <td><input type="checkbox" name="tripulanteAsignado" class="tripulanteAsignado"></td>
-
-                 </tr>
-                   <tr>
-                    <td>1</td>
-                    <td>2</td>
-                    <td>3</td>
-                    <td>
-                        <select name="" id="">
-                            <option value="Tripulante">Tripulante</option>
-                            <option value="Tripulante">Tripulante</option>
-                        </select>
-                    </td>
-                    <td><input type="checkbox" name="tripulanteAsignado" class="tripulanteAsignado"></td>
-
-                   </tr>
-                   <tr>
-                    <td>1</td>
-                    <td>2</td>
-                    <td>3</td>
-                    <td>
-                        <select name="" id="">
-                            <option value="Tripulante">Tripulante</option>
-                            <option value="Tripulante">Tripulante</option>
-                        </select>
-                    </td>
-                    <td><input type="checkbox" name="tripulanteAsignado" class="tripulanteAsignado"></td>
-
-                   </tr>
-                   <tr>
-                    <td>1</td>
-                    <td>2</td>
-                    <td>3</td>
-                    <td>
-                        <select name="" id="">
-                            <option value="Tripulante">Tripulante</option>
-                            <option value="Tripulante">Tripulante</option>
-                        </select>
-                    </td>
-                    <td><input type="checkbox" name="tripulanteAsignado" class="tripulanteAsignado"></td>
-
-                   </tr>
-                   <tr>
-                    <td>1</td>
-                    <td>2</td>
-                    <td>3</td>
-                    <td>
-                        <select name="" id="">
-                            <option value="Tripulante">Tripulante</option>
-                            <option value="Tripulante">Tripulante</option>
-                        </select>
-                    </td>
-                    <td><input type="checkbox" name="tripulanteAsignado" class="tripulanteAsignado"></td>
-
-                   </tr>
-                   <tr>
-                    <td>1</td>
-                    <td>2</td>
-                    <td>3</td>
-                    <td>
-                        <select name="" id="">
-                            <option value="Tripulante">Tripulante</option>
-                            <option value="Tripulante">Tripulante</option>
-                        </select>
-                    </td>
-                    <td><input type="checkbox" name="tripulanteAsignado" class="tripulanteAsignado"></td>
-
-                   </tr>
-
             </table>
             </div>
             
