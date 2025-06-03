@@ -1,5 +1,4 @@
-
-.contenedorPrincipal{
+.contenedorPrincipal {
   display: flex;
   height: 100%;
   width: 100%;
@@ -7,58 +6,79 @@
   align-items: center;
 }
 
-.mainDashboard{
+.mainDashboard {
   width: 80%;
   height: 60%;
   border-bottom: 0.5px rgba(255, 255, 255, 0.3) solid;
   display: grid;
-  grid-template-columns: repeat(8,1fr);
-  grid-template-rows: repeat(13,1fr);
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: repeat(13, 1fr);
   background-color: rgba(61, 107, 146, 0.9);
   border-radius: 6px;
   margin: 0 0.5rem;
-  
-  
-}
-.divBotonCrear{
-  grid-column: 1/2;
-  grid-row:1/2 ;
-}
-#botonCrear{
-  border-radius: 0.5rem;
-  background-color: rgba(0, 50, 91, 1); ;
-  color: white;
-  height: 100%;
-  
-}
-#botonCrear:hover{
- /* background-color:rgb(26, 145, 243); */
- background-color: rgba(26, 145, 243,0.2);
- cursor: pointer;
+  padding: 1rem;
 }
 
-.divInputBusqueda{
-    grid-column: 6/9;
+.divBotonCrear {
+  grid-column: 1/2;
   grid-row: 1/2;
 }
-.divInputBusqueda #inputBusqueda{
+
+#botonCrear {
+  border-radius: 0.5rem;
+  background-color: rgba(0, 50, 91, 1);
+  color: white;
+  height: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0 1rem;
+  border: none;
+  cursor: pointer;
+}
+
+#botonCrear:hover {
+  /* background-color:rgb(26, 145, 243); */
+  background-color: rgba(26, 145, 243, 0.2);
+  cursor: pointer;
+}
+
+#botonCrear i {
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+}
+
+#botonCrear span {
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.divInputBusqueda {
+  grid-column: 6/9;
+  grid-row: 1/2;
+}
+
+.divInputBusqueda #inputBusqueda {
   width: 100%;
   background-color: rgba(33, 62, 90, 0.38);
   color: white;
   height: 100%;
   border-radius: 6px;
 }
-.divInputBusqueda #inputBusqueda::placeholder{
-color: rgba(255, 255, 255, 0.4)
+
+.divInputBusqueda #inputBusqueda::placeholder {
+  color: rgba(255, 255, 255, 0.4)
 }
 
-.divInputBusqueda #inputBusqueda:hover{
-  background-color: rgba(26, 145, 243,0.2);
+.divInputBusqueda #inputBusqueda:hover {
+  background-color: rgba(26, 145, 243, 0.2);
   cursor: pointer;
-    
+
 }
 
-.divTabla{
+.divTabla {
   grid-column: 1/9;
   grid-row: 3/14;
   width: 100%;
@@ -68,136 +88,139 @@ color: rgba(255, 255, 255, 0.4)
   overflow-x: auto;
   border-radius: 1rem;
   border-collapse: collapse;
-
-  
 }
 
-.divTabla .tabla{
+.divTabla .tabla {
   width: 100%;
- 
 }
-.divTabla tr{
+
+.divTabla tr {
   background-color: rgba(61, 107, 146, 0.9);
   text-align: center;
 }
 
-
-
 .divTabla th,
 .divTabla td {
-border-top: none;
-border-left: none;
-border-right: none;
-border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* Línea horizontal */
-padding: 0.5rem;
-color: white;
-font-size: 0.8rem;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  /* Línea horizontal */
+  padding: 0.5rem;
+  color: white;
+  font-size: 0.8rem;
 }
 
 .divTabla::-webkit-scrollbar {
-width: 0.7rem;
+  width: 0.7rem;
 }
 
 .divTabla::-webkit-scrollbar-track {
-background: transparent;
+  background: transparent;
 }
 
 .divTabla::-webkit-scrollbar-thumb {
-background-color: rgba(255, 255, 255, 0.4);
-border-radius: 0.5rem;
-border: 2px solid transparent;
-background-clip: content-box;
+  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 0.5rem;
+  border: 2px solid transparent;
+  background-clip: content-box;
 }
 
 .tabla tr:hover {
-background-color: rgba(255, 255, 255, 0.2);
-box-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
-transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  background-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .accion-simple {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    color: white;
-    cursor: pointer;
-    padding: 0.25rem 0.5rem;
-    border-radius: 4px;
-    transition: color 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: white;
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  transition: color 0.2s ease;
 }
 
 .accion-simple:hover {
-    color: #1a91f3;
+  color: #1a91f3;
 }
 
 .accion-simple i {
-    font-size: 1.2rem;
+  font-size: 1.2rem;
 }
 
 .accion-simple span {
-    font-size: 0.875rem;
-    font-weight: 500;
+  font-size: 0.875rem;
+  font-weight: 500;
 }
 
 @media (max-width: 768px) {
-.contenedorPrincipal{
+  .contenedorPrincipal {
     display: flex;
-    width: 100%;  
+    width: 100%;
     height: 100%;
-} 
-.divInputBusqueda{
+  }
+
+  .divInputBusqueda {
     grid-column: 1/9;
     grid-row: 2/3;
     height: 75%;
   }
-  .divBotonCrear{
+
+  .divBotonCrear {
     grid-column: 4/6;
-    grid-row:1/2 ;
+    grid-row: 1/2;
     height: 80%;
     width: 100%;
-   }
-   #botonCrear{
+  }
+
+  #botonCrear {
     border-radius: 0.5rem;
-    background-color: rgba(0, 50, 91, 1); ;
+    background-color: rgba(0, 50, 91, 1);
+    ;
     color: white;
     width: 100%;
-  
+
   }
+
   .divTabla th,
   .divTabla td {
 
     font-size: 0.6rem;
   }
-
 }
 
-
-
-
 @media (max-width: 1024px) {
-.contenedorPrincipal{
+  .contenedorPrincipal {
     display: flex;
-    width: 100%;  
+    width: 100%;
     height: 100%;
-} 
-.divInputBusqueda{
+  }
+
+  .divInputBusqueda {
     grid-column: 1/9;
     grid-row: 2/3;
     height: 70%;
   }
-  .divBotonCrear{
+
+  .divBotonCrear {
     grid-column: 4/6;
-    grid-row:1/2 ;
+    grid-row: 1/2;
     height: 70%;
     width: 100%;
-   }
-   #botonCrear{
+  }
+
+  #botonCrear {
     border-radius: 0.5rem;
-    background-color: rgba(0, 50, 91, 1); ;
+    background-color: rgba(0, 50, 91, 1);
+    ;
     color: white;
     width: 100%;
-  
+
   }
+
   .divTabla th,
   .divTabla td {
 

@@ -1,51 +1,48 @@
 <div class="contenedorPrincipal">
-      <div class="mainDashboard">
-         
-           <div class="divBotonCrear">
-             <button id="botonCrear" (click)="crearVuelo()">+ CREAR</button>
-           </div>
-           
-           
-
-            
-            <div class="divInputBusqueda">
-                <input type="search"id="inputBusqueda" placeholder="Buscar">
-            </div>
-                 
-            <div class="divTabla">
-                <table class="tabla">
-                    <tr class="headerTabla">
-                        <th>Vuelo</th>
-                        <th>Modelo</th>
-                        <th>Origen</th>
-                        <th>Destino</th>
-                        <th>Partida</th>
-                        <th>Arribo</th>
-                        <th>Estado</th>
-                        <th>Acción</th>
-                    </tr>
-                    @for(vuelo of vuelos; track $index){
-                        <tr id={{vuelo.id}}>
-                            <td>{{vuelo.vuelo}}</td>
-                            <td>{{vuelo.modelo}}</td>
-                            <td>{{vuelo.origen}}</td>
-                            <td>{{vuelo.destino}}</td>
-                            <td>{{vuelo.partida}}</td>
-                            <td>{{vuelo.arribo}}</td>
-                            <td>{{vuelo.estado}}</td>
-                            <td>
-                                <span class="accion-simple" (click)="editarVuelo(vuelo.id)">
-                                    <i class="material-icons">edit</i>
-                                    <span>Editar</span>
-                                </span>
-                                <span class="accion-simple" (click)="eliminarVuelo(vuelo.id)">
-                                    <i class="material-icons">delete</i>
-                                    <span>Eliminar</span>
-                                </span>
-                            </td>
-                        </tr>
-                    }
-                </table>
-            </div>        
-        </div> 
+    <div class="mainDashboard">
+        <div class="divBotonCrear">
+            <button id="botonCrear" (click)="crearVuelo()">
+                <i class="material-icons">add</i>
+                <span>CREAR</span>
+            </button>
+        </div>
+        <div class="divInputBusqueda">
+            <input type="search" id="inputBusqueda" placeholder="Buscar">
+        </div>
+        <div class="divTabla">
+            <table class="tabla">
+                <tr class="headerTabla">
+                    <th>Vuelo</th>
+                    <th>Modelo</th>
+                    <th>Origen</th>
+                    <th>Destino</th>
+                    <th>Partida</th>
+                    <th>Arribo</th>
+                    <th>Estado</th>
+                    <th>Acción</th>
+                </tr>
+                @for(vuelo of vuelos; track $index){
+                <tr id={{vuelo.id}}>
+                    <td>{{vuelo.vuelo}}</td>
+                    <td>{{vuelo.modelo}}</td>
+                    <td>{{vuelo.origen}}</td>
+                    <td>{{vuelo.destino}}</td>
+                    <td>{{vuelo.partida}}</td>
+                    <td>{{vuelo.arribo}}</td>
+                    <td>{{vuelo.estado}}</td>
+                    <td>
+                        <span class="accion-simple" (click)="editarVuelo(vuelo.id)">
+                            <i class="material-icons">edit</i>
+                            <span>Editar</span>
+                        </span>
+                        <span class="accion-simple" (click)="eliminarVuelo(vuelo.id)">
+                            <i class="material-icons">delete</i>
+                            <span>Eliminar</span>
+                        </span>
+                    </td>
+                </tr>
+                }
+            </table>
+        </div>
+    </div>
 </div>
