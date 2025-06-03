@@ -6,9 +6,18 @@
                 <span>CREAR</span>
             </button>
         </div>
-        <div class="divInputBusqueda">
-            <input type="search" id="inputBusqueda" placeholder="Buscar">
+
+        <div class="divBtnLimpiarFiltros">
+            <button id="btnLimpiarFiltros" (click)="limpiarBusqueda()">
+                <i class="material-icons">refresh</i>
+                <span>Limpiar</span>
+            </button>
         </div>
+
+        <div class="divInputBusqueda">
+            <input type="search" id="inputBusqueda" placeholder="Buscar" [(ngModel)]="inputBusqueda" (input)="filtrarVuelos()">
+        </div>
+
         <div class="divTabla">
             <table class="tabla">
                 <tr class="headerTabla">
