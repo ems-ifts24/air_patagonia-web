@@ -119,6 +119,8 @@ export class VueloServiceService {
 
   // Vuelos
   private initializeVuelos(): void {
+    const fechaActual = this.getHoyFormateado();
+
     this.vuelos = [
       {
         id: '1',
@@ -126,8 +128,8 @@ export class VueloServiceService {
         avion: this.getAvionById('AV001')!,
         origen: this.getAeropuertoByCodigo('EZE')!,
         destino: this.getAeropuertoByCodigo('AEP')!,
-        fechaPartida: '25/05/2025',
-        fechaArribo: '25/05/2025',
+        fechaPartida: fechaActual,
+        fechaArribo: fechaActual,
         estado: 'En vuelo'
       },
       {
@@ -136,8 +138,8 @@ export class VueloServiceService {
         avion: this.getAvionById('AV002')!,
         origen: this.getAeropuertoByCodigo('AEP')!,
         destino: this.getAeropuertoByCodigo('COR')!,
-        fechaPartida: '26/05/2025',
-        fechaArribo: '26/05/2025',
+        fechaPartida: fechaActual,
+        fechaArribo: fechaActual,
         estado: 'Programado'
       },
       {
@@ -146,8 +148,8 @@ export class VueloServiceService {
         avion: this.getAvionById('AV003')!,
         origen: this.getAeropuertoByCodigo('ROS')!,
         destino: this.getAeropuertoByCodigo('FTE')!,
-        fechaPartida: '27/05/2025',
-        fechaArribo: '27/05/2025',
+        fechaPartida: fechaActual,
+        fechaArribo: fechaActual,
         estado: 'Programado'
       },
       {
@@ -319,5 +321,14 @@ export class VueloServiceService {
 
   getVueloById(id: string): Vuelo | undefined {
     return this.vuelos.find(vuelo => vuelo.id === id);
+  }
+
+  // metodo para obtener la fecha de hoy formateada
+  public getHoyFormateado(): string {
+    const fecha = new Date();
+    const dia = fecha.getDate().toString().padStart(2, '0');
+    const mes = (fecha.getMonth() + 1).toString().padStart(2, '0'); 
+    const anio = fecha.getFullYear();
+    return `${dia}/${mes}/${anio}`;
   }
 }
