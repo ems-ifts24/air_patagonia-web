@@ -15,26 +15,40 @@ export class VuelosGestionComponent implements OnInit { // Implementa OnInit
 
   titleCreacion = 'CREACION';
   titleModificacion = 'MODIFICACION';
-
-  listaEmpleadosParaAsignar: Empleado[] = [];
+  empleados: Empleado[] = [];
   rolesDisponibles: string[] = [
     'Piloto',
     'Copiloto',
     'Tripulante',
     'Jefe de Cabina',
   ];
+  empleadosParaFiltrar: Empleado[] = [];
+  filtroEmpleado: string = '';
 
   // inyecto el servicio
   constructor(private router: Router, private vueloService: VueloServiceService) { }
 
   ngOnInit(): void {
-    const empleadosDelServicio = this.vueloService.getEmpleados();
-    this.listaEmpleadosParaAsignar = empleadosDelServicio.map(emp => ({
-      ...emp, // Copia todas las propiedades del empleado original
-    }));
+    this.empleados = this.vueloService.getEmpleados();
+    this.empleadosParaFiltrar = [...this.empleados];
   }
 
   cancelarModificacion() {
     this.router.navigate(['app/vuelos']);
+  }
+
+  aplicarFiltroEmpleados(): void {
+
+    if (!this.filtroEmpleado) { // si no hay busqueda se muestra todo el listado
+      this.empleados = [...this.empleadosParaFiltrar];
+      return;
+    }
+
+    const busqueda = this.filtroEmpleado.toLowerCase();
+    this.empleados = this.empleadosParaFiltrar.filter(empleado =>
+      empleado.nombre.toLowerCase().includes(busqueda) ||
+      empleado.apellido.toLowerCase().includes(busqueda) ||
+      (empleado.dni && empleado.dni.toLowerCase().includes(busqueda))
+    );
   }
 }

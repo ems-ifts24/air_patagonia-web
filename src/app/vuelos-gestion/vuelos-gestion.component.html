@@ -1,90 +1,91 @@
 <div class="contenedorPrincipal">
-      <div class="mainDashboard">
-         
-           <div class="divBotonVolver">
-             <button id="botonVolverModificacion" (click)="cancelarModificacion()">⬅</button>
-           </div>
-            <div class="divCreacion">
-                <p id="creacion">MODIFICACIÓN</p>
-            </div>
-            <div class="divBuscarEmpleado">
-                <input type="search" id="inputBuscarEmpleado" placeholder="Buscar Empleado">
-            </div>
-            <div class="divAvion">
-                <select name="avion" id="selectAvion">
-                    <option value="Avion">Avion</option>
-                    <option value="boeing">BOEING 737</option>
-                </select>
-            </div>
+    <div class="mainDashboard">
 
-            <div class="divAeropuertoOrigen">
-                
-               <select id="aeropuertoOrigen" >
-                    <option value="aeoropuertoOrigen">Origen</option>
-                    <option value="EZE">EZE - Aeropuerto Internacional Ministro Pistarini</option>
-                    <option value="AEP">AEP - Aeropuerto Jorge Newbery</option>
-                    <option value="COR">COR - Aeropuerto Internacional Ingeniero Ambrosio L.V. Taravella</option>
-                    <option value="MDZ">MDZ - Aeropuerto Internacional Gobernador Francisco Gabrielli</option>
-                    <option value="ROS">ROS - Aeropuerto Internacional Rosario Islas Malvinas</option>
-                    <option value="SAL">SAL - Aeropuerto Internacional Martín Miguel de Güemes</option>
-                    <option value="TUC">TUC - Aeropuerto Internacional Teniente General Benjamín Matienzo</option>
-                    <option value="BRC">BRC - Aeropuerto Internacional Teniente Luis Candelaria</option>
-                    <option value="USH">USH - Aeropuerto Internacional Malvinas Argentinas</option>
-                    <option value="IGR">IGR - Aeropuerto Internacional Cataratas del Iguazú</option>
-                    <option value="REL">REL - Aeropuerto Almirante Marcos A. Zar</option>
-                    <option value="CRD">CRD - Aeropuerto Internacional General Enrique Mosconi</option>
-                    <option value="JUJ">JUJ - Aeropuerto Internacional Gobernador Horacio Guzmán</option> 
-                </select>
-            </div>
-            <div class="divAeropuertoDestino">
-                 <select id="aeropuertoDestino" >
-                    <option value="aeoropuertoDestino">Destino</option>
-                    <option value="EZE">EZE - Aeropuerto Internacional Ministro Pistarini</option>
-                    <option value="AEP">AEP - Aeropuerto Jorge Newbery</option>
-                    <option value="COR">COR - Aeropuerto Internacional Ingeniero Ambrosio L.V. Taravella</option>
-                    <option value="MDZ">MDZ - Aeropuerto Internacional Gobernador Francisco Gabrielli</option>
-                    <option value="ROS">ROS - Aeropuerto Internacional Rosario Islas Malvinas</option>
-                    <option value="SAL">SAL - Aeropuerto Internacional Martín Miguel de Güemes</option>
-                    <option value="TUC">TUC - Aeropuerto Internacional Teniente General Benjamín Matienzo</option>
-                    <option value="BRC">BRC - Aeropuerto Internacional Teniente Luis Candelaria</option>
-                    <option value="USH">USH - Aeropuerto Internacional Malvinas Argentinas</option>
-                    <option value="IGR">IGR - Aeropuerto Internacional Cataratas del Iguazú</option>
-                    <option value="REL">REL - Aeropuerto Almirante Marcos A. Zar</option>
-                    <option value="CRD">CRD - Aeropuerto Internacional General Enrique Mosconi</option>
-                    <option value="JUJ">JUJ - Aeropuerto Internacional Gobernador Horacio Guzmán</option> 
-                </select>
-                
+        <div class="divBotonVolver">
+            <button id="botonVolverModificacion" (click)="cancelarModificacion()">⬅</button>
+        </div>
+        <div class="divCreacion">
+            <p id="creacion">MODIFICACIÓN</p>
+        </div>
+        <div class="divBuscarEmpleado">
+            <input type="search" id="inputBuscarEmpleado" placeholder="Buscar Empleado" [(ngModel)]="filtroEmpleado"
+                (input)="aplicarFiltroEmpleados()">
+        </div>
+        <div class="divAvion">
+            <select name="avion" id="selectAvion">
+                <option value="Avion">Avion</option>
+                <option value="boeing">BOEING 737</option>
+            </select>
+        </div>
 
-            </div>
-            <div class="divFechaPartidaLabel">
-                <label for="fechaPartida" id="fechaPartidaLabel">Partida</label>
-            </div>
-            <div class="divFechaPartida">
-                <input type="datetime-local" id="fechaPartida">
-            </div>
-            <div class="divFechaArriboLabel">
-                <label for="fechaArribo" id="fechaArriboLabel">Arribo</label>
-            </div>
-            <div class="divFechaArribo">
-                <input type="datetime-local" id="fechaArribo">
-            </div>
-            <div class="divEstado">
-                <select name="EstadoVuelo" id="selectEstadoVuelo">
-                    <option value="Estado">Estado</option>
-                    <option value="Cancelado">Cancelado</option>
-                    <option value="Demorado">Demorado</option>
-                </select>
-            </div>
+        <div class="divAeropuertoOrigen">
 
-            <div class="divBtnGuardar">
-                <button id="btnGuardar">Guardar</button>
-            </div>
+            <select id="aeropuertoOrigen">
+                <option value="aeoropuertoOrigen">Origen</option>
+                <option value="EZE">EZE - Aeropuerto Internacional Ministro Pistarini</option>
+                <option value="AEP">AEP - Aeropuerto Jorge Newbery</option>
+                <option value="COR">COR - Aeropuerto Internacional Ingeniero Ambrosio L.V. Taravella</option>
+                <option value="MDZ">MDZ - Aeropuerto Internacional Gobernador Francisco Gabrielli</option>
+                <option value="ROS">ROS - Aeropuerto Internacional Rosario Islas Malvinas</option>
+                <option value="SAL">SAL - Aeropuerto Internacional Martín Miguel de Güemes</option>
+                <option value="TUC">TUC - Aeropuerto Internacional Teniente General Benjamín Matienzo</option>
+                <option value="BRC">BRC - Aeropuerto Internacional Teniente Luis Candelaria</option>
+                <option value="USH">USH - Aeropuerto Internacional Malvinas Argentinas</option>
+                <option value="IGR">IGR - Aeropuerto Internacional Cataratas del Iguazú</option>
+                <option value="REL">REL - Aeropuerto Almirante Marcos A. Zar</option>
+                <option value="CRD">CRD - Aeropuerto Internacional General Enrique Mosconi</option>
+                <option value="JUJ">JUJ - Aeropuerto Internacional Gobernador Horacio Guzmán</option>
+            </select>
+        </div>
+        <div class="divAeropuertoDestino">
+            <select id="aeropuertoDestino">
+                <option value="aeoropuertoDestino">Destino</option>
+                <option value="EZE">EZE - Aeropuerto Internacional Ministro Pistarini</option>
+                <option value="AEP">AEP - Aeropuerto Jorge Newbery</option>
+                <option value="COR">COR - Aeropuerto Internacional Ingeniero Ambrosio L.V. Taravella</option>
+                <option value="MDZ">MDZ - Aeropuerto Internacional Gobernador Francisco Gabrielli</option>
+                <option value="ROS">ROS - Aeropuerto Internacional Rosario Islas Malvinas</option>
+                <option value="SAL">SAL - Aeropuerto Internacional Martín Miguel de Güemes</option>
+                <option value="TUC">TUC - Aeropuerto Internacional Teniente General Benjamín Matienzo</option>
+                <option value="BRC">BRC - Aeropuerto Internacional Teniente Luis Candelaria</option>
+                <option value="USH">USH - Aeropuerto Internacional Malvinas Argentinas</option>
+                <option value="IGR">IGR - Aeropuerto Internacional Cataratas del Iguazú</option>
+                <option value="REL">REL - Aeropuerto Almirante Marcos A. Zar</option>
+                <option value="CRD">CRD - Aeropuerto Internacional General Enrique Mosconi</option>
+                <option value="JUJ">JUJ - Aeropuerto Internacional Gobernador Horacio Guzmán</option>
+            </select>
 
-            <div class="divBtnCancelar">
-                <button id="btnCancelar" (click)="cancelarModificacion()">Cancelar</button>
-            </div>
-            <div class="divTabla">
-                <table class="tabla">
+
+        </div>
+        <div class="divFechaPartidaLabel">
+            <label for="fechaPartida" id="fechaPartidaLabel">Partida</label>
+        </div>
+        <div class="divFechaPartida">
+            <input type="datetime-local" id="fechaPartida">
+        </div>
+        <div class="divFechaArriboLabel">
+            <label for="fechaArribo" id="fechaArriboLabel">Arribo</label>
+        </div>
+        <div class="divFechaArribo">
+            <input type="datetime-local" id="fechaArribo">
+        </div>
+        <div class="divEstado">
+            <select name="EstadoVuelo" id="selectEstadoVuelo">
+                <option value="Estado">Estado</option>
+                <option value="Cancelado">Cancelado</option>
+                <option value="Demorado">Demorado</option>
+            </select>
+        </div>
+
+        <div class="divBtnGuardar">
+            <button id="btnGuardar">Guardar</button>
+        </div>
+
+        <div class="divBtnCancelar">
+            <button id="btnCancelar" (click)="cancelarModificacion()">Cancelar</button>
+        </div>
+        <div class="divTabla">
+            <table class="tabla">
                 <tr class="headerTabla">
                     <th>Nombre</th>
                     <th>Apellido</th>
@@ -92,7 +93,7 @@
                     <th>Rol</th>
                     <th>Asignar</th>
                 </tr>
-                <tr *ngFor="let empleado of listaEmpleadosParaAsignar; let i = index">
+                <tr *ngFor="let empleado of empleados; let i = index">
                     <td>{{ empleado.nombre }}</td>
                     <td>{{ empleado.apellido }}</td>
                     <td>{{ empleado.dni }}</td>
@@ -110,23 +111,23 @@
                     </td>
                 </tr>
             </table>
-            </div>
-            
-                
-            
-            
-
-                
-                
-
-              
-                
-   
         </div>
-            
-            
-        
-        
-        
-    
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+
+
+
+
+
+
 </div>
