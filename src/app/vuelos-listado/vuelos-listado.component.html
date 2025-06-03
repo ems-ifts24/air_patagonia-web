@@ -55,21 +55,20 @@
                 <tr class="headerTabla">
                     <th>Vuelo</th>
                     <th>Modelo</th>
+                    <th>Origen</th>
+                    <th>Destino</th>
                     <th>Fecha Partida</th>
                     <th>Fecha Arribo</th>
                     <th>Estado</th>
-                    <th>Origen</th>
-                    <th>Destino</th>
                 </tr>
-                
                 <tr *ngFor="let vuelo of vuelos">
-                    <td>{{ vuelo.vuelo }}</td>
-                    <td>{{ vuelo.modelo }}</td>
-                    <td>{{ vuelo.fechaPartida }}</td>
-                    <td>{{ vuelo.fechaArribo }}</td>
-                    <td>{{ vuelo.estado }}</td>
-                    <td>{{ vuelo.origen }}</td>
-                    <td>{{ vuelo.destino }}</td>
+                    <td>{{vuelo.vuelo}}</td>
+                    <td>{{vuelo.modelo}}</td>
+                    <td>{{vuelo.origen}}</td>
+                    <td>{{vuelo.destino}}</td>
+                    <td>{{vuelo.fechaPartida}}</td>
+                    <td>{{vuelo.fechaArribo}}</td>
+                    <td>{{vuelo.estado}}</td>
                 </tr>
             </table>
         </div>

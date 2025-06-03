@@ -11,8 +11,8 @@ export class VueloServiceService {
       modelo: '747',
       origen: 'Buenos Aires (EZE)',
       destino: 'Bariloche (BRC)',
-      partida: '25/05/2025',
-      arribo: '25/05/2025',
+      fechaPartida: '25/05/2025',
+      fechaArribo: '25/05/2025',
       estado: 'Finalizado'
     },
     {
@@ -21,8 +21,8 @@ export class VueloServiceService {
       modelo: 'A320',
       origen: 'Córdoba (COR)',
       destino: 'Ushuaia (USH)',
-      partida: '26/05/2025',
-      arribo: '26/05/2025',
+      fechaPartida: '26/05/2025',
+      fechaArribo: '26/05/2025',
       estado: 'En vuelo'
     },
     {
@@ -31,8 +31,8 @@ export class VueloServiceService {
       modelo: '737',
       origen: 'Rosario (ROS)',
       destino: 'El Calafate (FTE)',
-      partida: '27/05/2025',
-      arribo: '27/05/2025',
+      fechaPartida: '27/05/2025',
+      fechaArribo: '27/05/2025',
       estado: 'Programado'
     },
     {
@@ -41,8 +41,8 @@ export class VueloServiceService {
       modelo: '787',
       origen: 'Mendoza (MDZ)',
       destino: 'Bariloche (BRC)',
-      partida: '28/05/2025',
-      arribo: '28/05/2025',
+      fechaPartida: '28/05/2025',
+      fechaArribo: '28/05/2025',
       estado: 'Programado'
     },
     {
@@ -51,8 +51,8 @@ export class VueloServiceService {
       modelo: 'A330',
       origen: 'Buenos Aires (AEP)',
       destino: 'Ushuaia (USH)',
-      partida: '29/05/2025',
-      arribo: '29/05/2025',
+      fechaPartida: '29/05/2025',
+      fechaArribo: '29/05/2025',
       estado: 'En vuelo'
     },
     {
@@ -61,8 +61,8 @@ export class VueloServiceService {
       modelo: '777',
       origen: 'Córdoba (COR)',
       destino: 'El Calafate (FTE)',
-      partida: '30/05/2025',
-      arribo: '30/05/2025',
+      fechaPartida: '30/05/2025',
+      fechaArribo: '30/05/2025',
       estado: 'Programado'
     },
     {
@@ -71,8 +71,8 @@ export class VueloServiceService {
       modelo: '747',
       origen: 'Rosario (ROS)',
       destino: 'Bariloche (BRC)',
-      partida: '31/05/2025',
-      arribo: '31/05/2025',
+      fechaPartida: '31/05/2025',
+      fechaArribo: '31/05/2025',
       estado: 'Programado'
     },
     {
@@ -81,8 +81,8 @@ export class VueloServiceService {
       modelo: 'A320',
       origen: 'Mendoza (MDZ)',
       destino: 'Ushuaia (USH)',
-      partida: '01/06/2025',
-      arribo: '01/06/2025',
+      fechaPartida: '01/06/2025',
+      fechaArribo: '01/06/2025',
       estado: 'En vuelo'
     },
     {
@@ -91,8 +91,8 @@ export class VueloServiceService {
       modelo: '737',
       origen: 'Buenos Aires (EZE)',
       destino: 'El Calafate (FTE)',
-      partida: '02/06/2025',
-      arribo: '02/06/2025',
+      fechaPartida: '02/06/2025',
+      fechaArribo: '02/06/2025',
       estado: 'Programado'
     }
   ];
