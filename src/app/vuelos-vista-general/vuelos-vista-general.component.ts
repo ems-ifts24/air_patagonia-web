@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { VueloServiceService } from '../core/services/vuelo-service.service';
+import { VueloServiceService, Vuelo } from '../core/services/vuelo-service.service';
 // Importo el servicio de vuelos para obtener el array de vuelos
+// Importo la interface Vuelo para tipar el array de vuelos
 
 @Component({
   selector: 'app-vuelos-vista-general',
@@ -10,7 +11,7 @@ import { VueloServiceService } from '../core/services/vuelo-service.service';
   styleUrls: ['./vuelos-vista-general.component.css']
 })
 export class VuelosVistaGeneralComponent implements OnInit {
-  vuelos: any[] = [];
+  vuelos: Vuelo[] = [];
 
   constructor(
     private router: Router,

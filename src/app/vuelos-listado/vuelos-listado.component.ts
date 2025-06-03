@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { VueloServiceService } from '../core/services/vuelo-service.service';
+import { VueloServiceService, Vuelo, Aeropuerto } from '../core/services/vuelo-service.service';
+// Importo el servicio de vuelos para obtener el array de vuelos
+// Importo la interface Vuelo para tipar el array de vuelos
 import { FormsModule } from '@angular/forms';
 import * as XLSX from 'xlsx';
 
@@ -9,37 +11,44 @@ import * as XLSX from 'xlsx';
   standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './vuelos-listado.component.html',
-  styleUrl: './vuelos-listado.component.css'
+  styleUrls: ['./vuelos-listado.component.css']
 })
 export class VuelosListadoComponent implements OnInit {
-  vuelos: any[] = [];
+  vuelos: Vuelo[] = [];
   origenSeleccionado: string = '';
   destinoSeleccionado: string = '';
-  listadoVuelosParaFiltrar: any[] = [];
+  listadoVuelosParaFiltrar: Vuelo[] = [];
+  aeropuertos: Aeropuerto[] = [];
+  // aeropuertos: { codigo: string; nombre: string; ciudad: string }[] = [];
 
   constructor(private vueloService: VueloServiceService) {}
 
   ngOnInit() {
-    // Obtener los vuelos del servicio y mapear al formato esperado
-    const vuelosServicio = this.vueloService.getVuelos();
-    this.vuelos = vuelosServicio.map(vuelo => ({
-      vuelo: vuelo.vuelo,
-      modelo: vuelo.modelo,
-      fechaPartida: vuelo.fechaPartida,
-      fechaArribo: vuelo.fechaArribo,
-      estado: vuelo.estado,
-      origen: vuelo.origen,
-      destino: vuelo.destino
-      // origen: vuelo.origen.match(/\(([^)]+)\)/)?.[1] || vuelo.origen, // Extraer código IATA
-      // destino: vuelo.destino.match(/\(([^)]+)\)/)?.[1] || vuelo.destino // Extraer código IATA
-    }));
+    // Obtener la lista de aeropuertos del servicio
+    this.aeropuertos = this.vueloService.getAeropuertos();
     
+    // Obtener los vuelos del servicio
+    this.vuelos = this.vueloService.getVuelos();
+    
+    // Con los 3 puntos adelante se crea una copia del array de vuelos para filtrar
     this.listadoVuelosParaFiltrar = [...this.vuelos];
   }
 
   descargarExcel(): void {
+    // Transformar los datos porque ahora el array de vuelos tiene objetos anidados
+    // Creo un nuevo array con los datos de avion y aeropuerto para usar en el Excel
+    const datosParaExcel = this.vuelos.map(vuelo => ({
+      'Vuelo': vuelo.vuelo,
+      'Avión': `${vuelo.avion.marca} ${vuelo.avion.modelo}`,
+      'Origen': `${vuelo.origen.codigo} - ${vuelo.origen.nombreCorto}`,
+      'Destino': `${vuelo.destino.codigo} - ${vuelo.destino.nombreCorto}`,
+      'Fecha Partida': vuelo.fechaPartida,
+      'Fecha Arribo': vuelo.fechaArribo,
+      'Estado': vuelo.estado
+    }));
+
     // Convierte el array de objetos (this.vuelos) a una hoja de cálculo
-    const hoja = XLSX.utils.json_to_sheet(this.vuelos);
+    const hoja = XLSX.utils.json_to_sheet(datosParaExcel);
 
     // Crea un nuevo libro de Excel vacío
     const libro = XLSX.utils.book_new();
@@ -58,21 +67,20 @@ export class VuelosListadoComponent implements OnInit {
     // filtra x origen si hay un origen seleccionado
     if (this.origenSeleccionado) {
       this.vuelos = this.vuelos.filter(vuelo => 
-        vuelo.origen === this.origenSeleccionado
+        vuelo.origen.codigo === this.origenSeleccionado
       );
     }
     
     // filtra x destino si hay un destino seleccionado
     if (this.destinoSeleccionado) {
       this.vuelos = this.vuelos.filter(vuelo => 
-        vuelo.destino === this.destinoSeleccionado
+        vuelo.destino.codigo === this.destinoSeleccionado
       );
     }
   }
 
   // limpiar filtros
   limpiarFiltros() {
-
     this.origenSeleccionado = '';
     this.destinoSeleccionado = '';
     this.filtrarVuelos();  //invoco a funcion de filtrar
