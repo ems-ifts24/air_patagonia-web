@@ -12,21 +12,44 @@
     width: 90%;
     height: 90%;
     color: white;
-    border-bottom: 0.5px rgba(255, 255, 255, 0.3) solid;
+    /* border-bottom: 0.5px rgba(255, 255, 255, 0.3) solid; */ /* Comentado para evitar línea solo abajo */
     display: grid;
     grid-template-columns: repeat(9, 1fr);
     grid-template-rows: repeat(8, 1fr);
-    
-   
+    gap: 1rem; /* Espacio entre los elementos del grid */
+    padding: 1rem; /* Espacio interno para el dashboard general */
+    box-sizing: border-box;
 }
 
-div h1{
-    padding-left: 2rem;
+/* Estilos generales para los títulos dentro de las cards del dashboard */
+.mainDashboard h2 {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    font-size: 1.5rem;
+    padding-bottom: 0.5rem;
 }
 
-div select{
-    padding-right: 2rem;
-    margin-right: 1rem;
+/* Card para Vuelos de Hoy */
+.vuelosHoy {
+    grid-column: 1 / span 6; /* Ocupa 6 columnas desde el inicio */
+    grid-row: 1 / span 5;    /* Ocupa 5 filas desde el inicio */
+    background-color: rgba(255, 255, 255, 0.05); /* Fondo sutil */
+    padding: 1rem;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* Para que el contenido no se desborde de la card */
+}
+
+.tabla {
+    width: 100%;
+    border-collapse: collapse; /* Une los bordes de las celdas */
+}
+
+.tabla th, .tabla td {
+    padding: 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .mainDashboard, .select{
