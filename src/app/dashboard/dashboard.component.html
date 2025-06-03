@@ -6,80 +6,15 @@
                       <table class="tabla">
                           <tr>
                               <th>Codigo </th>
-                              <th>Origen </th>
                               <th>Destino</th>
-                              <th>Horario</th>
+                              <th>Fecha partida</th>
                               <th>Estado</th>
                           </tr>
-                          <tr>
-                              <td>Codigo</td>
-                              <td>Origen</td>
-                              <td>Destino</td>
-                              <td>Horario</td>
-                              <td>Estado</td>
-                          </tr>
-                          <tr>
-                              <td>Codigo</td>
-                              <td>Origen</td>
-                              <td>Destino</td>
-                              <td>Horario</td>
-                              <td>Estado</td>
-                          </tr>
-                          <tr>
-                              <td>Codigo</td>
-                              <td>Origen</td>
-                              <td>Destino</td>
-                              <td>Horario</td>
-                              <td>Estado</td>
-                          </tr>
-                          <tr>
-                              <td>Codigo</td>
-                              <td>Origen</td>
-                              <td>Destino</td>
-                              <td>Horario</td>
-                              <td>Estado</td>
-                          </tr>
-                          <tr>
-                              <td>Codigo</td>
-                              <td>Origen</td>
-                              <td>Destino</td>
-                              <td>Horario</td>
-                              <td>Estado</td>
-                          </tr>
-                          <tr>
-                              <td>Codigo</td>
-                              <td>Origen</td>
-                              <td>Destino</td>
-                              <td>Horario</td>
-                              <td>Estado</td>
-                          </tr>
-                          <tr>
-                              <td>Codigo</td>
-                              <td>Origen</td>
-                              <td>Destino</td>
-                              <td>Horario</td>
-                              <td>Estado</td>
-                          </tr>
-                          <tr>
-                              <td>Codigo</td>
-                              <td>Origen</td>
-                              <td>Destino</td>
-                              <td>Horario</td>
-                              <td>Estado</td>
-                          </tr>
-                          <tr>
-                              <td>Codigo</td>
-                              <td>Origen</td>
-                              <td>Destino</td>
-                              <td>Horario</td>
-                              <td>Estado</td>
-                          </tr>
-                          <tr>
-                              <td>Codigo</td>
-                              <td>Origen</td>
-                              <td>Destino</td>
-                              <td>Horario</td>
-                              <td>Estado</td>
+                          <tr *ngFor="let vuelo of vuelos">
+                              <td>{{ vuelo.vuelo }}</td>
+                              <td>{{ vuelo.destino.nombre }}</td>
+                              <td>{{ vuelo.fechaPartida }}</td>
+                              <td>{{ vuelo.estado }}</td>
                           </tr>
                       </table>
                   </div>
