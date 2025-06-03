@@ -24,6 +24,15 @@ export interface Avion {
   modelo: string;
 }
 
+export interface Empleado {
+  id: string;
+  nombre: string;
+  apellido: string;
+  dni: string;
+  rol: string;
+  asignado: boolean;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -36,6 +45,7 @@ export class VueloServiceService {
     this.initializeVuelos();
   }
 
+  // Aeropuertos
   // Propiedad privada para almacenar la lista de aeropuertos
   private aeropuertos: Aeropuerto[] = [
     { codigo: 'EZE', nombre: 'Aeropuerto Internacional Ministro Pistarini', ciudad: 'Buenos Aires', nombreCorto: 'Bs. As.' },
@@ -76,6 +86,7 @@ export class VueloServiceService {
     return this.aeropuertos.find(a => a.codigo === codigo);
   }
 
+  // Aviones
   private aviones: any[] = [
     { id: 'AV001', marca: 'Boeing', modelo: '737-800' },
     { id: 'AV002', marca: 'Airbus', modelo: 'A320neo' },
@@ -92,7 +103,21 @@ export class VueloServiceService {
   private getAvionById(id: string): any | undefined {
     return this.aviones.find(avion => avion.id === id);
   }
-  
+
+  // Empleados
+  private empleados: Empleado[] = [
+    { id: 'E001', nombre: 'Ezequiel', apellido: 'Lopez', dni: '38705210', rol: '' , asignado: false},
+    { id: 'E002', nombre: 'Ana', apellido: 'Gomez', dni: '34567890', rol: '' , asignado: false},
+    { id: 'E003', nombre: 'Carlos', apellido: 'Ruiz', dni: '30123456', rol: '' , asignado: false},
+    { id: 'E004', nombre: 'Laura', apellido: 'Fernandez', dni: '28901234', rol: '' , asignado: false},
+    { id: 'E005', nombre: 'Pedro', apellido: 'Martinez', dni: '32765432', rol: '' , asignado: false}
+  ];
+
+  public getEmpleados(): Empleado[] {
+    return [...this.empleados];
+  }
+
+  // Vuelos
   private initializeVuelos(): void {
     this.vuelos = [
       {
