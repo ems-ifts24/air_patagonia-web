@@ -1,8 +1,5 @@
 <div class="contenedorPrincipal">
     <div class="mainDashboard">
-        <div class="divBotonVolver">
-            <button id="botonVolver">⬅</button>
-        </div>
 
         <div class="divAeropuertoOrigen">
             <select id="aeropuertoOrigen" [(ngModel)]="origenSeleccionado" (change)="filtrarVuelos()">
@@ -39,9 +36,13 @@
                 <option value="CRD">CRD - Aeropuerto Internacional General Enrique Mosconi</option>
                 <option value="JUJ">JUJ - Aeropuerto Internacional Gobernador Horacio Guzmán</option>
             </select>        
+        </div>
 
-            <button id="btnLimpiarFiltros" (click)="limpiarFiltros()">×</button>
-        
+        <div class="divBtnLimpiarFiltros">
+            <button id="btnLimpiarFiltros" (click)="limpiarFiltros()">
+                <i class="material-icons">refresh</i>
+                <span>Limpiar filtros</span>
+            </button>
         </div>
 
         <!-- 

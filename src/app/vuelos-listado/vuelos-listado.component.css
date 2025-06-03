@@ -39,36 +39,6 @@
     }
 }
 
-.divBotonVolver {
-    grid-column: 1/2;
-    grid-row: 1/2;
-    display: flex;
-    align-items: center; /* Alinear verticalmente */
-    justify-content: flex-start; /* Alinear a la izquierda */
-    padding-left: 30px; /* Pequeño margen izquierdo */
-}
-
-#botonVolver {
-    border-radius: 50%;
-    background-color: rgba(33, 62, 90, 0.38);
-    color: white;
-    height: 45px; /* Misma altura que los selectores */
-    width: 45px; /* Mismo ancho que alto */
-    border: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0;
-    margin: 0;
-    font-size: 20px;
-    cursor: pointer;
-    transition: all 0.2s ease;
-}
-
-#botonVolver:hover {
-    background-color: rgb(26, 145, 243);
-    cursor: pointer;
-}
 
 /* Estilos para los contenedores de los selectores */
 .divAeropuertoOrigen, .divAeropuertoDestino {
@@ -89,6 +59,15 @@
     grid-column: 4/6;
     grid-row: 1/2;
     margin-left: 5px;
+}
+
+.divBtnLimpiarFiltros {
+    grid-column: 6/7;
+    grid-row: 1/2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-right: 15px;
 }
 
 /* Estilos comunes para los selectores */
@@ -119,12 +98,6 @@
     .divAeropuertoOrigen, .divAeropuertoDestino {
         grid-column: 1/-1; /* Ocupa todo el ancho en móviles */
         margin: 5px 0;
-    }
-    
-    .divBotonVolver {
-        grid-column: 1/-1; /* Ocupa todo el ancho en móviles */
-        justify-content: center;
-        padding: 5px 0;
     }
     
     .divDescargar {
@@ -301,11 +274,6 @@ td select {
         font-size: 0.6rem;
     }
 
-    .divBotonVolver {
-        grid-column: 1/2;
-        grid-row: 1/2;
-    }
-
     .divAeropuertoOrigen {
         grid-column: 3/5;
         grid-row: 1/2;
@@ -362,10 +330,7 @@ td select {
         font-size: 0.8rem;
     }
 
-    .divBotonVolver {
-        grid-column: 1/2;
-        grid-row: 1/2;
-    }
+
 
     .divAeropuertoOrigen {
         grid-column: 3/5;
@@ -404,19 +369,31 @@ td select {
     }
 }
 
+/* Estilos para el botón de limpiar filtros */
 #btnLimpiarFiltros {
-    background: rgba(0, 50, 91, 1);
+    background-color: rgba(33, 62, 90, 0.38);
     color: white;
     border: none;
-    border-radius: 50%;
-    width: 25px;
-    height: 25px;
+    border-radius: 20px; /* Bordes redondeados en lugar de circular */
+    padding: 6px 15px 6px 10px; /* Más espacio para el contenido */
     cursor: pointer;
-    font-size: 16px;
-    margin-left: 10px; 
-    position: relative; 
+    font-size: 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.2s ease;
+    height: 35px; /* Altura fija */
+    white-space: nowrap;
 }
 
 #btnLimpiarFiltros:hover {
-    background: #21429e;
+    background-color: rgb(26, 145, 243);
+    transform: scale(1.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+#btnLimpiarFiltros .material-icons {
+    font-size: 18px;
+    display: flex;
+    align-items: center;
 }
