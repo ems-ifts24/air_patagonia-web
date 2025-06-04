@@ -16,6 +16,7 @@ export interface Vuelo {
   fechaPartida: string;
   fechaArribo: string;
   estado: string;
+  eliminado: boolean;
 }
 
 export interface Avion {
@@ -106,11 +107,11 @@ export class VueloServiceService {
 
   // Empleados
   private empleados: Empleado[] = [
-    { id: 'E001', nombre: 'Ezequiel', apellido: 'Lopez', dni: '38705210', rol: '' , asignado: false},
-    { id: 'E002', nombre: 'Ana', apellido: 'Gomez', dni: '34567890', rol: '' , asignado: false},
-    { id: 'E003', nombre: 'Carlos', apellido: 'Ruiz', dni: '30123456', rol: '' , asignado: false},
-    { id: 'E004', nombre: 'Laura', apellido: 'Fernandez', dni: '28901234', rol: '' , asignado: false},
-    { id: 'E005', nombre: 'Pedro', apellido: 'Martinez', dni: '32765432', rol: '' , asignado: false}
+    { id: 'E001', nombre: 'Ezequiel', apellido: 'Lopez', dni: '38705210', rol: '', asignado: false },
+    { id: 'E002', nombre: 'Ana', apellido: 'Gomez', dni: '34567890', rol: '', asignado: false },
+    { id: 'E003', nombre: 'Carlos', apellido: 'Ruiz', dni: '30123456', rol: '', asignado: false },
+    { id: 'E004', nombre: 'Laura', apellido: 'Fernandez', dni: '28901234', rol: '', asignado: false },
+    { id: 'E005', nombre: 'Pedro', apellido: 'Martinez', dni: '32765432', rol: '', asignado: false }
   ];
 
   public getEmpleados(): Empleado[] {
@@ -130,7 +131,8 @@ export class VueloServiceService {
         destino: this.getAeropuertoByCodigo('AEP')!,
         fechaPartida: fechaActual,
         fechaArribo: fechaActual,
-        estado: 'En vuelo'
+        estado: 'Programado',
+        eliminado: false
       },
       {
         id: '2',
@@ -140,7 +142,8 @@ export class VueloServiceService {
         destino: this.getAeropuertoByCodigo('COR')!,
         fechaPartida: fechaActual,
         fechaArribo: fechaActual,
-        estado: 'Programado'
+        estado: 'En vuelo',
+        eliminado: false
       },
       {
         id: '3',
@@ -150,7 +153,8 @@ export class VueloServiceService {
         destino: this.getAeropuertoByCodigo('FTE')!,
         fechaPartida: fechaActual,
         fechaArribo: fechaActual,
-        estado: 'Programado'
+        estado: 'Finalizado',
+        eliminado: false
       },
       {
         id: '4',
@@ -158,9 +162,10 @@ export class VueloServiceService {
         avion: this.getAvionById('AV004')!,
         origen: this.getAeropuertoByCodigo('MDZ')!,
         destino: this.getAeropuertoByCodigo('BRC')!,
-        fechaPartida: '28/05/2025',
-        fechaArribo: '28/05/2025',
-        estado: 'Programado'
+        fechaPartida: fechaActual,
+        fechaArribo: fechaActual,
+        estado: 'Reprogramado',
+        eliminado: false
       },
       {
         id: '5',
@@ -168,9 +173,10 @@ export class VueloServiceService {
         avion: this.getAvionById('AV005')!,
         origen: this.getAeropuertoByCodigo('AEP')!,
         destino: this.getAeropuertoByCodigo('USH')!,
-        fechaPartida: '29/05/2025',
-        fechaArribo: '29/05/2025',
-        estado: 'En vuelo'
+        fechaPartida: fechaActual,
+        fechaArribo: fechaActual,
+        estado: 'Cancelado',
+        eliminado: false
       },
       {
         id: '6',
@@ -180,7 +186,8 @@ export class VueloServiceService {
         destino: this.getAeropuertoByCodigo('FTE')!,
         fechaPartida: '30/05/2025',
         fechaArribo: '30/05/2025',
-        estado: 'Programado'
+        estado: 'En vuelo',
+        eliminado: false
       },
       {
         id: '7',
@@ -190,7 +197,8 @@ export class VueloServiceService {
         destino: this.getAeropuertoByCodigo('BRC')!,
         fechaPartida: '31/05/2025',
         fechaArribo: '31/05/2025',
-        estado: 'Programado'
+        estado: 'Programado',
+        eliminado: false
       },
       {
         id: '8',
@@ -200,7 +208,8 @@ export class VueloServiceService {
         destino: this.getAeropuertoByCodigo('USH')!,
         fechaPartida: '01/06/2025',
         fechaArribo: '01/06/2025',
-        estado: 'En vuelo'
+        estado: 'Programado',
+        eliminado: false
       },
       {
         id: '9',
@@ -210,7 +219,8 @@ export class VueloServiceService {
         destino: this.getAeropuertoByCodigo('FTE')!,
         fechaPartida: '02/06/2025',
         fechaArribo: '02/06/2025',
-        estado: 'Programado'
+        estado: 'En vuelo',
+        eliminado: false
       },
       {
         id: '10',
@@ -220,7 +230,8 @@ export class VueloServiceService {
         destino: this.getAeropuertoByCodigo('AEP')!,
         fechaPartida: '03/06/2025',
         fechaArribo: '03/06/2025',
-        estado: 'Programado'
+        estado: 'Cancelado',
+        eliminado: false
       },
       {
         id: '11',
@@ -230,7 +241,8 @@ export class VueloServiceService {
         destino: this.getAeropuertoByCodigo('COR')!,
         fechaPartida: '04/06/2025',
         fechaArribo: '04/06/2025',
-        estado: 'Programado'
+        estado: 'Programado',
+        eliminado: false
       },
       {
         id: '12',
@@ -240,7 +252,8 @@ export class VueloServiceService {
         destino: this.getAeropuertoByCodigo('MDZ')!,
         fechaPartida: '05/06/2025',
         fechaArribo: '05/06/2025',
-        estado: 'Programado'
+        estado: 'Programado',
+        eliminado: false
       },
       {
         id: '13',
@@ -250,7 +263,8 @@ export class VueloServiceService {
         destino: this.getAeropuertoByCodigo('EZE')!,
         fechaPartida: '06/06/2025',
         fechaArribo: '06/06/2025',
-        estado: 'Programado'
+        estado: 'Reprogramado',
+        eliminado: false
       },
       {
         id: '14',
@@ -260,7 +274,8 @@ export class VueloServiceService {
         destino: this.getAeropuertoByCodigo('USH')!,
         fechaPartida: '07/06/2025',
         fechaArribo: '07/06/2025',
-        estado: 'Programado'
+        estado: 'Programado',
+        eliminado: false
       },
       {
         id: '15',
@@ -270,7 +285,8 @@ export class VueloServiceService {
         destino: this.getAeropuertoByCodigo('AEP')!,
         fechaPartida: '08/06/2025',
         fechaArribo: '08/06/2025',
-        estado: 'Programado'
+        estado: 'Reprogramado',
+        eliminado: false
       },
       {
         id: '16',
@@ -280,7 +296,8 @@ export class VueloServiceService {
         destino: this.getAeropuertoByCodigo('MDZ')!,
         fechaPartida: '09/06/2025',
         fechaArribo: '09/06/2025',
-        estado: 'Programado'
+        estado: 'Reprogramado',
+        eliminado: false
       },
       {
         id: '17',
@@ -290,7 +307,8 @@ export class VueloServiceService {
         destino: this.getAeropuertoByCodigo('COR')!,
         fechaPartida: '10/06/2025',
         fechaArribo: '10/06/2025',
-        estado: 'Programado'
+        estado: 'Reprogramado',
+        eliminado: false
       },
       {
         id: '18',
@@ -300,7 +318,8 @@ export class VueloServiceService {
         destino: this.getAeropuertoByCodigo('RGL')!,
         fechaPartida: '11/06/2025',
         fechaArribo: '11/06/2025',
-        estado: 'Programado'
+        estado: 'Cancelado',
+        eliminado: false
       },
       {
         id: '19',
@@ -310,13 +329,15 @@ export class VueloServiceService {
         destino: this.getAeropuertoByCodigo('ROS')!,
         fechaPartida: '12/06/2025',
         fechaArribo: '12/06/2025',
-        estado: 'Programado'
+        estado: 'Cancelado',
+        eliminado: false
       }
     ];
   }
 
   getVuelos(): Vuelo[] {
-    return [...this.vuelos];
+    // return [...this.vuelos];
+    return this.vuelos.filter(vuelo => !vuelo.eliminado); // se filtra solo los qu eno estan eliminados
   }
 
   getVueloById(id: string): Vuelo | undefined {
@@ -327,8 +348,24 @@ export class VueloServiceService {
   public getHoyFormateado(): string {
     const fecha = new Date();
     const dia = fecha.getDate().toString().padStart(2, '0');
-    const mes = (fecha.getMonth() + 1).toString().padStart(2, '0'); 
+    const mes = (fecha.getMonth() + 1).toString().padStart(2, '0');
     const anio = fecha.getFullYear();
     return `${dia}/${mes}/${anio}`;
   }
+
+  // metodo para marcar vuelos como eliminado 
+  public marcarVueloComoEliminado(id: string): { exito: boolean, mensaje: string } {
+    const vuelo = this.vuelos.find(v => v.id === id);
+    
+    if (!vuelo) {
+      return { exito: false, mensaje: 'Vuelo no encontrado.' };
+    }
+  
+    if (vuelo.estado === 'En vuelo') {
+      return { exito: false, mensaje: 'Este vuelo está en progreso y no puede ser eliminado.' };
+    }
+  
+    vuelo.eliminado = true;
+    return { exito: true, mensaje: 'Vuelo eliminado correctamente.' };
+  }  
 }

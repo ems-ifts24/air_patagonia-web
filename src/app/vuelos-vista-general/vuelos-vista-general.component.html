@@ -15,7 +15,8 @@
         </div>
 
         <div class="divInputBusqueda">
-            <input type="search" id="inputBusqueda" placeholder="Buscar" [(ngModel)]="inputBusqueda" (input)="filtrarVuelos()">
+            <input type="search" id="inputBusqueda" placeholder="Buscar" [(ngModel)]="inputBusqueda"
+                (input)="filtrarVuelos()">
         </div>
 
         <div class="divTabla">
@@ -42,11 +43,9 @@
                     <td>
                         <span class="accion-simple" (click)="editarVuelo(vuelo.id)">
                             <i class="material-icons">edit</i>
-                            <span>Editar</span>
                         </span>
                         <span class="accion-simple" (click)="eliminarVuelo(vuelo.id)">
                             <i class="material-icons">delete</i>
-                            <span>Eliminar</span>
                         </span>
                     </td>
                 </tr>

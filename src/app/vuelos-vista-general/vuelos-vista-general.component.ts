@@ -19,7 +19,7 @@ export class VuelosVistaGeneralComponent implements OnInit {
   constructor(
     private router: Router,
     private vueloService: VueloServiceService
-  ) {}
+  ) { }
 
   // Metodo que se ejecuta al iniciar el componente
   ngOnInit() {
@@ -36,14 +36,24 @@ export class VuelosVistaGeneralComponent implements OnInit {
     alert("Editar vuelo: " + idVuelo);
   }
 
-  eliminarVuelo(idVuelo: string) {
-    alert("Eliminar vuelo: " + idVuelo);
+  eliminarVuelo(idVuelo: string): void {
+    if (!confirm('¿Esta seguro de que desea eliminar este vuelo?')) {
+      return;
+    }
+
+    const resultado = this.vueloService.marcarVueloComoEliminado(idVuelo);
+
+    alert(resultado.mensaje);
+
+    if (resultado.exito) {
+      this.vuelos = this.vueloService.getVuelos();
+    }
   }
 
   filtrarVuelos() {
     if (this.inputBusqueda && this.inputBusqueda.trim() !== '') {
       const busqueda = this.inputBusqueda.toLowerCase().trim();
-      this.vuelos = this.vuelos.filter(vuelo => 
+      this.vuelos = this.vuelos.filter(vuelo =>
         vuelo.vuelo.toLowerCase().includes(busqueda)
         || vuelo.avion.marca.toLowerCase().includes(busqueda)
         || vuelo.avion.modelo.toLowerCase().includes(busqueda)
