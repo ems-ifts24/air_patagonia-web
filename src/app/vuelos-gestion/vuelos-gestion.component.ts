@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { VueloServiceService, Empleado, Avion, Aeropuerto, EstadoVuelo, RolTripulante } from '../core/services/vuelo-service.service';
+import { VueloServiceService, Empleado, Avion, Aeropuerto, EstadoVuelo, RolTripulante, Vuelo } from '../core/services/vuelo-service.service';
 
 @Component({
   selector: 'app-vuelos-gestion',
@@ -14,7 +14,7 @@ import { VueloServiceService, Empleado, Avion, Aeropuerto, EstadoVuelo, RolTripu
 export class VuelosGestionComponent implements OnInit {
 
   modoEdicion: boolean = false;
-  titleGestion = this.modoEdicion ? 'MODIFICACION' : 'CREACION';
+  titleGestion: string = 'CREACION';
 
   filtroEmpleado: string = '';
   empleados: Empleado[] = [];
@@ -23,7 +23,7 @@ export class VuelosGestionComponent implements OnInit {
   rolesTripulantes: RolTripulante[] = [];
   listaAviones: Avion[] = [];
   aeropuertos: Aeropuerto[] = [];
-  idVuelo: string | null = null;
+  vuelo: Vuelo | null = null;
 
 
   // inyecto el servicio
@@ -38,8 +38,10 @@ export class VuelosGestionComponent implements OnInit {
     this.empleadosParaFiltrar = [...this.empleados];
 
     // Obtener el ID del vuelo de la URL
-    this.idVuelo = this._activeRouter.snapshot.paramMap.get('id');
-    if (this.idVuelo) {
+    this._activeRouter.params.subscribe(params => {
+      this.vuelo = this._vueloService.getVuelos().find(vuelo => vuelo.id === params['id']) || null;
+    });
+    if (this.vuelo) {
       this.modoEdicion = true;
       this.titleGestion = 'MODIFICACION';
     }

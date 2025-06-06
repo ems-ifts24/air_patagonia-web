@@ -13,26 +13,48 @@
         </div>
         <div class="divAvion">
             <select name="avion" id="selectAvion">
-                <option value="" selected disabled>Seleccione un Avion</option>
-                @for(avion of listaAviones; track $index){
-                    <option value="{{avion.id}}">{{avion.marca}} - {{avion.modelo}}</option>
+                @if(!modoEdicion){
+                    <option value="" selected disabled>Seleccione un Avion</option>
+                    @for(avion of listaAviones; track $index){
+                        <option [value]="avion.id">{{avion.marca}} - {{avion.modelo}}</option>
+                    }
+                }@else {
+                    <option [value]="vuelo?.avion?.id">{{vuelo?.avion?.marca}} - {{vuelo?.avion?.modelo}}</option>
+                    @for(avion of listaAviones; track $index){
+                        <option [value]="avion.id">{{avion.marca}} - {{avion.modelo}}</option>
+                    }
+
                 }
             </select>
         </div>
 
         <div class="divAeropuertoOrigen">
             <select id="aeropuertoOrigen">
-                <option value="" selected disabled>Seleccione Origen</option>
-                @for(aeropuerto of aeropuertos; track $index){
-                <option value="{{aeropuerto.codigo}}">{{aeropuerto.codigo}} - {{aeropuerto.nombreCorto}}</option>
+                @if(!modoEdicion){
+                    <option value="" selected disabled>Seleccione Origen</option>
+                    @for(aeropuerto of aeropuertos; track $index){
+                        <option [value]="aeropuerto.codigo">{{aeropuerto.codigo}} - {{aeropuerto.nombreCorto}}</option>
+                    }
+                }@else {
+                    <option [value]="vuelo?.origen?.codigo">{{vuelo?.origen?.codigo}} - {{vuelo?.origen?.nombreCorto}}</option>
+                    @for(aeropuerto of aeropuertos; track $index){
+                        <option [value]="aeropuerto.codigo">{{aeropuerto.codigo}} - {{aeropuerto.nombreCorto}}</option>
+                    }
                 }
             </select>
         </div>
         <div class="divAeropuertoDestino">
             <select id="aeropuertoDestino">
-                <option value="" selected disabled>Seleccione Destino</option>
-                @for(aeropuerto of aeropuertos; track $index){
-                <option value="{{aeropuerto.codigo}}">{{aeropuerto.codigo}} - {{aeropuerto.nombreCorto}}</option>
+                @if(!modoEdicion){
+                    <option value="" selected disabled>Seleccione Destino</option>
+                    @for(aeropuerto of aeropuertos; track $index){
+                        <option value="{{aeropuerto.codigo}}">{{aeropuerto.codigo}} - {{aeropuerto.nombreCorto}}</option>
+                    }
+                }@else {
+                    <option [value]="vuelo?.destino?.codigo">{{vuelo?.destino?.codigo}} - {{vuelo?.destino?.nombreCorto}}</option>
+                    @for(aeropuerto of aeropuertos; track $index){
+                        <option [value]="aeropuerto.codigo">{{aeropuerto.codigo}} - {{aeropuerto.nombreCorto}}</option>
+                    }
                 }
             </select>
 
@@ -41,20 +63,38 @@
         <div class="divFechaPartidaLabel">
             <label for="fechaPartida" id="fechaPartidaLabel">Partida</label>
         </div>
+        <!-- TODO :: Mejorar insert de fecha en modo edición -->
         <div class="divFechaPartida">
-            <input type="datetime-local" id="fechaPartida">
+            @if(!modoEdicion){
+                <input type="datetime-local" id="fechaPartida">
+            }@else {
+                <input type="datetime-local" id="fechaPartida" value="{{vuelo?.fechaPartida}}">
+            }
         </div>
         <div class="divFechaArriboLabel">
             <label for="fechaArribo" id="fechaArriboLabel">Arribo</label>
         </div>
+        <!-- TODO :: Mejorar insert de fecha en modo edición -->
         <div class="divFechaArribo">
-            <input type="datetime-local" id="fechaArribo">
+            @if(!modoEdicion){
+                <input type="datetime-local" id="fechaArribo">
+            }@else {
+                <input type="datetime-local" id="fechaArribo" value="{{vuelo?.fechaArribo}}">
+            }
         </div>
+
         <div class="divEstado">
             <select name="EstadoVuelo" id="selectEstadoVuelo">
-                <option value="" selected disabled>Seleccione un Estado</option>
-                @for(estados of estadosVuelo; track $index){
-                <option value="{{estados.id}}">{{estados.nombre}}</option>
+                @if(!modoEdicion){
+                    <option value="" selected disabled>Seleccione un Estado</option>
+                    @for(estados of estadosVuelo; track $index){
+                    <option value="{{estados.id}}">{{estados.nombre}}</option>
+                    }
+                }@else {
+                    <option [value]="vuelo?.estado">{{vuelo?.estado}}</option>
+                    @for(estados of estadosVuelo; track $index){
+                    <option value="{{estados.id}}">{{estados.nombre}}</option>
+                    }
                 }
             </select>
         </div>
