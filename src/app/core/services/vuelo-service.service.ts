@@ -1,3 +1,4 @@
+import th from '@angular/common/locales/th';
 import { Injectable } from '@angular/core';
 
 export interface Aeropuerto {
@@ -17,6 +18,8 @@ export interface Vuelo {
   fechaArribo: string;
   estado: string;
   eliminado: boolean;
+  tripulantes: Empleado[];
+  pasajeros: Pasajero[];
 }
 
 export interface Avion {
@@ -32,6 +35,23 @@ export interface Empleado {
   dni: string;
   rol: string;
   asignado: boolean;
+}
+
+export interface RolTripulante {
+  id: string;
+  nombre: string;
+}
+
+export interface EstadoVuelo {
+  id: string;
+  nombre: string;
+}
+
+export interface Pasajero {
+  id: string;
+  nombre: string;
+  apellido: string;
+  dni: string;
 }
 
 @Injectable({
@@ -79,11 +99,11 @@ export class VueloServiceService {
   ];
 
   // Método para obtener la lista de aeropuertos, los 3 puntos adelante crean una copia del array
-  getAeropuertos(): Aeropuerto[] {
+  public getAeropuertos(): Aeropuerto[] {
     return [...this.aeropuertos];
   }
 
-  private getAeropuertoByCodigo(codigo: string): Aeropuerto | undefined {
+  public getAeropuertoByCodigo(codigo: string): Aeropuerto | undefined {
     return this.aeropuertos.find(a => a.codigo === codigo);
   }
 
@@ -101,21 +121,56 @@ export class VueloServiceService {
     { id: 'AV010', marca: 'Boeing', modelo: '747-8' }
   ];
 
-  private getAvionById(id: string): any | undefined {
+  // Metodo para obtener la lista de aviones
+  public getAviones(): Avion[] {
+    return [...this.aviones];
+  }
+
+  // Metodo para obtener un avion por su id
+  public getAvionById(id: string): any | undefined {
     return this.aviones.find(avion => avion.id === id);
   }
 
   // Empleados
   private empleados: Empleado[] = [
     { id: 'E001', nombre: 'Ezequiel', apellido: 'Lopez', dni: '38705210', rol: '', asignado: false },
-    { id: 'E002', nombre: 'Ana', apellido: 'Gomez', dni: '34567890', rol: '', asignado: false },
+    { id: 'E002', nombre: 'Valentina', apellido: 'García', dni: '33456789', rol: '', asignado: false },
     { id: 'E003', nombre: 'Carlos', apellido: 'Ruiz', dni: '30123456', rol: '', asignado: false },
-    { id: 'E004', nombre: 'Laura', apellido: 'Fernandez', dni: '28901234', rol: '', asignado: false },
-    { id: 'E005', nombre: 'Pedro', apellido: 'Martinez', dni: '32765432', rol: '', asignado: false }
+    { id: 'E004', nombre: 'Camila', apellido: 'Díaz', dni: '34567890', rol: '', asignado: false },
+    { id: 'E005', nombre: 'Pedro', apellido: 'Martinez', dni: '32765432', rol: '', asignado: false },
+    { id: 'E006', nombre: 'Sofía', apellido: 'González', dni: '39876543', rol: '', asignado: false },
+    { id: 'E007', nombre: 'Lucas', apellido: 'Sánchez', dni: '31234567', rol: '', asignado: false },
+    { id: 'E008', nombre: 'Mariana', apellido: 'Rodríguez', dni: '35678901', rol: '', asignado: false },
+    { id: 'E009', nombre: 'Agustina', apellido: 'López', dni: '37890213', rol: '', asignado: false },
+    { id: 'E010', nombre: 'Florencia', apellido: 'García', dni: '34987654', rol: '', asignado: false },
+    { id: 'E011', nombre: 'Tomás', apellido: 'Díaz', dni: '32098765', rol: '', asignado: false },
+    { id: 'E012', nombre: 'Amanda', apellido: 'Martinez', dni: '36475329', rol: '', asignado: false },
+    { id: 'E013', nombre: 'Gabriela', apellido: 'Ruiz', dni: '38456921', rol: '', asignado: false },
+    { id: 'E014', nombre: 'Matías', apellido: 'Sánchez', dni: '30654321', rol: '', asignado: false },
+    { id: 'E015', nombre: 'Julieta', apellido: 'González', dni: '39685214', rol: '', asignado: false },
+    { id: 'E016', nombre: 'Lautaro', apellido: 'Rodríguez', dni: '31765432', rol: '', asignado: false },
+    { id: 'E017', nombre: 'Benjamín', apellido: 'López', dni: '39456789', rol: '', asignado: false },
+    { id: 'E018', nombre: 'Cecilia', apellido: 'García', dni: '32198765', rol: '', asignado: false },
+    { id: 'E019', nombre: 'Santiago', apellido: 'Díaz', dni: '38690213', rol: '', asignado: false },
+    { id: 'E020', nombre: 'Luciana', apellido: 'Martinez', dni: '35345678', rol: '', asignado: false },
+    { id: 'E021', nombre: 'Paula', apellido: 'Ruiz', dni: '31987654', rol: '', asignado: false },
+    { id: 'E022', nombre: 'Gonzalo', apellido: 'Sánchez', dni: '30765432', rol: '', asignado: false },
+    { id: 'E023', nombre: 'María', apellido: 'González', dni: '39876543', rol: '', asignado: false },
+    { id: 'E024', nombre: 'Marcela', apellido: 'Rodríguez', dni: '31234567', rol: '', asignado: false },
+    { id: 'E025', nombre: 'Nicolás', apellido: 'López', dni: '35678901', rol: '', asignado: false },
+    { id: 'E026', nombre: 'Alejandra', apellido: 'García', dni: '37890213', rol: '', asignado: false },
+    { id: 'E027', nombre: 'Facundo', apellido: 'Díaz', dni: '34987654', rol: '', asignado: false },
+    { id: 'E028', nombre: 'Daniela', apellido: 'Martinez', dni: '32098765', rol: '', asignado: false },
+    { id: 'E029', nombre: 'Emiliano', apellido: 'Ruiz', dni: '31234567', rol: '', asignado: false },
+    { id: 'E030', nombre: 'Valeria', apellido: 'Sánchez', dni: '36475329', rol: '', asignado: false }
   ];
 
   public getEmpleados(): Empleado[] {
     return [...this.empleados];
+  }
+
+  public getEmpleadosById(id: string): Empleado | undefined {
+    return this.empleados.find(e => e.id === id);
   }
 
   // Vuelos
@@ -132,7 +187,9 @@ export class VueloServiceService {
         fechaPartida: fechaActual,
         fechaArribo: fechaActual,
         estado: 'Programado',
-        eliminado: false
+        eliminado: false,
+        tripulantes: [this.getEmpleadosById('E001')!, this.getEmpleadosById('E002')!],
+        pasajeros: []
       },
       {
         id: '2',
@@ -143,7 +200,9 @@ export class VueloServiceService {
         fechaPartida: fechaActual,
         fechaArribo: fechaActual,
         estado: 'En vuelo',
-        eliminado: false
+        eliminado: false,
+        tripulantes: [this.getEmpleadosById('E003')!, this.getEmpleadosById('E004')!, this.getEmpleadosById('E005')!],
+        pasajeros: []
       },
       {
         id: '3',
@@ -154,7 +213,9 @@ export class VueloServiceService {
         fechaPartida: fechaActual,
         fechaArribo: fechaActual,
         estado: 'Finalizado',
-        eliminado: false
+        eliminado: false,
+        tripulantes: [this.getEmpleadosById('E006')!, this.getEmpleadosById('E007')!, this.getEmpleadosById('E008')!],
+        pasajeros: []
       },
       {
         id: '4',
@@ -165,7 +226,9 @@ export class VueloServiceService {
         fechaPartida: fechaActual,
         fechaArribo: fechaActual,
         estado: 'Reprogramado',
-        eliminado: false
+        eliminado: false,
+        tripulantes: [this.getEmpleadosById('E009')!, this.getEmpleadosById('E010')!, this.getEmpleadosById('E011')!],
+        pasajeros: []
       },
       {
         id: '5',
@@ -176,7 +239,9 @@ export class VueloServiceService {
         fechaPartida: fechaActual,
         fechaArribo: fechaActual,
         estado: 'Cancelado',
-        eliminado: false
+        eliminado: false,
+        tripulantes: [this.getEmpleadosById('E012')!, this.getEmpleadosById('E013')!, this.getEmpleadosById('E014')!],
+        pasajeros: []
       },
       {
         id: '6',
@@ -187,7 +252,9 @@ export class VueloServiceService {
         fechaPartida: '30/05/2025',
         fechaArribo: '30/05/2025',
         estado: 'En vuelo',
-        eliminado: false
+        eliminado: false,
+        tripulantes: [this.getEmpleadosById('E015')!, this.getEmpleadosById('E016')!, this.getEmpleadosById('E017')!],
+        pasajeros: []
       },
       {
         id: '7',
@@ -198,7 +265,9 @@ export class VueloServiceService {
         fechaPartida: '31/05/2025',
         fechaArribo: '31/05/2025',
         estado: 'Programado',
-        eliminado: false
+        eliminado: false,
+        tripulantes: [this.getEmpleadosById('E018')!, this.getEmpleadosById('E019')!, this.getEmpleadosById('E020')!],
+        pasajeros: []
       },
       {
         id: '8',
@@ -209,7 +278,9 @@ export class VueloServiceService {
         fechaPartida: '01/06/2025',
         fechaArribo: '01/06/2025',
         estado: 'Programado',
-        eliminado: false
+        eliminado: false,
+        tripulantes: [this.getEmpleadosById('E021')!, this.getEmpleadosById('E022')!, this.getEmpleadosById('E023')!],
+        pasajeros: []
       },
       {
         id: '9',
@@ -220,7 +291,9 @@ export class VueloServiceService {
         fechaPartida: '02/06/2025',
         fechaArribo: '02/06/2025',
         estado: 'En vuelo',
-        eliminado: false
+        eliminado: false,
+        tripulantes: [this.getEmpleadosById('E024')!, this.getEmpleadosById('E025')!, this.getEmpleadosById('E026')!],
+        pasajeros: []
       },
       {
         id: '10',
@@ -231,7 +304,9 @@ export class VueloServiceService {
         fechaPartida: '03/06/2025',
         fechaArribo: '03/06/2025',
         estado: 'Cancelado',
-        eliminado: false
+        eliminado: false,
+        tripulantes: [this.getEmpleadosById('E027')!, this.getEmpleadosById('E028')!, this.getEmpleadosById('E029')!],
+        pasajeros: []
       },
       {
         id: '11',
@@ -242,7 +317,9 @@ export class VueloServiceService {
         fechaPartida: '04/06/2025',
         fechaArribo: '04/06/2025',
         estado: 'Programado',
-        eliminado: false
+        eliminado: false,
+        tripulantes: [this.getEmpleadosById('E030')!, this.getEmpleadosById('E031')!, this.getEmpleadosById('E032')!],
+        pasajeros: [] 
       },
       {
         id: '12',
@@ -253,7 +330,9 @@ export class VueloServiceService {
         fechaPartida: '05/06/2025',
         fechaArribo: '05/06/2025',
         estado: 'Programado',
-        eliminado: false
+        eliminado: false,
+        tripulantes: [this.getEmpleadosById('E033')!, this.getEmpleadosById('E034')!, this.getEmpleadosById('E035')!],
+        pasajeros: []
       },
       {
         id: '13',
@@ -264,7 +343,9 @@ export class VueloServiceService {
         fechaPartida: '06/06/2025',
         fechaArribo: '06/06/2025',
         estado: 'Reprogramado',
-        eliminado: false
+        eliminado: false,
+        tripulantes: [this.getEmpleadosById('E036')!, this.getEmpleadosById('E037')!, this.getEmpleadosById('E038')!],
+        pasajeros: [] 
       },
       {
         id: '14',
@@ -275,7 +356,9 @@ export class VueloServiceService {
         fechaPartida: '07/06/2025',
         fechaArribo: '07/06/2025',
         estado: 'Programado',
-        eliminado: false
+        eliminado: false,
+        tripulantes: [this.getEmpleadosById('E039')!, this.getEmpleadosById('E040')!, this.getEmpleadosById('E041')!],
+        pasajeros: []
       },
       {
         id: '15',
@@ -286,7 +369,9 @@ export class VueloServiceService {
         fechaPartida: '08/06/2025',
         fechaArribo: '08/06/2025',
         estado: 'Reprogramado',
-        eliminado: false
+        eliminado: false,
+        tripulantes: [this.getEmpleadosById('E042')!, this.getEmpleadosById('E043')!, this.getEmpleadosById('E044')!],
+        pasajeros: []
       },
       {
         id: '16',
@@ -297,7 +382,9 @@ export class VueloServiceService {
         fechaPartida: '09/06/2025',
         fechaArribo: '09/06/2025',
         estado: 'Reprogramado',
-        eliminado: false
+        eliminado: false,
+        tripulantes: [this.getEmpleadosById('E045')!, this.getEmpleadosById('E046')!, this.getEmpleadosById('E047')!],
+        pasajeros: []
       },
       {
         id: '17',
@@ -308,7 +395,9 @@ export class VueloServiceService {
         fechaPartida: '10/06/2025',
         fechaArribo: '10/06/2025',
         estado: 'Reprogramado',
-        eliminado: false
+        eliminado: false,
+        tripulantes: [this.getEmpleadosById('E048')!, this.getEmpleadosById('E049')!, this.getEmpleadosById('E050')!],
+        pasajeros: []
       },
       {
         id: '18',
@@ -319,7 +408,9 @@ export class VueloServiceService {
         fechaPartida: '11/06/2025',
         fechaArribo: '11/06/2025',
         estado: 'Cancelado',
-        eliminado: false
+        eliminado: false,
+        tripulantes: [this.getEmpleadosById('E051')!, this.getEmpleadosById('E052')!, this.getEmpleadosById('E053')!],
+        pasajeros: []
       },
       {
         id: '19',
@@ -330,7 +421,9 @@ export class VueloServiceService {
         fechaPartida: '12/06/2025',
         fechaArribo: '12/06/2025',
         estado: 'Cancelado',
-        eliminado: false
+        eliminado: false,
+        tripulantes: [this.getEmpleadosById('E054')!, this.getEmpleadosById('E055')!, this.getEmpleadosById('E056')!],
+        pasajeros: []
       }
     ];
   }
@@ -343,6 +436,36 @@ export class VueloServiceService {
   getVueloById(id: string): Vuelo | undefined {
     return this.vuelos.find(vuelo => vuelo.id === id);
   }
+
+  private rolesTripulante: RolTripulante[] = [
+    {id: '1', nombre: 'Piloto'},
+    {id: '2', nombre: 'Copiloto'},
+    {id: '3', nombre: 'Tripulante'},
+    {id: '4', nombre: 'Jefe de Cabina'},
+    {id: '5', nombre: 'Azafata'},
+    {id: '6', nombre: 'Auxiliar de Vuelo'},
+    {id: '7', nombre: 'Ingeniero de Vuelo'}
+  ];
+
+  getRolesTripulante(): RolTripulante[] {
+    return [...this.rolesTripulante];
+  }
+ 
+  private estadosVuelo: EstadoVuelo[] = [
+    {id: '1', nombre: 'Cancelado'},
+    {id: '2', nombre: 'Cerrado'},
+    {id: '3', nombre: 'Demorado'},
+    {id: '4', nombre: 'Embarcando'},
+    {id: '5', nombre: 'En vuelo'},
+    {id: '6', nombre: 'Finalizado'},
+    {id: '7', nombre: 'Programado'},
+    {id: '9', nombre: 'Reprogramado'}
+  ];
+
+  public getEstadosVuelo(): EstadoVuelo[] {
+    return [...this.estadosVuelo];
+  }
+
 
   // metodo para obtener la fecha de hoy formateada
   public getHoyFormateado(): string {
