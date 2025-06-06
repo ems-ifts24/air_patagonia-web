@@ -41,10 +41,14 @@
                     <td>{{vuelo.fechaArribo}}</td>
                     <td>{{vuelo.estado}}</td>
                     <td>
-                        <span class="accion-simple" (click)="editarVuelo(vuelo.id)">
+                        <span class="accion-simple" 
+                              [class.deshabilitado]="!esEditable(vuelo.estado)" 
+                              (click)="editarVuelo(vuelo.id)">
                             <i class="material-icons">edit</i>
                         </span>
-                        <span class="accion-simple" (click)="eliminarVuelo(vuelo.id)">
+                        <span class="accion-simple" 
+                              [class.deshabilitado]="!esEditable(vuelo.estado)" 
+                              (click)="eliminarVuelo(vuelo.id)">
                             <i class="material-icons">delete</i>
                         </span>
                     </td>

@@ -28,12 +28,16 @@ export class VuelosVistaGeneralComponent implements OnInit {
     this.vuelos = [...this.todosLosVuelos];
   }
 
+  esEditable(estado: string): boolean {
+    return estado !== 'Eliminado' && estado !== 'En vuelo' && estado !== 'Cancelado';
+  }
+
   crearVuelo() {
     this.router.navigate(['app/vuelos-gestion']);
   }
 
   editarVuelo(idVuelo: string) {
-    alert("Editar vuelo: " + idVuelo);
+    this.router.navigate(['app/vuelos-gestion', idVuelo]);
   }
 
   eliminarVuelo(idVuelo: string): void {
@@ -71,6 +75,8 @@ export class VuelosVistaGeneralComponent implements OnInit {
 
   limpiarBusqueda() {
     document.getElementById('inputBusqueda')?.focus();
+    // uso HTMLInputElement para tipar el elemento, para que no marque error
+    // de esta forma le dice a typeScript confiá que el elemento es un input y tiene la propiedad value
     (document.getElementById('inputBusqueda') as HTMLInputElement).value = '';
     this.inputBusqueda = '';
     this.filtrarVuelos();
