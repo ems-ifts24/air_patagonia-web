@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { VueloServiceService, Empleado } from '../core/services/vuelo-service.service';
+import { VueloServiceService, Empleado, Avion, Aeropuerto, EstadoVuelo, RolTripulante } from '../core/services/vuelo-service.service';
 
 @Component({
   selector: 'app-vuelos-gestion',
@@ -11,34 +11,45 @@ import { VueloServiceService, Empleado } from '../core/services/vuelo-service.se
   templateUrl: './vuelos-gestion.component.html',
   styleUrl: './vuelos-gestion.component.css'
 })
-export class VuelosGestionComponent implements OnInit { // Implementa OnInit
+export class VuelosGestionComponent implements OnInit {
 
-  titleCreacion = 'CREACION';
-  titleModificacion = 'MODIFICACION';
-  empleados: Empleado[] = [];
-  rolesDisponibles: string[] = [
-    'Piloto',
-    'Copiloto',
-    'Tripulante',
-    'Jefe de Cabina',
-  ];
-  empleadosParaFiltrar: Empleado[] = [];
+  modoEdicion: boolean = false;
+  titleGestion = this.modoEdicion ? 'MODIFICACION' : 'CREACION';
+
   filtroEmpleado: string = '';
+  empleados: Empleado[] = [];
+  empleadosParaFiltrar: Empleado[] = [];
+  estadosVuelo: EstadoVuelo[] = [];
+  rolesTripulantes: RolTripulante[] = [];
+  listaAviones: Avion[] = [];
+  aeropuertos: Aeropuerto[] = [];
+  idVuelo: string | null = null;
+
 
   // inyecto el servicio
-  constructor(private router: Router, private vueloService: VueloServiceService) { }
+  constructor(private _router: Router, private _activeRouter: ActivatedRoute, private _vueloService: VueloServiceService) { }
 
   ngOnInit(): void {
-    this.empleados = this.vueloService.getEmpleados();
+    this.empleados = this._vueloService.getEmpleados();
+    this.listaAviones = this._vueloService.getAviones();
+    this.aeropuertos = this._vueloService.getAeropuertos();
+    this.rolesTripulantes = this._vueloService.getRolesTripulante();
+    this.estadosVuelo = this._vueloService.getEstadosVuelo();
     this.empleadosParaFiltrar = [...this.empleados];
+
+    // Obtener el ID del vuelo de la URL
+    this.idVuelo = this._activeRouter.snapshot.paramMap.get('id');
+    if (this.idVuelo) {
+      this.modoEdicion = true;
+      this.titleGestion = 'MODIFICACION';
+    }
   }
 
   cancelarModificacion() {
-    this.router.navigate(['app/vuelos']);
+    this._router.navigate(['app/vuelos']);
   }
 
   aplicarFiltroEmpleados(): void {
-
     if (!this.filtroEmpleado) { // si no hay busqueda se muestra todo el listado
       this.empleados = [...this.empleadosParaFiltrar];
       return;

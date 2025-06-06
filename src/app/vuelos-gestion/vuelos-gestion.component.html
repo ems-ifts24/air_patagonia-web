@@ -4,8 +4,8 @@
         <div class="divBotonVolver">
             <button id="botonVolverModificacion" (click)="cancelarModificacion()">⬅</button>
         </div>
-        <div class="divCreacion">
-            <p id="creacion">MODIFICACIÓN</p>
+        <div class="divTituloGestion">
+            <p id="tituloGestion">{{titleGestion}}</p>
         </div>
         <div class="divBuscarEmpleado">
             <input type="search" id="inputBuscarEmpleado" placeholder="Buscar Empleado" [(ngModel)]="filtroEmpleado"
@@ -13,46 +13,27 @@
         </div>
         <div class="divAvion">
             <select name="avion" id="selectAvion">
-                <option value="Avion">Avion</option>
-                <option value="boeing">BOEING 737</option>
+                <option value="" selected disabled>Seleccione un Avion</option>
+                @for(avion of listaAviones; track $index){
+                    <option value="{{avion.id}}">{{avion.marca}} - {{avion.modelo}}</option>
+                }
             </select>
         </div>
 
         <div class="divAeropuertoOrigen">
-
             <select id="aeropuertoOrigen">
-                <option value="aeoropuertoOrigen">Origen</option>
-                <option value="EZE">EZE - Aeropuerto Internacional Ministro Pistarini</option>
-                <option value="AEP">AEP - Aeropuerto Jorge Newbery</option>
-                <option value="COR">COR - Aeropuerto Internacional Ingeniero Ambrosio L.V. Taravella</option>
-                <option value="MDZ">MDZ - Aeropuerto Internacional Gobernador Francisco Gabrielli</option>
-                <option value="ROS">ROS - Aeropuerto Internacional Rosario Islas Malvinas</option>
-                <option value="SAL">SAL - Aeropuerto Internacional Martín Miguel de Güemes</option>
-                <option value="TUC">TUC - Aeropuerto Internacional Teniente General Benjamín Matienzo</option>
-                <option value="BRC">BRC - Aeropuerto Internacional Teniente Luis Candelaria</option>
-                <option value="USH">USH - Aeropuerto Internacional Malvinas Argentinas</option>
-                <option value="IGR">IGR - Aeropuerto Internacional Cataratas del Iguazú</option>
-                <option value="REL">REL - Aeropuerto Almirante Marcos A. Zar</option>
-                <option value="CRD">CRD - Aeropuerto Internacional General Enrique Mosconi</option>
-                <option value="JUJ">JUJ - Aeropuerto Internacional Gobernador Horacio Guzmán</option>
+                <option value="" selected disabled>Seleccione Origen</option>
+                @for(aeropuerto of aeropuertos; track $index){
+                <option value="{{aeropuerto.codigo}}">{{aeropuerto.codigo}} - {{aeropuerto.nombreCorto}}</option>
+                }
             </select>
         </div>
         <div class="divAeropuertoDestino">
             <select id="aeropuertoDestino">
-                <option value="aeoropuertoDestino">Destino</option>
-                <option value="EZE">EZE - Aeropuerto Internacional Ministro Pistarini</option>
-                <option value="AEP">AEP - Aeropuerto Jorge Newbery</option>
-                <option value="COR">COR - Aeropuerto Internacional Ingeniero Ambrosio L.V. Taravella</option>
-                <option value="MDZ">MDZ - Aeropuerto Internacional Gobernador Francisco Gabrielli</option>
-                <option value="ROS">ROS - Aeropuerto Internacional Rosario Islas Malvinas</option>
-                <option value="SAL">SAL - Aeropuerto Internacional Martín Miguel de Güemes</option>
-                <option value="TUC">TUC - Aeropuerto Internacional Teniente General Benjamín Matienzo</option>
-                <option value="BRC">BRC - Aeropuerto Internacional Teniente Luis Candelaria</option>
-                <option value="USH">USH - Aeropuerto Internacional Malvinas Argentinas</option>
-                <option value="IGR">IGR - Aeropuerto Internacional Cataratas del Iguazú</option>
-                <option value="REL">REL - Aeropuerto Almirante Marcos A. Zar</option>
-                <option value="CRD">CRD - Aeropuerto Internacional General Enrique Mosconi</option>
-                <option value="JUJ">JUJ - Aeropuerto Internacional Gobernador Horacio Guzmán</option>
+                <option value="" selected disabled>Seleccione Destino</option>
+                @for(aeropuerto of aeropuertos; track $index){
+                <option value="{{aeropuerto.codigo}}">{{aeropuerto.codigo}} - {{aeropuerto.nombreCorto}}</option>
+                }
             </select>
 
 
@@ -71,9 +52,10 @@
         </div>
         <div class="divEstado">
             <select name="EstadoVuelo" id="selectEstadoVuelo">
-                <option value="Estado">Estado</option>
-                <option value="Cancelado">Cancelado</option>
-                <option value="Demorado">Demorado</option>
+                <option value="" selected disabled>Seleccione un Estado</option>
+                @for(estados of estadosVuelo; track $index){
+                <option value="{{estados.id}}">{{estados.nombre}}</option>
+                }
             </select>
         </div>
 
@@ -93,23 +75,25 @@
                     <th>Rol</th>
                     <th>Asignar</th>
                 </tr>
-                <tr *ngFor="let empleado of empleados; let i = index">
+                @for(empleado of empleados; track $index){
+                <tr id={{empleado.id}}>
                     <td>{{ empleado.nombre }}</td>
                     <td>{{ empleado.apellido }}</td>
                     <td>{{ empleado.dni }}</td>
                     <td>
-                        <select [(ngModel)]="empleado.rol" [name]="'rolEmpleado_' + i">
-                            <option value="">Rol</option>
-                            <option *ngFor="let rol of rolesDisponibles" [value]="rol">
-                                {{ rol }}
-                            </option>
+                        <select [(ngModel)]="empleado.rol" [name]="'rolEmpleado_' + $index">
+                            <option value="" selected disabled>Rol a cumplir</option>
+                            @for(rol of rolesTripulantes; track $index){
+                            <option value="{{rol.id}}">{{ rol.nombre }}</option>
+                            }
                         </select>
                     </td>
                     <td>
-                        <input type="checkbox" [(ngModel)]="empleado.asignado" [name]="'asignadoEmpleado_' + i"
+                        <input type="checkbox" [(ngModel)]="empleado.asignado" [name]="'asignadoEmpleado_' + $index"
                             class="tripulanteAsignado">
                     </td>
                 </tr>
+                }
             </table>
         </div>
 
