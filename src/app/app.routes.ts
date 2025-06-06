@@ -17,7 +17,8 @@ export const routes: Routes = [
             // Eso entra en conflicto con las reglas de abajo. Por eso se coloca explicitamente pathMatch: 'full'
             { path: 'dashboard', component: DashboardComponent },
             { path: 'vuelos', component: VuelosVistaGeneralComponent },
-            { path: 'vuelos-gestion', component: VuelosGestionComponent},
+            { path: 'vuelos-gestion', component: VuelosGestionComponent},       // ruta para crear
+            { path: 'vuelos-gestion/:id', component: VuelosGestionComponent},   // ruta para editar
             { path: 'empleados', component: DashboardComponent },   // Hasta que se realice este componente, se usara el DashboardComponent
             { path: 'pasajeros', component: DashboardComponent },   // Hasta que se realice este componente, se usara el DashboardComponent
             { path: 'reportes', component: VuelosListadoComponent },
