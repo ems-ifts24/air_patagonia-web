@@ -34,7 +34,8 @@
  }
 
  @media (max-width: 768px) {
-    .layout-sidebar{
+    .layout-sidebar,
+    .layout-footer{
     opacity: 0;
     }
     .content{

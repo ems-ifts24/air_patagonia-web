@@ -16,7 +16,7 @@
 /* Logo section */
 .logo-container {
 padding: 10px;
-border-bottom: 1px solid #334155;
+border-bottom: 0.1rem solid #334155;
 text-align: center;
 }
 
@@ -27,18 +27,18 @@ width: 70%;
 /* Navigation menu */
 .nav-menu {
 flex: 1;
-padding: 40px 0;
+padding: 2.5rem 0;
 }
 
 .nav-item {
 display: flex;
 align-items: center;
-padding: 12px 20px;
+padding: 0.75rem 1.25rem;
 color: #cbd5e1;
 text-decoration: none;
 transition: all 0.3s ease;
-margin: 4px 10px;
-border-radius: 6px;
+margin: 0.25rem 0.8rem;
+border-radius: 0.4rem;
 }
 
 .nav-item:hover {
@@ -53,14 +53,14 @@ font-weight: 500;
 }
 
 .nav-item i {
-margin-right: 12px;
-font-size: 25px;
+margin-right: 0.75rem;
+font-size: 1.5rem;
 }
 
 
 /* Scrollbar styling */
 .nav-menu::-webkit-scrollbar {
-width: 6px;
+width: 0.4rem;
 }
 
 .nav-menu::-webkit-scrollbar-track {
@@ -69,35 +69,35 @@ background: #1e293b;
 
 .nav-menu::-webkit-scrollbar-thumb {
 background-color: #4b5563;
-border-radius: 3px;
+border-radius: 0.2rem;
 }
 
 /* Error state */
 .error-state {
-padding: 20px;
+padding: 1.25rem;
 text-align: center;
 color: #f87171;
 }
 
 .error-state i {
-font-size: 48px;
-margin-bottom: 10px;
+font-size: 3rem;
+margin-bottom: 0.8rem;
 display: block;
 }
 
 .error-state p {
-margin: 10px 0 15px;
+margin: 0.8rem 0 0.95rem;
 }
 
 .retry-btn {
 background-color: #3b82f6;
 color: white;
 border: none;
-padding: 8px 16px;
-border-radius: 4px;
+padding: 0.5rem 1rem;
+border-radius: 0.25rem;
 display: inline-flex;
 align-items: center;
-gap: 8px;
+gap: 0.5rem;
 cursor: pointer;
 transition: background-color 0.3s ease;
 }
@@ -107,7 +107,7 @@ background-color: #2563eb;
 }
 
 .retry-btn i {
-font-size: 16px;
+font-size: 1rem;
 color: white;
 margin: 0;
 }

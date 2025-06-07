@@ -95,7 +95,7 @@
  background-color: rgba(33, 62, 90, 0.38);
  color: white;
  height: 100%;
- border-radius: 6px;
+ border-radius: 0.4rem;
  margin-left: 3rem;
   
 }
@@ -109,7 +109,7 @@
   background-color: rgba(33, 62, 90, 0.38);
   color: white;
   height: 100%;
-  border-radius: 6px;
+  border-radius: 0.4rem;
   margin-left: 3rem;
   
 }
@@ -124,7 +124,7 @@
  background-color: rgba(33, 62, 90, 0.38);
  color: white;
  height: 100%;
- border-radius: 6px;
+ border-radius: 0.4rem;
  margin-left: 1.5rem;
  font-size: 0.8rem;
 }

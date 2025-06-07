@@ -7,7 +7,7 @@
 }
 .contenedorGrid{
     background-color:  rgba(48, 36, 36, 0.29);;
-    border-radius: 10px;
+    border-radius: 0.6rem;
     width: 30%;
     height: 80%;
     display: grid;
@@ -25,7 +25,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 15px 0;
+    padding: 0.9rem 0;
     margin: 0 auto;
 }
 
@@ -78,15 +78,15 @@
     width: 100%;
     background-color: rgba(25, 20, 20, 0.55);  
     border: none;
-    border-radius: 7px;
+    border-radius: 0.45rem;
     color: white;
     height: 70%;
-    font-size: 14px;
-    padding: 0 12px 0 45px;  
+    font-size: 0.85rem;
+    padding: 0 0.6rem 0 2.8rem;  
     outline: none;
     transition: all 0.3s ease;
     box-sizing: border-box;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.2);
     font-size: 0.8rem;
     text-indent: 0; 
 }
@@ -94,7 +94,7 @@
 #inputUsuario:hover, #inputPassword:hover,
 #inputUsuario:focus, #inputPassword:focus {
     border-color: #64ffda;
-    box-shadow: 0 0 0 2px rgba(100, 255, 218, 0.2);
+    box-shadow: 0 0 0 0.125rem rgba(100, 255, 218, 0.2);
 }
 
 ::placeholder {
@@ -174,15 +174,15 @@
     height: 70%;
     font-size: 1.3rem; 
     font-weight: 500;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0.125rem 0.4rem rgba(0, 0, 0, 0.2);
     transition: all 0.3s ease;
 }
 #btnIngresar:hover{
     background-color: rgba(0, 30, 91, 1);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.3);
     transform: translateY(-1px);
     cursor: pointer;
-    border: 1px lightblue solid;
+    border: 0.1rem lightblue solid;
     transition: linear 0.5s
 
     
