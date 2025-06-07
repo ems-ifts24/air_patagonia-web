@@ -25,7 +25,7 @@
         <a [routerLink]="item.route"
            routerLinkActive="active"
            class="nav-item"
-           (click)="setActiveItem(item.id)"
+           (click)="setActiveItem(item.id,item.label)"
            [class.active]="activeItem === item.id">
         <i class="material-icons">{{ item.icon }}</i>
         <span>{{ item.label }}</span>

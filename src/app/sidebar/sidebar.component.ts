@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, RouterLink, RouterLinkActive } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { catchError, of } from 'rxjs';
+import { TitleHeaderService } from '../core/services/title-header.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -28,7 +29,7 @@ export class SidebarComponent implements OnInit {
     { id: 'configuracion', icon: 'settings', label: 'Configuración', route: 'configuracion' }
   ];
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient,private titleService: TitleHeaderService) {}
 
   // @HostListener: decorador de Angular que escucha eventos del DOM (en este caso: el evento resize de la ventana)
   // ['$event'] indica que el objeto del evento se pasa como parámetro al método.
@@ -87,8 +88,9 @@ export class SidebarComponent implements OnInit {
 
   // Método que toma el valor de activeItem y lo establece como el valor de itemId
   // para resaltar el item seleccionado
-  setActiveItem(itemId: string) {
+  setActiveItem(itemId: string,label: string) {
     this.activeItem = itemId;
+    this.titleService.setTitle(label); // llama al metodo que cambia el titulo Cambiá el título
     if (this.isMobile) {
       this.isOpen = false;
     }
