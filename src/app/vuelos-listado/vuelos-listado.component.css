@@ -1,31 +1,34 @@
 .contenedorPrincipal {
     display: flex;
     justify-content: center;
-    align-items: flex-start;
-    min-height: calc(100vh - 120px);
-    height: 100%;
-    padding: 20px 10px 0;
+    align-items: center;
+    /* min-height: calc(100vh - 120px); */
+    height: 90%;
     width: 100%;
     box-sizing: border-box;
     overflow-x: hidden;
+    
 }
 
 .mainDashboard {
-    width: 98%; /* Más ancho en móviles */
+    width: 100%; /* Más ancho en móviles */
     max-width: 2000px; /* Aumentado de 1600px a 2000px */
-    min-height: 70vh;
+    /* min-height: 70vh; */
+    height: 100%;
     max-height: calc(100vh - 180px); /* Altura máxima para evitar desbordamiento */
     border-bottom: 0.5px rgba(255, 255, 255, 0.3) solid;
     display: grid;
     grid-template-columns: repeat(8, 1fr);
     grid-template-rows: auto auto 1fr; /* Ajuste para mejor flujo */
-    gap: 15px;
+    gap: 1rem;
     background-color: rgba(61, 107, 146, 0.9);
     border-radius: 10px;
-    padding: 15px;
+    padding: 1rem;
     box-sizing: border-box;
     margin: 0 auto;
     overflow: hidden; /* Evita el doble scroll */
+    
+    
     
     /* Media Queries */
     @media (min-width: 768px) {
@@ -52,13 +55,13 @@
 .divAeropuertoOrigen {
     grid-column: 2/4;
     grid-row: 1/2;
-    margin-right: 5px;
+    margin-right: 0.5rem;
 }
 
 .divAeropuertoDestino {
     grid-column: 4/6;
     grid-row: 1/2;
-    margin-left: 5px;
+    margin-left: 0.5rem;
 }
 
 .divBtnLimpiarFiltros {
@@ -67,7 +70,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding-right: 15px;
+    padding-right: 1rem;
 }
 
 /* Estilos comunes para los selectores */
@@ -75,10 +78,10 @@
     width: 100%;
     background-color: rgba(33, 62, 90, 0.38);
     color: white;
-    height: 45px; 
-    border-radius: 6px;
+    height: 2.7rem; 
+    border-radius: 0.5rem;
     border: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 0 15px; 
+    padding: 0 1rem; 
     font-size: 0.9rem; /* Tamaño de fuente ligeramente más pequeño */
     transition: all 0.3s ease;
     appearance: none;
@@ -86,8 +89,8 @@
     -moz-appearance: none;
     background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23FFFFFF%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
     background-repeat: no-repeat;
-    background-position: right 12px center; /* Ajuste de posición del ícono */
-    background-size: 10px auto; /* Tamaño del ícono reducido */
+    background-position: right 0.8rem center; /* Ajuste de posición del ícono */
+    background-size: 0.7rem auto; /* Tamaño del ícono reducido */
     cursor: pointer;
     max-width: 100%; /* Asegura que no se salga del contenedor */
     box-sizing: border-box;
@@ -103,7 +106,7 @@
     .divDescargar {
         grid-column: 1/-1; /* Ocupa todo el ancho en móviles */
         justify-content: center;
-        padding: 5px 0;
+        padding: 0.33rem 0;
     }
 }
 
@@ -122,14 +125,14 @@
 /* Estilo cuando el selector está enfocado */
 #aeropuertoOrigen:focus, #aeropuertoDestino:focus {
     outline: none;
-    box-shadow: 0 0 0 2px rgba(26, 145, 243, 0.5);
+    box-shadow: 0 0 0 0.15rem rgba(26, 145, 243, 0.5);
 }
 
 /* Estilo para las opciones del selector */
 #aeropuertoOrigen option, #aeropuertoDestino option {
     background-color: #1a3a5f;
     color: white;
-    padding: 10px;
+    padding: 0.8rem;
 }
 
 /* Contenedor del botón de limpiar */
@@ -143,22 +146,22 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    padding-right: 30px; 
+    padding-right: 2rem; 
 }
 
 #btnDescargarReporte {
     border-radius: 50%;
     background-color: rgba(33, 62, 90, 0.38);
     color: white;
-    height: 45px;
-    width: 45px;
+    height: 2.6rem;
+    width: 2.6rem;
     border: none;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 0;
     margin: 0;
-    font-size: 20px;
+    font-size: 1.5rem;
     cursor: pointer;
     transition: all 0.2s ease;
 }
@@ -166,17 +169,17 @@
 #btnDescargarReporte:hover {
     background-color: rgb(26, 145, 243);
     transform: scale(1.1);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.2);
 }
 
 #btnDescargarReporte:active {
     transform: scale(0.95);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0.15rem 0.25rem rgba(0, 0, 0, 0.2);
 }
 
 /* Estilos para el ícono de Material */
 #btnDescargarReporte .material-icons {
-    font-size: 24px;
+    font-size: 1.5rem;
     color: white;
     display: flex;
     align-items: center;
@@ -187,7 +190,7 @@
     grid-column: 1/-1;
     grid-row: 3/4;
     width: 100%;
-    padding: 10px 0;
+    padding: 0.8rem 0;
     height: 100%;
     overflow-x: auto;
     border-radius: 0.5rem;
@@ -212,7 +215,7 @@
     border-top: none;
     border-left: none;
     border-right: none;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    border-bottom: 0.1rem solid rgba(255, 255, 255, 0.2);
     /* Línea horizontal */
     padding: 0.5rem;
     color: white;
@@ -220,7 +223,7 @@
 }
 
 .divTabla::-webkit-scrollbar {
-    width: 8px;
+    width: 0.5rem;
 }
 
 .divTabla::-webkit-scrollbar-track {
@@ -229,21 +232,21 @@
 
 .divTabla::-webkit-scrollbar-thumb {
     background-color: rgba(255, 255, 255, 0.4);
-    border-radius: 8px;
+    border-radius: 0.5rem;
     border: 2px solid transparent;
     background-clip: content-box;
 }
 
 .tabla tr:hover {
     background-color: rgba(255, 255, 255, 0.2);
-    box-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 0.5rem rgba(255, 255, 255, 0.2);
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 td select {
     background-color: rgba(33, 62, 90, 0.38);
     color: white;
-    border-radius: 6px;
+    border-radius: 0.6rem;
     font-size: 1.2rem;
 }
 
@@ -252,7 +255,7 @@ td select {
         width: 100%;
         height: 100%;
         margin: 0 0.5rem;
-        padding: 10px 5px 0;
+        padding: 0.8rem 0.4rem 0;
         min-height: calc(100vh - 100px);
         height: auto;
     }
@@ -374,26 +377,26 @@ td select {
     background-color: rgba(33, 62, 90, 0.38);
     color: white;
     border: none;
-    border-radius: 20px; /* Bordes redondeados en lugar de circular */
-    padding: 6px 15px 6px 10px; /* Más espacio para el contenido */
+    border-radius: 1.5rem; /* Bordes redondeados en lugar de circular */
+    padding: 0.4rem 1rem 0.4rem 0.8rem; /* Más espacio para el contenido */
     cursor: pointer;
-    font-size: 14px;
+    font-size: 1rem;
     display: inline-flex;
     align-items: center;
-    gap: 6px;
+    gap: 0.3rem;
     transition: all 0.2s ease;
-    height: 35px; /* Altura fija */
+    height: 2.2rem; /* Altura fija */
     white-space: nowrap;
 }
 
 #btnLimpiarFiltros:hover {
     background-color: rgb(26, 145, 243);
     transform: scale(1.1);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.2);
 }
 
 #btnLimpiarFiltros .material-icons {
-    font-size: 18px;
+    font-size: 1.2rem;
     display: flex;
     align-items: center;
 }
