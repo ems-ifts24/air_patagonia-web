@@ -14,7 +14,7 @@ import { VueloServiceService, Empleado, Avion, Aeropuerto, EstadoVuelo, RolTripu
 export class VuelosGestionComponent implements OnInit {
 
   modoEdicion: boolean = false;
-  titleGestion: string = 'CREACION';
+  titleGestion: string = 'CREACIÓN';
 
   filtroEmpleado: string = '';
   empleados: Empleado[] = [];
@@ -43,7 +43,7 @@ export class VuelosGestionComponent implements OnInit {
     });
     if (this.vuelo) {
       this.modoEdicion = true;
-      this.titleGestion = 'MODIFICACION';
+      this.titleGestion = 'MODIFICACIÓN';
     }
   }
 

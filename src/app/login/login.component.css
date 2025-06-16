@@ -191,20 +191,25 @@
 /*  (hasta 1024px) */
 @media (max-width: 1024px) {
   .contenedorGrid {
-    width: 60%;
-    height: auto;
+    width: 30%;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(10, auto);
     padding: 2%;
   }
 .contenedorGrid-logo{
     grid-column: 2/4;
+    grid-row: 1/2;
     display: flex;
-    justify-content: center;
+    align-items: start;
+ 
+    height: 50%;
 }
 
   #tituloIniciarSesion {
+    grid-row: 2/3;
     font-size: 1.5rem;
+    height: 100%;
+
   }
    #logoAirPatagonia{
 
@@ -215,7 +220,7 @@
   #inputUsuario,
   #inputPassword {
     font-size: 0.7rem;
-    height: 100%;
+    height: 70%;
     
   }
 

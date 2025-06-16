@@ -63,7 +63,7 @@
 }
 
 #botonCrear {
-  border-radius: 0.5rem;
+  border-radius: 1.25rem;
   background-color: rgba(0, 50, 91, 1);
   color: white;
   height: 100%;
@@ -257,19 +257,24 @@
   }
 
   .divBotonCrear {
-    grid-column: 4/6;
+    grid-column: 2/4;
     grid-row: 1/2;
     height: 70%;
     width: 100%;
   }
 
   #botonCrear {
-    border-radius: 0.5rem;
+    border-radius: 1.25rem;
     background-color: rgba(0, 50, 91, 1);
-    ;
     color: white;
     width: 100%;
 
+  }
+  .divBtnLimpiarFiltros{
+     grid-column: 6/8;
+    grid-row: 1/2;
+    height: 70%;
+    width: 100%;
   }
 
   .divTabla th,
