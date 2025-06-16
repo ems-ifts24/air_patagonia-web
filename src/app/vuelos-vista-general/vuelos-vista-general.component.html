@@ -31,24 +31,24 @@
                     <th>Estado</th>
                     <th>Acción</th>
                 </tr>
-                @for(vuelo of vuelos; track $index){
-                <tr id={{vuelo.id}}>
-                    <td>{{vuelo.vuelo}}</td>
-                    <td>{{vuelo.avion.marca}} {{vuelo.avion.modelo}}</td>
-                    <td>{{vuelo.origen.codigo}} - {{vuelo.origen.nombreCorto}}</td>
-                    <td>{{vuelo.destino.codigo}} - {{vuelo.destino.nombreCorto}}</td>
+                @for(vuelo of vuelosFiltrados; track $index){
+                <tr id={{vuelo.idVuelo}}>
+                    <td>{{vuelo.aliasVuelo}}</td>
+                    <td>{{vuelo.avion.fabricante}} {{vuelo.avion.modelo}}</td>
+                    <td>{{vuelo.aeropuertoPartida.codigoIATA}} - {{vuelo.aeropuertoPartida.nombreCorto}}</td>
+                    <td>{{vuelo.aeropuertoArribo.codigoIATA}} - {{vuelo.aeropuertoArribo.nombreCorto}}</td>
                     <td>{{vuelo.fechaPartida}}</td>
                     <td>{{vuelo.fechaArribo}}</td>
-                    <td>{{vuelo.estado}}</td>
+                    <td>{{vuelo.estado.descripcion}}</td>
                     <td>
                         <span class="accion-simple" 
-                              [class.deshabilitado]="!esEditable(vuelo.estado)" 
-                              (click)="editarVuelo(vuelo.id)">
+                              [class.deshabilitado]="!esEditable(vuelo.estado.descripcion)" 
+                              (click)="editarVuelo(vuelo.idVuelo)">
                             <i class="material-icons">edit</i>
                         </span>
                         <span class="accion-simple" 
-                              [class.deshabilitado]="!esEditable(vuelo.estado)" 
-                              (click)="eliminarVuelo(vuelo.id)">
+                              [class.deshabilitado]="!esEditable(vuelo.estado.descripcion)" 
+                              (click)="eliminarVuelo(vuelo.idVuelo)">
                             <i class="material-icons">delete</i>
                         </span>
                     </td>

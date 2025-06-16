@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { VueloServiceService, Vuelo } from '../core/services/vuelo-service.service';
 import { FormsModule } from '@angular/forms';
+import { ApiService } from '../core/services/api.service';
+import { IVuelo } from '../core/models/vuelo.model';
+
 // Importo el servicio de vuelos para obtener el array de vuelos
 // Importo la interface Vuelo para tipar el array de vuelos
 
@@ -12,24 +14,46 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./vuelos-vista-general.component.css']
 })
 export class VuelosVistaGeneralComponent implements OnInit {
-  todosLosVuelos: Vuelo[] = [];
-  vuelos: Vuelo[] = [];
+  todosLosVuelos: IVuelo[] = [];
+  vuelosFiltrados: IVuelo[] = [];
   inputBusqueda: string = '';
 
   constructor(
     private router: Router,
-    private vueloService: VueloServiceService
+    private _apiService: ApiService
   ) { }
 
   // Metodo que se ejecuta al iniciar el componente
   ngOnInit() {
-    // Obtener los vuelos del servicio
-    this.todosLosVuelos = this.vueloService.getVuelos();
-    this.vuelos = [...this.todosLosVuelos];
+    console.log('ngOnInit :: VuelosVistaGeneralComponent');
+    this.obtenerTodosLosVuelos();
+
+    // Muevo esta asignación dentro del método obtenerTodosLosVuelos porque como es una respuesta asincrona
+    // no se llena el array de vuelosFiltrados en el orden esperado
+    // this.vuelosFiltrados = [...this.todosLosVuelos];
+  }
+
+  private obtenerTodosLosVuelos() {
+    console.log('Busco todos los vuelos.');
+    this._apiService.getVuelos().subscribe({
+      next: (vuelos: IVuelo[]) => {
+        console.log(`Se obtuvieron ${vuelos.length} vuelos.`);
+        this.todosLosVuelos = vuelos;
+
+        // Los tres puntos adelante hacen una copia del array original
+        this.vuelosFiltrados = [...this.todosLosVuelos];
+      },
+      error: (error) => {
+        if(error.mensaje){
+          alert(error.mensaje);
+        }
+        console.error('Error al obtener todos los vuelos:', error);
+      }
+    });
   }
 
   esEditable(estado: string): boolean {
-    return estado !== 'Eliminado' && estado !== 'En vuelo' && estado !== 'Cancelado';
+    return estado === 'Programado' || estado === 'Reprogramado' || estado === 'Demorado';
   }
 
   crearVuelo() {
@@ -41,35 +65,32 @@ export class VuelosVistaGeneralComponent implements OnInit {
   }
 
   eliminarVuelo(idVuelo: string): void {
+    // TODO :: Implementar eliminacion de vuelos
     if (!confirm('¿Esta seguro de que desea eliminar este vuelo?')) {
       return;
     }
 
-    const resultado = this.vueloService.marcarVueloComoEliminado(idVuelo);
+    alert('Vuelo eliminado correctamente.');
 
-    alert(resultado.mensaje);
-
-    if (resultado.exito) {
-      this.vuelos = this.vueloService.getVuelos();
-    }
+    this.obtenerTodosLosVuelos();
   }
 
   filtrarVuelos() {
     if (this.inputBusqueda && this.inputBusqueda.trim() !== '') {
       const busqueda = this.inputBusqueda.toLowerCase().trim();
-      this.vuelos = this.vuelos.filter(vuelo =>
-        vuelo.vuelo.toLowerCase().includes(busqueda)
-        || vuelo.avion.marca.toLowerCase().includes(busqueda)
+      this.vuelosFiltrados = this.todosLosVuelos.filter((vuelo: IVuelo) =>
+        vuelo.aliasVuelo.toLowerCase().includes(busqueda)
+        || vuelo.avion.fabricante.toLowerCase().includes(busqueda)
         || vuelo.avion.modelo.toLowerCase().includes(busqueda)
-        || vuelo.origen.codigo.toLowerCase().includes(busqueda)
-        || vuelo.destino.codigo.toLowerCase().includes(busqueda)
-        || vuelo.origen.nombreCorto.toLowerCase().includes(busqueda)
-        || vuelo.destino.nombreCorto.toLowerCase().includes(busqueda)
-        || vuelo.estado.toLowerCase().includes(busqueda)
+        || vuelo.aeropuertoPartida.codigoIATA.toLowerCase().includes(busqueda)
+        || vuelo.aeropuertoArribo.codigoIATA.toLowerCase().includes(busqueda)
+        || vuelo.aeropuertoPartida.nombreCorto.toLowerCase().includes(busqueda)
+        || vuelo.aeropuertoArribo.nombreCorto.toLowerCase().includes(busqueda)
+        || vuelo.estado.descripcion.toLowerCase().includes(busqueda)
       );
     }
     else {
-      this.vuelos = [...this.todosLosVuelos];
+      this.vuelosFiltrados = [...this.todosLosVuelos];
     }
   }
 
