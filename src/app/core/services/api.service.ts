@@ -18,7 +18,11 @@ export class ApiService {
         return this._httpClient.get<IVuelo[]>(this.urlBackend + this.pathVuelos);
     }
 
-    getVueloById(id: string): Observable<IVuelo> {
+    public getVueloById(id: string): Observable<IVuelo> {
         return this._httpClient.get<IVuelo>(`${this.urlBackend + this.pathVuelos}/${id}`);
+    }
+
+    public deleteVuelo(id: string): Observable<void> {
+        return this._httpClient.delete<void>(`${this.urlBackend + this.pathVuelos}/${id}`);
     }
 }

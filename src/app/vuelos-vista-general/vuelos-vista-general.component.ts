@@ -65,14 +65,22 @@ export class VuelosVistaGeneralComponent implements OnInit {
   }
 
   eliminarVuelo(idVuelo: string): void {
-    // TODO :: Implementar eliminacion de vuelos
-    if (!confirm('¿Esta seguro de que desea eliminar este vuelo?')) {
+    if (confirm('¿Esta seguro de que desea eliminar este vuelo?')) {
+      this._apiService.deleteVuelo(idVuelo).subscribe({
+        next: () => {
+          console.log('Vuelo eliminado correctamente.');
+          this.obtenerTodosLosVuelos();
+        },
+        error: (error) => {
+          console.error('Error al eliminar el vuelo:', error);
+          alert('Falló la eliminación del vuelo: ' + error.mensaje);
+        }
+      });
+
       return;
     }
 
-    alert('Vuelo eliminado correctamente.');
-
-    this.obtenerTodosLosVuelos();
+    alert('Operación cancelada.');
   }
 
   filtrarVuelos() {
