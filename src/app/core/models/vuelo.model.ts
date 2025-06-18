@@ -39,10 +39,10 @@ export interface IVueloEstado {
 }
 
 export interface IVueloDTO {
-    estado?:              string;
-    fechaPartida?:        Date;
-    fechaArribo?:         Date;
-    idAvion?:             string;
-    idAeropuertoPartida?: string;
-    idAeropuertoArribo?:  string;
+    estado:              string;
+    fechaPartida:        Date;
+    fechaArribo:         Date;
+    idAvion:             string;
+    idAeropuertoPartida: string;
+    idAeropuertoArribo:  string;
 }
