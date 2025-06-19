@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ApiService } from '../core/services/api.service';
 import { IAsignacion, IPuestoTripulante, ITripulanteDTO } from '../core/models/empleado.model';
-import { IVuelo, IAvion, IAeropuerto, IVueloEstado } from '../core/models/vuelo.model';
+import { IVuelo, IAvion, IAeropuerto, IVueloEstado, IVueloDTO } from '../core/models/vuelo.model';
 
 @Component({
   selector: 'app-vuelos-gestion',
@@ -35,38 +35,67 @@ export class VuelosGestionComponent implements OnInit {
     private _apiService: ApiService) { }
 
   ngOnInit(): void {
-    this.getTripulantesParaVuelo();
-    this.getPuestosTripulante();
-    this.getEstadosVuelo();
-    this.getAviones();
-    this.getAeropuertos();
+    this.obtenerTripulantesParaVuelo();
+    this.obtenerPuestosTripulante();
+    this.obtenerEstadosVuelo();
+    this.obtenerAviones();
+    this.obtenerAeropuertos();
     
     // Solo para Editar un vuelo :: Obtener el ID del vuelo de la URL
-    this._activeRouter.params.subscribe(params => {
-      this._apiService.getVueloById(params['id']).subscribe({
-        next: (vuelo: IVuelo) => {
-          this.vuelo = vuelo;
-        },
-        error: (error) => {
+    this._activeRouter.params.subscribe((params: any) => {
+      if(params['id']){
+        this.titleGestion = 'MODIFICACIÓN';
+        this.modoEdicion = true;
+
+        this._apiService.getVueloById(params['id']).subscribe({
+          next: (vuelo: IVuelo) => {
+            this.vuelo = vuelo;
+          },
+          error: (error) => {
           if(error.mensaje){
             alert(error.mensaje);
           }
           console.error('Error al obtener el vuelo:', error);
         }
       });
+      }
     });
-
-    if (this.vuelo) {
-      this.modoEdicion = true;
-      this.titleGestion = 'MODIFICACIÓN';
-    }
   }
+
+
+  crearVueloDTO(vueloDTO: IVueloDTO) {
+    console.log('Creando vuelo.');
+    
+
+  }
+
+
+
+  cancelarModificacion() {
+    this._router.navigate(['app/vuelos']);
+  }
+
+  aplicarFiltroEmpleados(): void {
+    if (!this.filtroEmpleado) { // si no hay busqueda se muestra todo el listado
+      this.empleados = [...this.empleadosFiltrados];
+      return;
+    }
+
+    const busqueda = this.filtroEmpleado.toLowerCase();
+    this.empleados = this.empleadosFiltrados.filter(empleado =>
+      empleado.nombre.toLowerCase().includes(busqueda) ||
+      empleado.apellido.toLowerCase().includes(busqueda) ||
+      (empleado.nroDocumento && empleado.nroDocumento.toLowerCase().includes(busqueda))
+    );
+  }
+
+
 
   // ------------
   // Inicio Pedidos HTTP para llenar los combos y lista de empleados disponibles
   // ------------
 
-  getTripulantesParaVuelo(idVuelo?: string) {
+  obtenerTripulantesParaVuelo(idVuelo?: string) {
     console.log('Buscando empleados disponibles y asignados al vuelo.');
     this._apiService.getTripulantesParaVuelo(idVuelo).subscribe({
       next: (empleados: ITripulanteDTO[]) => {
@@ -85,7 +114,7 @@ export class VuelosGestionComponent implements OnInit {
     });
   }
 
-  getPuestosTripulante() {
+  obtenerPuestosTripulante() {
     console.log('Busco todos los puestos de tripulantes.');
     this._apiService.getPuestosTripulante().subscribe({
       next: (puestoTripulante: IPuestoTripulante[]) => {
@@ -101,7 +130,7 @@ export class VuelosGestionComponent implements OnInit {
     });
   }
 
-  getEstadosVuelo() {
+  obtenerEstadosVuelo() {
     console.log('Busco todos los estados de vuelo.');
     this._apiService.getEstadosVuelo().subscribe({
       next: (estadosVuelo: IVueloEstado[]) => {
@@ -117,7 +146,7 @@ export class VuelosGestionComponent implements OnInit {
     });
   }
 
-  getAeropuertos() {
+  obtenerAeropuertos() {
     console.log('Busco todos los aeropuertos.');
     this._apiService.getAeropuertos().subscribe({
       next: (aeropuertos: IAeropuerto[]) => {
@@ -135,7 +164,7 @@ export class VuelosGestionComponent implements OnInit {
     });
   }
 
-  getAviones() {
+  obtenerAviones() {
     console.log('Busco todos los aviones.');
     this._apiService.getAviones().subscribe({
       next: (aviones: IAvion[]) => {
@@ -149,6 +178,11 @@ export class VuelosGestionComponent implements OnInit {
         console.error('Error al obtener todos los aviones:', error);
       }
     });
+  }
+
+  guardarVueloDTO(){
+    console.log('Guardando vuelo.');
+
   }
 
   asignarTripulante(idVuelo: string, empleado: ITripulanteDTO) {
@@ -197,22 +231,4 @@ export class VuelosGestionComponent implements OnInit {
   // Fin Pedidos HTTP
   // ------------
 
-
-  cancelarModificacion() {
-    this._router.navigate(['app/vuelos']);
-  }
-
-  aplicarFiltroEmpleados(): void {
-    if (!this.filtroEmpleado) { // si no hay busqueda se muestra todo el listado
-      this.empleados = [...this.empleadosFiltrados];
-      return;
-    }
-
-    const busqueda = this.filtroEmpleado.toLowerCase();
-    this.empleados = this.empleadosFiltrados.filter(empleado =>
-      empleado.nombre.toLowerCase().includes(busqueda) ||
-      empleado.apellido.toLowerCase().includes(busqueda) ||
-      (empleado.nroDocumento && empleado.nroDocumento.toLowerCase().includes(busqueda))
-    );
-  }
 }

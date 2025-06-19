@@ -11,6 +11,7 @@
             <input type="search" id="inputBuscarEmpleado" placeholder="Buscar Empleado" [(ngModel)]="filtroEmpleado"
                 (input)="aplicarFiltroEmpleados()">
         </div>
+
         <div class="divAvion">
             <select name="avion" id="selectAvion">
                 @if(!modoEdicion){
@@ -56,9 +57,8 @@
                     }
                 }
             </select>
-
-
         </div>
+
         <div class="divFechaPartidaLabel">
             <label for="fechaPartida" id="fechaPartidaLabel">Partida</label>
         </div>
@@ -67,7 +67,7 @@
             @if(!modoEdicion){
                 <input type="datetime-local" id="fechaPartida">
             }@else {
-                <input type="datetime-local" id="fechaPartida" [value]="vuelo?.fechaPartida">
+                <input type="datetime-local" id="fechaPartida" [value]="vuelo?.fechaPartida | date:'yyyy-MM-ddTHH:mm'">
             }
         </div>
         <div class="divFechaArriboLabel">
@@ -78,7 +78,7 @@
             @if(!modoEdicion){
                 <input type="datetime-local" id="fechaArribo">
             }@else {
-                <input type="datetime-local" id="fechaArribo" [value]="vuelo?.fechaArribo">
+                <input type="datetime-local" id="fechaArribo" [value]="vuelo?.fechaArribo | date:'yyyy-MM-ddTHH:mm'">
             }
         </div>
 
@@ -102,6 +102,7 @@
         <div class="divBtnCancelar">
             <button id="btnCancelar" (click)="cancelarModificacion()">Cancelar</button>
         </div>
+
         <div class="divTabla">
             <table class="tabla">
                 <tr class="headerTabla">
@@ -119,14 +120,14 @@
                         <td>
                             <select name="puestoTripulante" [id]="'puestoTripulante_' + empleado.idEmpleado" [(ngModel)]="empleado.puestoTripulante">
                                 @if(!empleado.puestoTripulante) {
-                                    <option value="" selected disabled>Puesto a ocupar</option>
+                                    <option [ngValue]="null" selected disabled>Puesto a ocupar</option>
                                 } @else {
                                     <option [ngValue]="empleado.puestoTripulante" selected>
-                                        {{ empleado.puestoTripulante.descripcion }}
+                                        {{ empleado.puestoTripulante.puesto }}
                                     </option>
                                 }
                                 @for(puesto of puestosTripulante; track puesto.idPuestoTripulante) {
-                                    <option [ngValue]="puesto">{{ puesto.descripcion }}</option>
+                                    <option [ngValue]="puesto">{{ puesto.puesto }}</option>
                                 }
                             </select>
                         </td>

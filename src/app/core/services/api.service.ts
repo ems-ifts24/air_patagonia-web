@@ -10,7 +10,7 @@ import { IEmpleado, IPuestoTripulante, IAsignacion } from "../models/empleado.mo
 export class ApiService {
     private urlBackend: string = 'http://localhost:8080/api-v1';
     private pathVuelos: string = '/vuelos';
-    private pathTripulantesParaVuelo: string = '/tripulantes-vuelo';
+    private pathTripulantesParaVuelo: string = '/tripulacion-vuelo';
     private pathPuestoTripulante: string = '/tripulacion-vuelo/puestos';
     private pathEstadosVuelo: string = '/vuelos/estados';
     private pathAeropuertos: string = '/aeropuertos';

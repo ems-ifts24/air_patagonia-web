@@ -1,3 +1,6 @@
+.ocultar{
+  display: none;
+}
 
 .contenedorPrincipal{
   display: flex;

@@ -31,7 +31,7 @@
                     <th>Estado</th>
                     <th>Acción</th>
                 </tr>
-                @for(vuelo of vuelosFiltrados; track $index){
+                @for(vuelo of vuelosFiltrados; track vuelo.idVuelo){
                 <tr id={{vuelo.idVuelo}}>
                     <td>{{vuelo.aliasVuelo}}</td>
                     <td>{{vuelo.avion.fabricante}} {{vuelo.avion.modelo}}</td>
