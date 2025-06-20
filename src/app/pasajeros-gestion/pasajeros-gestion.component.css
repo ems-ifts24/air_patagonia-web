@@ -22,13 +22,13 @@
 }
 
 /* Botón volver */
-.divBotonVolver {
+/* .divBotonVolver {
   grid-column: 1 / 2;
   grid-row: 1 / 2;
   display: flex;
   justify-content: center;
   align-items: center;
-}
+} */
 
 #botonVolverModificacion {
   border-radius: 0.4rem;
