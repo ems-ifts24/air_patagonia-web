@@ -7,7 +7,7 @@
       <p id="tituloGestion">{{ titleGestion }}</p>
     </div>
 
-    <div class="divBuscarPasajero">
+    <div class="divBuscarPasajero  input-con-icono">
       <input
         type="search"
         id="inputBuscarPasajero"
@@ -15,6 +15,7 @@
         [(ngModel)]="filtroPasajero"
         (input)="aplicarFiltroPasajeros()"
       />
+      <span class="icono-busqueda">🔍</span>
     </div>
     <div class="divBtnAgregar">
       <button (click)="agregarNuevo()">Agregar Pasajero</button>
@@ -83,7 +84,13 @@
 
 
       <div class="divBtnGuardar">
-        <button (click)="guardarPasajero()" [disabled]="emailCtrl.invalid">Guardar</button>
+        <!-- <button (click)="guardarPasajero()" [disabled]="emailCtrl.invalid">Guardar</button> -->
+         <button (click)="intentarGuardar(emailCtrl)">Guardar</button>
+         <div class="error" *ngIf="(emailCtrl.touched || intentoGuardar) && emailCtrl.invalid">
+          Por favor, complete todos los campos correctamente.
+        </div>
+
+
 
       </div>
 
