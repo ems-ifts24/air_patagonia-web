@@ -1,9 +1,7 @@
 <div class="contenedorPrincipal">
   <div class="mainDashboard">
 
-    <!-- <div class="divBotonVolver" *ngIf="modoEdicion || modoCreacion">
-  <button id="botonVolverModificacion" (click)="cancelarModificacion()">⬅ Volver</button>
-</div> -->
+    
 
     <div class="divTituloGestion">
       <p id="tituloGestion">{{ titleGestion }}</p>
@@ -65,14 +63,33 @@
         <input id="documento" [(ngModel)]="pasajeroSeleccionado.dni" />
       </div>
 
-      <div>
-        <label for="email">Email</label>
-        <input id="email" [(ngModel)]="pasajeroSeleccionado.email" />
-      </div>
+   <div>
+  <label for="email">Email</label>
+  <input
+    id="email"
+    name="email"
+    [(ngModel)]="pasajeroSeleccionado.email"
+    #emailCtrl="ngModel"
+    required
+    email
+  />
+  <small class="error" *ngIf="emailCtrl.invalid && emailCtrl.touched">
+    <span *ngIf="emailCtrl.errors?.['required']">El email es obligatorio.</span>
+    <span *ngIf="emailCtrl.errors?.['email']">Por favor, ingrese un email válido.</span>
+  </small>
+</div>
+
+
+
 
       <div class="divBtnGuardar">
-        <button (click)="guardarPasajero()">Guardar</button>
+        <button (click)="guardarPasajero()" [disabled]="emailCtrl.invalid">Guardar</button>
+
       </div>
+
+      
+
+      
 
       <div class="divBtnCancelar">
         <button (click)="cancelarModificacion()">Cancelar</button>
