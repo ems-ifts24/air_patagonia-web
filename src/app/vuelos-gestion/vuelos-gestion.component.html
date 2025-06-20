@@ -15,7 +15,7 @@
         <div class="divAvion">
             <select name="avion" id="selectAvion">
                 @if(!modoEdicion){
-                    <option value="" selected disabled>Seleccione un Avi&oacute;́n</option>
+                    <option value="" selected disabled>Seleccione un Avión</option>
                     @for(avion of listaAviones; track avion.idAvion){
                         <option [value]="avion.idAvion">{{avion.fabricante}} - {{avion.modelo}}</option>
                     }

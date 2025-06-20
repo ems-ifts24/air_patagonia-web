@@ -69,7 +69,21 @@ export class VuelosGestionComponent implements OnInit {
 
   }
 
-
+  eliminarVuelo(idVuelo: string) {
+    console.log('Eliminando vuelo.');
+    this._apiService.deleteVuelo(idVuelo).subscribe({
+      next: () => {
+        console.log('Vuelo eliminado.');
+        // this._router.navigate(['app/vuelos']);
+      },
+      error: (error) => {
+        if(error.mensaje){
+          alert(error.mensaje);
+        }
+        console.error('Error al eliminar el vuelo:', error);
+      }
+    });
+  }
 
   cancelarModificacion() {
     this._router.navigate(['app/vuelos']);
