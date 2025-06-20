@@ -1,0 +1,81 @@
+<div class="contenedorPrincipal">
+  <div class="mainDashboard">
+
+    <div class="divBotonVolver">
+      <button id="botonVolverModificacion" (click)="cancelarModificacion()">⬅</button>
+    </div>
+
+    <div class="divTituloGestion">
+      <p id="tituloGestion">{{ titleGestion }}</p>
+    </div>
+
+    <div class="divBuscarPasajero">
+      <input
+        type="search"
+        id="inputBuscarPasajero"
+        placeholder="Buscar Pasajero"
+        [(ngModel)]="filtroPasajero"
+        (input)="aplicarFiltroPasajeros()"
+      />
+    </div>
+
+    <div class="divTabla">
+      <table class="tabla">
+        <thead>
+          <tr class="headerTabla">
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Documento</th>
+            <th>Email</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let pasajero of pasajerosFiltrados; let i = index" [id]="pasajero.id">
+            <td>{{ pasajero.nombre }}</td>
+            <td>{{ pasajero.apellido }}</td>
+            <td>{{ pasajero.documento }}</td>
+            <td>{{ pasajero.email }}</td>
+            <td>
+              <button (click)="editarPasajero(pasajero)">Editar</button>
+              <button (click)="eliminarPasajero(pasajero.id)">Eliminar</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div *ngIf="modoEdicion || modoCreacion" class="formularioPasajero">
+
+      <div>
+        <label for="nombre">Nombre</label>
+        <input id="nombre" [(ngModel)]="pasajeroSeleccionado.nombre" />
+      </div>
+
+      <div>
+        <label for="apellido">Apellido</label>
+        <input id="apellido" [(ngModel)]="pasajeroSeleccionado.apellido" />
+      </div>
+
+      <div>
+        <label for="documento">Documento</label>
+        <input id="documento" [(ngModel)]="pasajeroSeleccionado.dni" />
+      </div>
+
+      <div>
+        <label for="email">Email</label>
+        <input id="email" [(ngModel)]="pasajeroSeleccionado.email" />
+      </div>
+
+      <div class="divBtnGuardar">
+        <button (click)="guardarPasajero()">Guardar</button>
+      </div>
+
+      <div class="divBtnCancelar">
+        <button (click)="cancelarModificacion()">Cancelar</button>
+      </div>
+
+    </div>
+
+  </div>
+</div>
