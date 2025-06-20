@@ -1,9 +1,9 @@
 <div class="contenedorPrincipal">
   <div class="mainDashboard">
 
-    <div class="divBotonVolver">
-      <button id="botonVolverModificacion" (click)="cancelarModificacion()">⬅</button>
-    </div>
+    <div class="divBotonVolver" *ngIf="modoEdicion || modoCreacion">
+  <button id="botonVolverModificacion" (click)="cancelarModificacion()">⬅ Volver</button>
+</div>
 
     <div class="divTituloGestion">
       <p id="tituloGestion">{{ titleGestion }}</p>
@@ -17,6 +17,9 @@
         [(ngModel)]="filtroPasajero"
         (input)="aplicarFiltroPasajeros()"
       />
+    </div>
+    <div class="divBtnAgregar">
+      <button (click)="agregarNuevo()">Agregar Pasajero</button>
     </div>
 
     <div class="divTabla">
@@ -34,7 +37,7 @@
           <tr *ngFor="let pasajero of pasajerosFiltrados; let i = index" [id]="pasajero.id">
             <td>{{ pasajero.nombre }}</td>
             <td>{{ pasajero.apellido }}</td>
-            <td>{{ pasajero.documento }}</td>
+            <td>{{ pasajero.dni }}</td>
             <td>{{ pasajero.email }}</td>
             <td>
               <button (click)="editarPasajero(pasajero)">Editar</button>
@@ -79,3 +82,4 @@
 
   </div>
 </div>
+

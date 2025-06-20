@@ -24,9 +24,7 @@ export class PasajeroService {
     return [...this.pasajeros]; 
   }
 
-  agregarPasajero(pasajero: Pasajero) {
-    this.pasajeros.push(pasajero);
-  }
+  
 
   
   eliminarPasajero(id: number): void {
@@ -38,7 +36,14 @@ export class PasajeroService {
   if (index !== -1) {
     this.pasajeros[index] = { ...pasajero };
   }
-}
+  }
+
+  agregarPasajero(nuevoPasajero: Pasajero): void {
+    // Asignar un ID nuevo automático (max actual + 1)
+    const maxId = this.pasajeros.length > 0 ? Math.max(...this.pasajeros.map(p => p.id)) : 0;
+    nuevoPasajero.id = maxId + 1;
+    this.pasajeros.push(nuevoPasajero);
+  }
 
 }
 

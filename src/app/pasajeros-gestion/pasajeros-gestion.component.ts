@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { PasajeroService, Pasajero } from '../core/services/pasajero-gestion.service';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-pasajeros-gestion',
-  imports: [],
+  imports: [FormsModule, CommonModule],
   templateUrl: './pasajeros-gestion.component.html',
   styleUrl: './pasajeros-gestion.component.css'
 })
@@ -63,6 +65,9 @@ export class PasajerosGestionComponent implements OnInit {
     this.cargarPasajeros();
   }
 
+  
+
+
   cancelarModificacion(): void {
     this.modoEdicion = false;
     this.modoCreacion = false;
@@ -78,4 +83,11 @@ export class PasajerosGestionComponent implements OnInit {
       email: ''
     };
   }
+  agregarNuevo(): void {
+  this.pasajeroSeleccionado = this.nuevoPasajero();
+  this.modoCreacion = true;
+  this.modoEdicion = false;
+  }
+
+
 }
