@@ -1,0 +1,157 @@
+<div class="contenedorPrincipal">
+    <div class="mainDashboard">
+
+        <div class="divBotonVolver">
+            <button id="botonVolverModificacion" (click)="cancelarModificacion()">⬅</button>
+        </div>
+        <div class="divTituloGestion">
+            <p id="tituloGestion">{{titleGestion}}</p>
+        </div>
+        <div class="divBuscarEmpleado">
+            <input type="search" id="inputBuscarEmpleado" placeholder="Buscar Empleado" [(ngModel)]="filtroEmpleado"
+                (input)="aplicarFiltroEmpleados()">
+        </div>
+        <div class="divAvion">
+            <select name="avion" id="selectAvion">
+                @if(!modoEdicion){
+                    <option value="" selected disabled>Seleccione un Avion</option>
+                    @for(avion of listaAviones; track $index){
+                        <option [value]="avion.id">{{avion.marca}} - {{avion.modelo}}</option>
+                    }
+                }@else {
+                    <option [value]="vuelo?.avion?.id">{{vuelo?.avion?.marca}} - {{vuelo?.avion?.modelo}}</option>
+                    @for(avion of listaAviones; track $index){
+                        <option [value]="avion.id">{{avion.marca}} - {{avion.modelo}}</option>
+                    }
+
+                }
+            </select>
+        </div>
+
+        <div class="divAeropuertoOrigen">
+            <select id="aeropuertoOrigen">
+                @if(!modoEdicion){
+                    <option value="" selected disabled>Seleccione Origen</option>
+                    @for(aeropuerto of aeropuertos; track $index){
+                        <option [value]="aeropuerto.codigo">{{aeropuerto.codigo}} - {{aeropuerto.nombreCorto}}</option>
+                    }
+                }@else {
+                    <option [value]="vuelo?.origen?.codigo">{{vuelo?.origen?.codigo}} - {{vuelo?.origen?.nombreCorto}}</option>
+                    @for(aeropuerto of aeropuertos; track $index){
+                        <option [value]="aeropuerto.codigo">{{aeropuerto.codigo}} - {{aeropuerto.nombreCorto}}</option>
+                    }
+                }
+            </select>
+        </div>
+        <div class="divAeropuertoDestino">
+            <select id="aeropuertoDestino">
+                @if(!modoEdicion){
+                    <option value="" selected disabled>Seleccione Destino</option>
+                    @for(aeropuerto of aeropuertos; track $index){
+                        <option value="{{aeropuerto.codigo}}">{{aeropuerto.codigo}} - {{aeropuerto.nombreCorto}}</option>
+                    }
+                }@else {
+                    <option [value]="vuelo?.destino?.codigo">{{vuelo?.destino?.codigo}} - {{vuelo?.destino?.nombreCorto}}</option>
+                    @for(aeropuerto of aeropuertos; track $index){
+                        <option [value]="aeropuerto.codigo">{{aeropuerto.codigo}} - {{aeropuerto.nombreCorto}}</option>
+                    }
+                }
+            </select>
+
+
+        </div>
+        <div class="divFechaPartidaLabel">
+            <label for="fechaPartida" id="fechaPartidaLabel">Partida</label>
+        </div>
+        <!-- TODO :: Mejorar insert de fecha en modo edición -->
+        <div class="divFechaPartida">
+            @if(!modoEdicion){
+                <input type="datetime-local" id="fechaPartida">
+            }@else {
+                <input type="datetime-local" id="fechaPartida" value="{{vuelo?.fechaPartida}}">
+            }
+        </div>
+        <div class="divFechaArriboLabel">
+            <label for="fechaArribo" id="fechaArriboLabel">Arribo</label>
+        </div>
+        <!-- TODO :: Mejorar insert de fecha en modo edición -->
+        <div class="divFechaArribo">
+            @if(!modoEdicion){
+                <input type="datetime-local" id="fechaArribo">
+            }@else {
+                <input type="datetime-local" id="fechaArribo" value="{{vuelo?.fechaArribo}}">
+            }
+        </div>
+
+        <div class="divEstado">
+            <select name="EstadoVuelo" id="selectEstadoVuelo">
+                @if(!modoEdicion){
+                    <option value="" selected disabled>Seleccione un Estado</option>
+                    @for(estados of estadosVuelo; track $index){
+                    <option value="{{estados.id}}">{{estados.nombre}}</option>
+                    }
+                }@else {
+                    <option [value]="vuelo?.estado">{{vuelo?.estado}}</option>
+                    @for(estados of estadosVuelo; track $index){
+                    <option value="{{estados.id}}">{{estados.nombre}}</option>
+                    }
+                }
+            </select>
+        </div>
+
+        <div class="divBtnGuardar">
+            <button id="btnGuardar">Guardar</button>
+        </div>
+
+        <div class="divBtnCancelar">
+            <button id="btnCancelar" (click)="cancelarModificacion()">Cancelar</button>
+        </div>
+        <div class="divTabla">
+            <table class="tabla">
+                <tr class="headerTabla">
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Documento</th>
+                    <th>Rol</th>
+                    <th>Asignar</th>
+                </tr>
+                @for(empleado of empleados; track $index){
+                <tr id={{empleado.id}}>
+                    <td>{{ empleado.nombre }}</td>
+                    <td>{{ empleado.apellido }}</td>
+                    <td>{{ empleado.dni }}</td>
+                    <td>
+                        <select [(ngModel)]="empleado.rol" [name]="'rolEmpleado_' + $index">
+                            <option value="" selected disabled>Rol a cumplir</option>
+                            @for(rol of rolesTripulantes; track $index){
+                            <option value="{{rol.id}}">{{ rol.nombre }}</option>
+                            }
+                        </select>
+                    </td>
+                    <td>
+                        <input type="checkbox" [(ngModel)]="empleado.asignado" [name]="'asignadoEmpleado_' + $index"
+                            class="tripulanteAsignado">
+                    </td>
+                </tr>
+                }
+            </table>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+
+
+
+
+
+
+</div>

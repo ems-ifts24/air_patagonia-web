@@ -1,0 +1,125 @@
+/* Main sidebar container */
+.sidebar-content {
+  width: 100%;
+  height: 100%;
+  /* display: flex;
+  flex-direction: column;
+  position: fixed; */
+  left: 0;
+  top: 0;
+  background-color: rgba(24, 58, 89, 1);
+  color: #fff;
+  transition: transform 0.3s ease;
+}
+
+
+/* Logo section */
+.logo-container {
+padding: 10px;
+border-bottom: 0.1rem solid #334155;
+text-align: center;
+}
+
+.logo {
+width: 70%;
+}
+
+/* Navigation menu */
+.nav-menu {
+flex: 1;
+padding: 2.5rem 0;
+}
+
+.nav-item {
+display: flex;
+align-items: center;
+padding: 0.75rem 1.25rem;
+color: #cbd5e1;
+text-decoration: none;
+transition: all 0.3s ease;
+margin: 0.25rem 0.8rem;
+border-radius: 0.4rem;
+}
+
+.nav-item:hover {
+background-color: #334155;
+color: #fff;
+}
+
+.nav-item.active {
+  background-color: rgba(53, 90, 122, 1);
+color: #fff;
+font-weight: 500;
+}
+
+.nav-item i {
+margin-right: 0.75rem;
+font-size: 1.5rem;
+}
+
+
+/* Scrollbar styling */
+.nav-menu::-webkit-scrollbar {
+width: 0.4rem;
+}
+
+.nav-menu::-webkit-scrollbar-track {
+background: #1e293b;
+}
+
+.nav-menu::-webkit-scrollbar-thumb {
+background-color: #4b5563;
+border-radius: 0.2rem;
+}
+
+/* Error state */
+.error-state {
+padding: 1.25rem;
+text-align: center;
+color: #f87171;
+}
+
+.error-state i {
+font-size: 3rem;
+margin-bottom: 0.8rem;
+display: block;
+}
+
+.error-state p {
+margin: 0.8rem 0 0.95rem;
+}
+
+.retry-btn {
+background-color: #3b82f6;
+color: white;
+border: none;
+padding: 0.5rem 1rem;
+border-radius: 0.25rem;
+display: inline-flex;
+align-items: center;
+gap: 0.5rem;
+cursor: pointer;
+transition: background-color 0.3s ease;
+}
+
+.retry-btn:hover {
+background-color: #2563eb;
+}
+
+.retry-btn i {
+font-size: 1rem;
+color: white;
+margin: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+.sidebar {
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+}
+
+.sidebar.open {
+  transform: translateX(0);
+}
+}

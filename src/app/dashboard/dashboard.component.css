@@ -1,0 +1,299 @@
+
+.contendorPrincipal{
+    display: flex;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+   
+    
+}
+.mainDashboard{
+    width: 100%;
+    height: 80%;
+    color: white;
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    grid-template-rows: repeat(8, 1fr);
+    gap: 1rem; /* Espacio entre los elementos del grid */
+     /* Espacio interno para el dashboard general */
+     margin:5rem 0; 
+     box-sizing: border-box;
+    
+}
+
+/* Estilos generales para los títulos dentro de las cards del dashboard */
+.mainDashboard h2 {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    font-size: 1.5rem;
+    padding-bottom: 0.5rem;
+    box-sizing: border-box;
+}
+
+/* Card para Vuelos de Hoy */
+.vuelosHoy {
+    grid-column: 1 / span 6; /* Ocupa 6 columnas desde el inicio */
+    grid-row: 1 / span 5;    /* Ocupa 5 filas desde el inicio */
+    background-color: rgba(255, 255, 255, 0.05); /* Fondo sutil */
+    padding: 1rem;
+    border-radius: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* Para que el contenido no se desborde de la card */
+    box-sizing: border-box;
+  }
+.vuelosHoy h2{
+  text-align: center;
+}
+
+.tabla {
+    width: 100%;
+    border-collapse: collapse; /* Une los bordes de las celdas */
+}
+
+.tabla th, .tabla td {
+    padding: 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.mainDashboard, .select{
+    margin-top: 1rem;
+}
+
+.vuelosHoy{
+    grid-column:2/9;
+    grid-row: 1/6;
+    background-color: rgba(61, 107, 146, 0.9);
+    border-radius: 0.6rem;
+}
+
+.divTabla{
+    flex: 1;
+    overflow-y: auto;
+    height: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+
+}
+
+/* ancho de la barra lateral */
+.divTabla::-webkit-scrollbar {
+  width: 0.5rem;
+}
+
+
+
+.divTabla::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* La regla CSS  para darle estilo a la bara de desplazamiento */
+.divTabla::-webkit-scrollbar-thumb { 
+  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 0.5rem;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+.divTabla::-webkit-scrollbar-thumb:hover {
+ cursor: pointer;
+}
+
+.divTabla th,
+.divTabla td {
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 0.1rem solid rgba(255, 255, 255, 0.2); /* Línea horizontal */
+  padding: 0.5rem;
+  color: white;
+}
+.tabla tr:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 0.5rem rgba(255, 255, 255, 0.2);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  
+}
+
+.alertaPasajero{
+    grid-column:2/5;
+    grid-row:6/9;
+    background-color:rgba(61, 107, 146, 0.9);
+    border-radius: 0.6rem;
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 20% 40% 40%;
+
+    
+}
+.alertaPasajero h2{
+  text-align: center;
+  font-size: 1.2rem;
+  grid-row: 1/2;
+  width: 100%;
+  
+  
+}
+.alertaPasajero #numeroAlertaPasajeros{
+  grid-row: 2/3;
+}
+.alertaPasajero p{
+   grid-row: 3/4;
+  
+}
+
+.alertaPasajero #numeroAlertaPasajeros,
+.alertaPasajero p{
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+
+
+.alertaVuelos{
+
+background-color: rgba(61, 107, 146, 0.9);
+border-radius: 0.6rem;
+grid-column:6/9;
+grid-row: 6/9;
+display: grid;
+grid-template-columns: repeat(2,1fr) ;
+grid-template-rows: 20% 75%;
+} 
+.alertaVuelos-div-titulo{
+  grid-column: 1/3;
+  grid-row: 1/2;
+  height: 100%;
+}
+.alertaVuelos-div-titulo h2{
+  font-size: 1.2rem;
+  text-align: center;
+}
+
+.alertaVuelos-div-pVuelosRepro{
+  grid-column: 1/2;
+  grid-row: 2/3;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.alertaVuelos-div-pVuelosRepCancel{
+  grid-column: 2/3;
+  grid-row: 2/3;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+
+
+.alertaVuelos-div-pVuelosRepCancel p,
+.alertaVuelos-div-pVuelosRepro p{
+text-align: center;
+padding: 0.4rem 0;
+height: 1%;
+width: 100%;
+font-size: 0.8rem;
+
+}
+
+
+.parPVuelosRepCancel{
+display: flex;
+justify-content: center;
+align-items: center;
+
+}
+
+.divPVuelosCancelados, .divPVuelosReprogramados{
+    height: 100%;
+    width: 100%;
+    
+}
+
+.parPVuelosRepCancel .divPVuelosCancelados p{
+    height: 30%;
+}
+
+#numeroVuelosReprogramados,#numeroVuelosCancelados, #numeroAlertaPasajeros{
+font-size: 1rem;
+}
+
+.alertaPasajero:hover,.alertaVuelos:hover,.vuelosHoy:hover{
+    box-shadow:  0.4rem 0.4rem 0.6rem rgba(0, 0, 0, 0.7);
+    border: 0.1rem solid rgba(255, 255, 255, 0.3);
+    
+}
+
+@media (max-width: 768px) {
+  .contendorPrincipal {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    height: auto;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 1rem;
+  }
+
+  .mainDashboard {
+    grid-template-rows: auto;
+  }
+
+  .vuelosHoy,
+  .alertaPasajero,
+  .alertaVuelos {
+    grid-column: 1 /9;
+    grid-row: auto;
+    width: 100%;
+    margin: 1% 0;
+  }
+
+
+
+}
+
+@media (max-width: 1024px){
+ .mainDashboard{
+    width: 95%;
+    height: 95%;
+ }
+
+ .alertaVuelos{
+
+
+grid-column:6/10;
+grid-row: 6/8;
+
+} 
+.alertaPasajero{
+    grid-column:1/5;
+    grid-row:6/8;
+     
+}
+ 
+.alertaVuelos-div-pVuelosRepCancel p,
+.alertaVuelos-div-pVuelosRepro p{
+
+  font-size: 0.6rem;
+
+}
+
+.alertaPasajero #numeroAlertaPasajeros,
+.alertaPasajero p{
+  font-size: 0.6rem;
+}
+
+.vuelosHoy{
+    grid-column:1/10;
+    grid-row: 2/6;
+}
+
+}

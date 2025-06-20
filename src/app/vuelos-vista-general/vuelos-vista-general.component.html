@@ -1,0 +1,60 @@
+<div class="contenedorPrincipal">
+    <div class="mainDashboard">
+        <div class="divBotonCrear">
+            <button id="botonCrear" (click)="crearVuelo()">
+                <i class="material-icons">add</i>
+                <span>CREAR</span>
+            </button>
+        </div>
+
+        <div class="divBtnLimpiarFiltros">
+            <button id="btnLimpiarFiltros" (click)="limpiarBusqueda()">
+                <i class="material-icons">refresh</i>
+                <span>Limpiar</span>
+            </button>
+        </div>
+
+        <div class="divInputBusqueda">
+            <input type="search" id="inputBusqueda" placeholder="Buscar" [(ngModel)]="inputBusqueda"
+                (input)="filtrarVuelos()">
+        </div>
+
+        <div class="divTabla">
+            <table class="tabla">
+                <tr class="headerTabla">
+                    <th>Vuelo</th>
+                    <th>Avion</th>
+                    <th>Origen</th>
+                    <th>Destino</th>
+                    <th>Fecha Partida</th>
+                    <th>Fecha Arribo</th>
+                    <th>Estado</th>
+                    <th>Acción</th>
+                </tr>
+                @for(vuelo of vuelos; track $index){
+                <tr id={{vuelo.id}}>
+                    <td>{{vuelo.vuelo}}</td>
+                    <td>{{vuelo.avion.marca}} {{vuelo.avion.modelo}}</td>
+                    <td>{{vuelo.origen.codigo}} - {{vuelo.origen.nombreCorto}}</td>
+                    <td>{{vuelo.destino.codigo}} - {{vuelo.destino.nombreCorto}}</td>
+                    <td>{{vuelo.fechaPartida}}</td>
+                    <td>{{vuelo.fechaArribo}}</td>
+                    <td>{{vuelo.estado}}</td>
+                    <td>
+                        <span class="accion-simple" 
+                              [class.deshabilitado]="!esEditable(vuelo.estado)" 
+                              (click)="editarVuelo(vuelo.id)">
+                            <i class="material-icons">edit</i>
+                        </span>
+                        <span class="accion-simple" 
+                              [class.deshabilitado]="!esEditable(vuelo.estado)" 
+                              (click)="eliminarVuelo(vuelo.id)">
+                            <i class="material-icons">delete</i>
+                        </span>
+                    </td>
+                </tr>
+                }
+            </table>
+        </div>
+    </div>
+</div>
