@@ -18,6 +18,7 @@ export class VuelosGestionComponent implements OnInit {
 
   modoEdicion: boolean = false;
   titleGestion: string = 'CREACIÓN';
+  fechaActual: Date = new Date();
 
   filtroEmpleado: string = '';
   empleados: ITripulanteDTO[] = [];
@@ -35,8 +36,8 @@ export class VuelosGestionComponent implements OnInit {
     avion: { idAvion: '', fabricante: '', modelo: '', autonomia: 0, matricula: '', estadoAvion: '' },
     aeropuertoPartida: { idAeropuerto: '', codigoIATA: '', ciudad: '', nombreAeropuerto: '', nombreCorto: '', pais: '', estadoAeropuerto: '' },
     aeropuertoArribo: { idAeropuerto: '', codigoIATA: '', ciudad: '', nombreAeropuerto: '', nombreCorto: '', pais: '', estadoAeropuerto: '' },
-    fechaPartida: new Date(),
-    fechaArribo: new Date()
+    fechaPartida: this.fechaActual,
+    fechaArribo: this.fechaActual
   };
 
 
@@ -77,6 +78,15 @@ export class VuelosGestionComponent implements OnInit {
 
   crearVueloDTO() {
     console.log('Creando vuelo.');
+    if (!this.esFormularioValido()) {
+      alert('Por favor complete todos los campos requeridos');
+      return;
+    }
+    if (!this.esFechaValida()) {
+      alert('La fecha de arribo debe ser posterior a la fecha de partida');
+      return;
+    }
+   
     const vueloDTO: IVueloDTO = this._vueloConvertService.convertirVueloAVueloDTO(this.vuelo);
     this._apiService.createVueloDTO(vueloDTO).subscribe({
       next: (vuelo: IVuelo) => {
@@ -93,6 +103,14 @@ export class VuelosGestionComponent implements OnInit {
   }
 
   actualizarVuelo() {
+    if (!this.esFormularioValido()) {
+      alert('Por favor complete todos los campos requeridos');
+      return;
+    }
+    if (!this.esFechaValida()) {
+      alert('La fecha de arribo debe ser posterior a la fecha de partida');
+      return;
+    }
     console.log('Actualizando vuelo.');
     const vueloDTO: IVueloDTO = this._vueloConvertService.convertirVueloAVueloDTO(this.vuelo);
     this._apiService.updateVuelo(this.vuelo.idVuelo, vueloDTO).subscribe({
@@ -108,6 +126,24 @@ export class VuelosGestionComponent implements OnInit {
       }
     });
   }
+
+  esFormularioValido(): boolean {
+    return (
+      this.vuelo.avion?.idAvion !== '' &&
+      this.vuelo.aeropuertoPartida?.idAeropuerto !== '' &&
+      this.vuelo.aeropuertoArribo?.idAeropuerto !== '' &&
+      this.vuelo.estado?.nombre !== ''
+    );
+  }
+
+  esFechaValida(): boolean {
+    return (
+      this.vuelo.fechaPartida !== null &&
+      this.vuelo.fechaArribo !== null &&
+      this.vuelo.fechaPartida < this.vuelo.fechaArribo
+    );
+  }
+
 
   eliminarVuelo(idVuelo: string) {
     console.log('Eliminando vuelo.');

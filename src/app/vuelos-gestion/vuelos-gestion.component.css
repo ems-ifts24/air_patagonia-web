@@ -287,6 +287,23 @@ box-shadow: 0 0 0.5rem rgba(255, 255, 255, 0.2);
 transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
+/* Estilos para el botón Guardar deshabilitado */
+#btnGuardar:disabled,
+#btnGuardar.disabled {
+  background-color: #cccccc !important;
+  color: #666666 !important;
+  cursor: not-allowed !important;
+  opacity: 0.7;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+#btnGuardar:disabled:hover,
+#btnGuardar.disabled:hover {
+  background-color: #cccccc !important;
+  cursor: not-allowed !important;
+}
+
 td select{
   background-color:rgba(33, 62, 90, 0.38);
   color: white;

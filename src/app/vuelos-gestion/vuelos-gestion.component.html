@@ -96,7 +96,12 @@
         </div>
 
         <div class="divBtnGuardar">
-            <button id="btnGuardar" (click)="modoEdicion ? actualizarVuelo() : crearVueloDTO()">Guardar</button>
+            <button id="btnGuardar" 
+                    [disabled]="!esFormularioValido() || !esFechaValida()"
+                    [class.disabled]="!esFormularioValido() || !esFechaValida()"
+                    (click)="modoEdicion ? actualizarVuelo() : crearVueloDTO()">
+                Guardar
+            </button>
         </div>
 
         <div class="divBtnCancelar">
