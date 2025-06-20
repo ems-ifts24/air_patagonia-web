@@ -13,14 +13,14 @@
         </div>
 
         <div class="divAvion">
-            <select name="avion" id="selectAvion">
+            <select name="avion" id="selectAvion" [(ngModel)]="vuelo.avion.idAvion" required>
                 @if(!modoEdicion){
                     <option value="" selected disabled>Seleccione un Avión</option>
                     @for(avion of listaAviones; track avion.idAvion){
                         <option [value]="avion.idAvion">{{avion.fabricante}} - {{avion.modelo}}</option>
                     }
                 }@else {
-                    <option [value]="vuelo?.avion?.idAvion" selected>{{vuelo?.avion?.fabricante}} - {{vuelo?.avion?.modelo}}</option>
+                    <option [value]="vuelo.avion.idAvion" selected>{{vuelo.avion.fabricante}} - {{vuelo.avion.modelo}}</option>
                     @for(avion of listaAviones; track avion.idAvion){
                         <option [value]="avion.idAvion">{{avion.fabricante}} - {{avion.modelo}}</option>
                     }
@@ -29,14 +29,14 @@
         </div>
 
         <div class="divAeropuertoOrigen">
-            <select id="aeropuertoOrigen">
+            <select id="aeropuertoOrigen" [(ngModel)]="vuelo.aeropuertoPartida.idAeropuerto" required>
                 @if(!modoEdicion){
                     <option value="" selected disabled>Seleccione Origen</option>
                     @for(aeropuerto of listaAeropuertos; track aeropuerto.idAeropuerto){
                         <option [value]="aeropuerto.idAeropuerto">{{aeropuerto.codigoIATA}} - {{aeropuerto.nombreCorto}}</option>
                     }
                 }@else {
-                    <option [value]="vuelo?.aeropuertoPartida?.idAeropuerto" selected>{{vuelo?.aeropuertoPartida?.codigoIATA}} - {{vuelo?.aeropuertoPartida?.nombreCorto}}</option>
+                    <option [value]="vuelo.aeropuertoPartida.idAeropuerto" selected>{{vuelo.aeropuertoPartida.codigoIATA}} - {{vuelo.aeropuertoPartida.nombreCorto}}</option>
                     @for(aeropuerto of listaAeropuertos; track aeropuerto.idAeropuerto){
                         <option [value]="aeropuerto.idAeropuerto">{{aeropuerto.codigoIATA}} - {{aeropuerto.nombreCorto}}</option>
                     }
@@ -44,14 +44,14 @@
             </select>
         </div>
         <div class="divAeropuertoDestino">
-            <select id="aeropuertoDestino">
+            <select id="aeropuertoDestino" [(ngModel)]="vuelo.aeropuertoArribo.idAeropuerto" required>
                 @if(!modoEdicion){
                     <option value="" selected disabled>Seleccione Destino</option>
                     @for(aeropuerto of listaAeropuertos; track aeropuerto.idAeropuerto){
                         <option [value]="aeropuerto.idAeropuerto">{{aeropuerto.codigoIATA}} - {{aeropuerto.nombreCorto}}</option>
                     }
                 }@else {
-                    <option [value]="vuelo?.aeropuertoArribo?.idAeropuerto" selected>{{vuelo?.aeropuertoArribo?.codigoIATA}} - {{vuelo?.aeropuertoArribo?.nombreCorto}}</option>
+                    <option [value]="vuelo.aeropuertoArribo.idAeropuerto" selected>{{vuelo.aeropuertoArribo.codigoIATA}} - {{vuelo.aeropuertoArribo.nombreCorto}}</option>
                     @for(aeropuerto of listaAeropuertos; track aeropuerto.idAeropuerto){
                         <option [value]="aeropuerto.idAeropuerto">{{aeropuerto.codigoIATA}} - {{aeropuerto.nombreCorto}}</option>
                     }
@@ -65,9 +65,9 @@
         <!-- TODO :: Mejorar insert de fecha en modo edición -->
         <div class="divFechaPartida">
             @if(!modoEdicion){
-                <input type="datetime-local" id="fechaPartida">
+                <input type="datetime-local" id="fechaPartida" [(ngModel)]="vuelo.fechaPartida" required>
             }@else {
-                <input type="datetime-local" id="fechaPartida" [value]="vuelo?.fechaPartida | date:'yyyy-MM-ddTHH:mm'">
+                <input type="datetime-local" id="fechaPartida" [value]="vuelo.fechaPartida | date:'yyyy-MM-ddTHH:mm'">
             }
         </div>
         <div class="divFechaArriboLabel">
@@ -76,18 +76,18 @@
         <!-- TODO :: Mejorar insert de fecha en modo edición -->
         <div class="divFechaArribo">
             @if(!modoEdicion){
-                <input type="datetime-local" id="fechaArribo">
+                <input type="datetime-local" id="fechaArribo" [(ngModel)]="vuelo.fechaArribo" required>
             }@else {
-                <input type="datetime-local" id="fechaArribo" [value]="vuelo?.fechaArribo | date:'yyyy-MM-ddTHH:mm'">
+                <input type="datetime-local" id="fechaArribo" [value]="vuelo.fechaArribo | date:'yyyy-MM-ddTHH:mm'">
             }
         </div>
 
         <div class="divEstado">
-            <select name="EstadoVuelo" id="selectEstadoVuelo">
+            <select name="EstadoVuelo" id="selectEstadoVuelo" [(ngModel)]="vuelo.estado.nombre" required>
                 @if(!modoEdicion){
                     <option value="PROGRAMADO" selected disabled>Programado</option>
                 }@else {
-                    <option [value]="vuelo?.estado?.nombre" selected>{{vuelo?.estado?.descripcion}}</option>
+                    <option [value]="vuelo.estado.nombre" selected>{{vuelo.estado.descripcion}}</option>
                     @for(estados of estadosVuelo; track $index){
                     <option [value]="estados.nombre">{{estados.descripcion}}</option>
                     }
@@ -96,7 +96,7 @@
         </div>
 
         <div class="divBtnGuardar">
-            <button id="btnGuardar">Guardar</button>
+            <button id="btnGuardar" (click)="modoEdicion ? actualizarVuelo() : crearVueloDTO()">Guardar</button>
         </div>
 
         <div class="divBtnCancelar">
@@ -141,8 +141,8 @@
                                     [name]="'asignadoEmpleado_' + $index"
                                     class="tripulanteAsignado"
                                     (change)= "empleado.puestoTripulante
-                                    ? quitarTripulante(vuelo?.idVuelo ?? '0', empleado.idEmpleado)
-                                    : asignarTripulante(vuelo?.idVuelo ?? '0', empleado)">
+                                    ? quitarTripulante(vuelo.idVuelo, empleado.idEmpleado)
+                                    : asignarTripulante(vuelo.idVuelo, empleado)">
                         </td>
                     </tr>
                 }

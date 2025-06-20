@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { ApiService } from '../core/services/api.service';
 import { IAsignacion, IPuestoTripulante, ITripulanteDTO } from '../core/models/empleado.model';
 import { IVuelo, IAvion, IAeropuerto, IVueloEstado, IVueloDTO } from '../core/models/vuelo.model';
+import { VueloConvertService } from '../core/services/vuelo-convert.service';
 
 @Component({
   selector: 'app-vuelos-gestion',
@@ -26,13 +27,24 @@ export class VuelosGestionComponent implements OnInit {
   listaAeropuertos: IAeropuerto[] = [];
   listaAviones: IAvion[] = [];
 
-  vuelo: IVuelo | null = null;
+  // Evito problemas al usar objeto nulo inicializandolo con valores por default
+  vuelo: IVuelo = {
+    idVuelo: '',
+    aliasVuelo: '',
+    estado: { nombre: 'PROGRAMADO', descripcion: 'Programado' },
+    avion: { idAvion: '', fabricante: '', modelo: '', autonomia: 0, matricula: '', estadoAvion: '' },
+    aeropuertoPartida: { idAeropuerto: '', codigoIATA: '', ciudad: '', nombreAeropuerto: '', nombreCorto: '', pais: '', estadoAeropuerto: '' },
+    aeropuertoArribo: { idAeropuerto: '', codigoIATA: '', ciudad: '', nombreAeropuerto: '', nombreCorto: '', pais: '', estadoAeropuerto: '' },
+    fechaPartida: new Date(),
+    fechaArribo: new Date()
+  };
 
 
   // inyecto el servicio
   constructor(private _router: Router,
     private _activeRouter: ActivatedRoute,
-    private _apiService: ApiService) { }
+    private _apiService: ApiService,
+    private _vueloConvertService: VueloConvertService) { }
 
   ngOnInit(): void {
     this.obtenerTripulantesParaVuelo();
@@ -63,10 +75,38 @@ export class VuelosGestionComponent implements OnInit {
   }
 
 
-  crearVueloDTO(vueloDTO: IVueloDTO) {
+  crearVueloDTO() {
     console.log('Creando vuelo.');
-    
+    const vueloDTO: IVueloDTO = this._vueloConvertService.convertirVueloAVueloDTO(this.vuelo);
+    this._apiService.createVueloDTO(vueloDTO).subscribe({
+      next: (vuelo: IVuelo) => {
+        console.log('Vuelo creado.', vuelo);
+        this._router.navigate(['app/vuelos']);
+      },
+      error: (error) => {
+        if(error.mensaje){
+          alert(error.mensaje);
+        }
+        console.error('Error al crear el vuelo:', error);
+      }
+    });
+  }
 
+  actualizarVuelo() {
+    console.log('Actualizando vuelo.');
+    const vueloDTO: IVueloDTO = this._vueloConvertService.convertirVueloAVueloDTO(this.vuelo);
+    this._apiService.updateVuelo(this.vuelo.idVuelo, vueloDTO).subscribe({
+      next: (vuelo: IVuelo) => {
+        console.log('Vuelo actualizado.', vuelo);
+        this._router.navigate(['app/vuelos']);
+      },
+      error: (error) => {
+        if(error.mensaje){
+          alert(error.mensaje);
+        }
+        console.error('Error al actualizar el vuelo:', error);
+      }
+    });
   }
 
   eliminarVuelo(idVuelo: string) {
