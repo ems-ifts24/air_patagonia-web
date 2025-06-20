@@ -39,6 +39,8 @@ export interface IVueloEstado {
 }
 
 export interface IVueloDTO {
+    idVuelo?:            string;
+    aliasVuelo:          string;
     estado:              string;
     fechaPartida:        Date;
     fechaArribo:         Date;

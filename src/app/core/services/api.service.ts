@@ -15,6 +15,7 @@ export class ApiService {
     private pathEstadosVuelo: string = '/vuelos/estados';
     private pathAeropuertos: string = '/aeropuertos';
     private pathAviones: string = '/aviones';
+    private pathVuelosDTO: string = '/vuelos/dtos';
 
     private _httpClient: HttpClient = inject(HttpClient);
 
@@ -28,8 +29,15 @@ export class ApiService {
         return this._httpClient.get<IVuelo>(`${this.urlBackend + this.pathVuelos}/${id}`);
     }
 
+    public getVuelosDTOById(id: string): Observable<IVueloDTO[]> {
+        return this._httpClient.get<IVueloDTO[]>(`${this.urlBackend + this.pathVuelosDTO}/${id}`);
+    }
     public deleteVuelo(id: string): Observable<void> {
         return this._httpClient.delete<void>(`${this.urlBackend + this.pathVuelos}/${id}`);
+    }
+
+    public createVueloDTO(vueloDTO: IVueloDTO): Observable<IVuelo> {
+        return this._httpClient.post<IVuelo>(this.urlBackend + this.pathVuelos, vueloDTO);
     }
 
     // idVuelo para saber a que Vuelo se va a actualizar y vueloDTO para pasarle los id de las propiedades a actualizar
