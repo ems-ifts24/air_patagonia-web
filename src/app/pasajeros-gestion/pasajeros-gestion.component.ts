@@ -53,6 +53,20 @@ export class PasajerosGestionComponent implements OnInit {
     this.pasajeroService.eliminarPasajero(id);
     this.cargarPasajeros();
   }
+intentoGuardar: boolean = false;
+
+intentarGuardar(emailCtrl: any): void {
+  this.intentoGuardar = true;
+  if (emailCtrl.valid) {
+    this.guardarPasajero();
+    this.intentoGuardar = false;
+  }
+}
+
+
+
+
+
 
   guardarPasajero(): void {
     if (this.modoEdicion) {
