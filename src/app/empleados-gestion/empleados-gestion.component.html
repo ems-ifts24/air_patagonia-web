@@ -1,0 +1,78 @@
+<div class="contenedorPrincipal">
+    <div class="mainDashboard">
+
+        <div class="divBotonVolver">
+            <button id="botonVolverModificacion" (click)="cancelarModificacion()">⬅</button>
+        </div>
+        <div class="divTituloGestion">
+            <p id="tituloGestion">{{titleGestion}}</p>
+        </div>
+        <div class="divBuscarEmpleado">
+            <input type="search" id="inputBuscarEmpleado" placeholder="Buscar Empleado" [(ngModel)]="filtroEmpleado"
+                (input)="aplicarFiltroEmpleados()">
+        </div>
+
+        <div class="divNombre">
+            <input type="text" id="Empleado" name="nombreEmpleado" placeholder="Nombre del empleado"><br>
+        
+        </div>
+
+        <div class="divApellido">
+            <input type="text" id="Empleado" name="apellidoEmpleado" placeholder="apellido del empleado"><br>
+
+        </div>
+        <div class="divDNI">
+            <input type="text" id="Empleado" name="dniEmpleado" placeholder="DNI del empleado"><br>
+            
+        </div>
+
+        <div class="divEstado">
+            <select name="EstadoEmpleado" id="selectEstadoEmpleado">
+                @if(!modoEdicion){
+                    <option value="" selected disabled>Seleccione un Estado</option>
+                    @for(estado of estadosEmpleado; track $index){
+                    <option value="{{estado.nombre}}">{{ estado.nombre }}</option>
+                    }
+                }@else {
+                    <option [value]="empleado?.estado">{{empleado?.estado}}</option>
+                    @for(estado of estadosEmpleado; track $index){
+                    <option value="{{estado.nombre}}">{{ estado.nombre }}</option>
+                    }
+                }
+            </select>
+        </div>
+
+        <div class="divBtnGuardar">
+            <button id="btnGuardar">Guardar</button>
+        </div>
+
+        <div class="divBtnCancelar">
+            <button id="btnCancelar" (click)="cancelarModificacion()">Cancelar</button>
+        </div>
+        <div class="divTabla">
+            <table class="tabla">
+                <tr class="headerTabla">
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Documento</th>
+                    <th>Estado</th>
+                </tr>
+                @for(empleado of empleados; track $index){
+                <tr id={{empleado.id}}>
+                    <td>{{ empleado.nombre }}</td>
+                    <td>{{ empleado.apellido }}</td>
+                    <td>{{ empleado.dni }}</td>
+                    <td>
+                        <select [(ngModel)]="empleado.estado" [name]="'rolEmpleado_' + $index">
+                            <option value="" selected disabled>{{ empleado.estado }}</option>
+                            @for(estado of estadosEmpleado; track $index){
+                            <option value="{{estado.nombre}}">{{ estado.nombre }}</option>
+                            }
+                        </select>
+                    </td>
+                </tr>
+                }
+            </table>
+        </div>
+    </div>
+</div>

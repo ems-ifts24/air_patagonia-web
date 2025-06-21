@@ -1,4 +1,3 @@
-import th from '@angular/common/locales/th';
 import { Injectable } from '@angular/core';
 
 export interface Aeropuerto {
@@ -35,7 +34,17 @@ export interface Empleado {
   dni: string;
   rol: string;
   asignado: boolean;
+/////////////////////
+estado: string;
+eliminado: boolean;
+/////////////////////
 }
+///////////////
+export interface EstadoEmpleado {
+id: string;
+nombre: string;
+}
+///////////////
 
 export interface RolTripulante {
   id: string;
@@ -133,36 +142,156 @@ export class VueloServiceService {
 
   // Empleados
   private empleados: Empleado[] = [
-    { id: 'E001', nombre: 'Ezequiel', apellido: 'Lopez', dni: '38705210', rol: '', asignado: false },
-    { id: 'E002', nombre: 'Valentina', apellido: 'García', dni: '33456789', rol: '', asignado: false },
-    { id: 'E003', nombre: 'Carlos', apellido: 'Ruiz', dni: '30123456', rol: '', asignado: false },
-    { id: 'E004', nombre: 'Camila', apellido: 'Díaz', dni: '34567890', rol: '', asignado: false },
-    { id: 'E005', nombre: 'Pedro', apellido: 'Martinez', dni: '32765432', rol: '', asignado: false },
-    { id: 'E006', nombre: 'Sofía', apellido: 'González', dni: '39876543', rol: '', asignado: false },
-    { id: 'E007', nombre: 'Lucas', apellido: 'Sánchez', dni: '31234567', rol: '', asignado: false },
-    { id: 'E008', nombre: 'Mariana', apellido: 'Rodríguez', dni: '35678901', rol: '', asignado: false },
-    { id: 'E009', nombre: 'Agustina', apellido: 'López', dni: '37890213', rol: '', asignado: false },
-    { id: 'E010', nombre: 'Florencia', apellido: 'García', dni: '34987654', rol: '', asignado: false },
-    { id: 'E011', nombre: 'Tomás', apellido: 'Díaz', dni: '32098765', rol: '', asignado: false },
-    { id: 'E012', nombre: 'Amanda', apellido: 'Martinez', dni: '36475329', rol: '', asignado: false },
-    { id: 'E013', nombre: 'Gabriela', apellido: 'Ruiz', dni: '38456921', rol: '', asignado: false },
-    { id: 'E014', nombre: 'Matías', apellido: 'Sánchez', dni: '30654321', rol: '', asignado: false },
-    { id: 'E015', nombre: 'Julieta', apellido: 'González', dni: '39685214', rol: '', asignado: false },
-    { id: 'E016', nombre: 'Lautaro', apellido: 'Rodríguez', dni: '31765432', rol: '', asignado: false },
-    { id: 'E017', nombre: 'Benjamín', apellido: 'López', dni: '39456789', rol: '', asignado: false },
-    { id: 'E018', nombre: 'Cecilia', apellido: 'García', dni: '32198765', rol: '', asignado: false },
-    { id: 'E019', nombre: 'Santiago', apellido: 'Díaz', dni: '38690213', rol: '', asignado: false },
-    { id: 'E020', nombre: 'Luciana', apellido: 'Martinez', dni: '35345678', rol: '', asignado: false },
-    { id: 'E021', nombre: 'Paula', apellido: 'Ruiz', dni: '31987654', rol: '', asignado: false },
-    { id: 'E022', nombre: 'Gonzalo', apellido: 'Sánchez', dni: '30765432', rol: '', asignado: false },
-    { id: 'E023', nombre: 'María', apellido: 'González', dni: '39876543', rol: '', asignado: false },
-    { id: 'E024', nombre: 'Marcela', apellido: 'Rodríguez', dni: '31234567', rol: '', asignado: false },
-    { id: 'E025', nombre: 'Nicolás', apellido: 'López', dni: '35678901', rol: '', asignado: false },
-    { id: 'E026', nombre: 'Alejandra', apellido: 'García', dni: '37890213', rol: '', asignado: false },
-    { id: 'E027', nombre: 'Facundo', apellido: 'Díaz', dni: '34987654', rol: '', asignado: false },
-    { id: 'E028', nombre: 'Daniela', apellido: 'Martinez', dni: '32098765', rol: '', asignado: false },
-    { id: 'E029', nombre: 'Emiliano', apellido: 'Ruiz', dni: '31234567', rol: '', asignado: false },
-    { id: 'E030', nombre: 'Valeria', apellido: 'Sánchez', dni: '36475329', rol: '', asignado: false }
+    {
+      id: 'E001', nombre: 'Ezequiel', apellido: 'Lopez', dni: '38705210', rol: '', asignado: false,
+      estado: '',
+      eliminado: false
+    },
+    {
+      id: 'E002', nombre: 'Valentina', apellido: 'García', dni: '33456789', rol: '', asignado: false,
+      estado: '',
+      eliminado: false
+    },
+    {
+      id: 'E003', nombre: 'Carlos', apellido: 'Ruiz', dni: '30123456', rol: '', asignado: false,
+      estado: '',
+      eliminado: false
+    },
+    {
+      id: 'E004', nombre: 'Camila', apellido: 'Díaz', dni: '34567890', rol: '', asignado: false,
+      estado: '',
+      eliminado: false
+    },
+    {
+      id: 'E005', nombre: 'Pedro', apellido: 'Martinez', dni: '32765432', rol: '', asignado: false,
+      estado: '',
+      eliminado: false
+    },
+    {
+      id: 'E006', nombre: 'Sofía', apellido: 'González', dni: '39876543', rol: '', asignado: false,
+      estado: '',
+      eliminado: false
+    },
+    {
+      id: 'E007', nombre: 'Lucas', apellido: 'Sánchez', dni: '31234567', rol: '', asignado: false,
+      estado: '',
+      eliminado: false
+    },
+    {
+      id: 'E008', nombre: 'Mariana', apellido: 'Rodríguez', dni: '35678901', rol: '', asignado: false,
+      estado: '',
+      eliminado: false
+    },
+    {
+      id: 'E009', nombre: 'Agustina', apellido: 'López', dni: '37890213', rol: '', asignado: false,
+      estado: '',
+      eliminado: false
+    },
+    {
+      id: 'E010', nombre: 'Florencia', apellido: 'García', dni: '34987654', rol: '', asignado: false,
+      estado: '',
+      eliminado: false
+    },
+    {
+      id: 'E011', nombre: 'Tomás', apellido: 'Díaz', dni: '32098765', rol: '', asignado: false,
+      estado: '',
+      eliminado: false
+    },
+    {
+      id: 'E012', nombre: 'Amanda', apellido: 'Martinez', dni: '36475329', rol: '', asignado: false,
+      estado: '',
+      eliminado: false
+    },
+    {
+      id: 'E013', nombre: 'Gabriela', apellido: 'Ruiz', dni: '38456921', rol: '', asignado: false,
+      estado: '',
+      eliminado: false
+    },
+    {
+      id: 'E014', nombre: 'Matías', apellido: 'Sánchez', dni: '30654321', rol: '', asignado: false,
+      estado: '',
+      eliminado: false
+    },
+    {
+      id: 'E015', nombre: 'Julieta', apellido: 'González', dni: '39685214', rol: '', asignado: false,
+      estado: '',
+      eliminado: false
+    },
+    {
+      id: 'E016', nombre: 'Lautaro', apellido: 'Rodríguez', dni: '31765432', rol: '', asignado: false,
+      estado: '',
+      eliminado: false
+    },
+    {
+      id: 'E017', nombre: 'Benjamín', apellido: 'López', dni: '39456789', rol: '', asignado: false,
+      estado: '',
+      eliminado: false
+    },
+    {
+      id: 'E018', nombre: 'Cecilia', apellido: 'García', dni: '32198765', rol: '', asignado: false,
+      estado: '',
+      eliminado: false
+    },
+    {
+      id: 'E019', nombre: 'Santiago', apellido: 'Díaz', dni: '38690213', rol: '', asignado: false,
+      estado: '',
+      eliminado: false
+    },
+    {
+      id: 'E020', nombre: 'Luciana', apellido: 'Martinez', dni: '35345678', rol: '', asignado: false,
+      estado: '',
+      eliminado: false
+    },
+    {
+      id: 'E021', nombre: 'Paula', apellido: 'Ruiz', dni: '31987654', rol: '', asignado: false,
+      estado: '',
+      eliminado: false
+    },
+    {
+      id: 'E022', nombre: 'Gonzalo', apellido: 'Sánchez', dni: '30765432', rol: '', asignado: false,
+      estado: '',
+      eliminado: false
+    },
+    {
+      id: 'E023', nombre: 'María', apellido: 'González', dni: '39876543', rol: '', asignado: false,
+      estado: '',
+      eliminado: false
+    },
+    {
+      id: 'E024', nombre: 'Marcela', apellido: 'Rodríguez', dni: '31234567', rol: '', asignado: false,
+      estado: '',
+      eliminado: false
+    },
+    {
+      id: 'E025', nombre: 'Nicolás', apellido: 'López', dni: '35678901', rol: '', asignado: false,
+      estado: '',
+      eliminado: false
+    },
+    {
+      id: 'E026', nombre: 'Alejandra', apellido: 'García', dni: '37890213', rol: '', asignado: false,
+      estado: '',
+      eliminado: false
+    },
+    {
+      id: 'E027', nombre: 'Facundo', apellido: 'Díaz', dni: '34987654', rol: '', asignado: false,
+      estado: '',
+      eliminado: false
+    },
+    {
+      id: 'E028', nombre: 'Daniela', apellido: 'Martinez', dni: '32098765', rol: '', asignado: false,
+      estado: '',
+      eliminado: false
+    },
+    {
+      id: 'E029', nombre: 'Emiliano', apellido: 'Ruiz', dni: '31234567', rol: '', asignado: false,
+      estado: '',
+      eliminado: false
+    },
+    {
+      id: 'E030', nombre: 'Valeria', apellido: 'Sánchez', dni: '36475329', rol: '', asignado: false,
+      estado: '',
+      eliminado: false
+    }
   ];
 
   public getEmpleados(): Empleado[] {

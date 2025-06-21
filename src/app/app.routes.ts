@@ -6,6 +6,8 @@ import { PasajerosGestionComponent } from './pasajeros-gestion/pasajeros-gestion
 import { VuelosListadoComponent } from './vuelos-listado/vuelos-listado.component';
 import { LayoutComponent } from './layout/layout.component';
 import { VuelosGestionComponent } from './vuelos-gestion/vuelos-gestion.component';
+import { EmpleadosGestionComponent } from './empleados-gestion/empleados-gestion.component';
+import { EmpleadosVistaGeneralComponent } from './empleados-vista-general/empleados-vista-general.component';
 
 export const routes: Routes = [
     { path: '', component: LoginComponent },    // Ruta por defecto :: Login
@@ -20,7 +22,8 @@ export const routes: Routes = [
             { path: 'vuelos', component: VuelosVistaGeneralComponent },
             { path: 'vuelos-gestion', component: VuelosGestionComponent},       // ruta para crear
             { path: 'vuelos-gestion/:id', component: VuelosGestionComponent},   // ruta para editar
-            { path: 'empleados', component: DashboardComponent },   // Hasta que se realice este componente, se usara el DashboardComponent
+            { path: 'empleados', component: EmpleadosVistaGeneralComponent },   // Hasta que se realice este componente, se usara el DashboardComponent
+            { path: 'empleados-gestion', component: EmpleadosGestionComponent },   // ruta para crear
             { path: 'pasajeros', component: PasajerosGestionComponent },   // Hasta que se realice este componente, se usara el DashboardComponent
             { path: 'reportes', component: VuelosListadoComponent },
             { path: 'configuracion', component: DashboardComponent }   // Hasta que se realice el componente de configuracion, se usara el DashboardComponent
