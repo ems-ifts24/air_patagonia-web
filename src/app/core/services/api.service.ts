@@ -8,7 +8,7 @@ import { IEmpleado, IPuestoTripulante, IAsignacion } from "../models/empleado.mo
     providedIn: 'root'
 })
 export class ApiService {
-    private urlBackend: string = 'http://localhost:8080/api-v1';
+    private urlBackend: string = 'https://air-patagonia-backend.onrender.com/api-v1';
     private pathVuelos: string = '/vuelos';
     private pathTripulantesParaVuelo: string = '/tripulacion-vuelo';
     private pathPuestoTripulante: string = '/tripulacion-vuelo/puestos';
