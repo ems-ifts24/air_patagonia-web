@@ -41,14 +41,13 @@ export class VuelosGestionComponent implements OnInit {
   };
 
 
-  // inyecto el servicio
+  // inyecto servicios
   constructor(private _router: Router,
     private _activeRouter: ActivatedRoute,
     private _apiService: ApiService,
     private _vueloConvertService: VueloConvertService) { }
 
   ngOnInit(): void {
-    this.obtenerTripulantesParaVuelo();
     this.obtenerPuestosTripulante();
     this.obtenerEstadosVuelo();
     this.obtenerAviones();
@@ -59,18 +58,21 @@ export class VuelosGestionComponent implements OnInit {
       if(params['id']){
         this.titleGestion = 'MODIFICACIÓN';
         this.modoEdicion = true;
-
+        
         this._apiService.getVueloById(params['id']).subscribe({
           next: (vuelo: IVuelo) => {
             this.vuelo = vuelo;
+            this.obtenerTripulantesParaVuelo(this.vuelo.idVuelo);
           },
           error: (error) => {
-          if(error.mensaje){
-            alert(error.mensaje);
+            if(error.mensaje){
+              alert(error.mensaje);
+            }
+            console.error('Error al obtener el vuelo:', error);
           }
-          console.error('Error al obtener el vuelo:', error);
-        }
-      });
+        });
+      } else {
+        this.obtenerTripulantesParaVuelo();
       }
     });
   }
@@ -127,6 +129,54 @@ export class VuelosGestionComponent implements OnInit {
     });
   }
 
+  toggleAsignacion(empleado: ITripulanteDTO) {
+    if (this.esTripulanteAsignado(empleado)) {
+      this.quitarTripulante(empleado);
+    } else {
+      this.asignarTripulante(empleado);
+    }
+  }
+
+  asignarTripulante(empleado: ITripulanteDTO) {
+    if (!empleado.puestoTripulante) {
+      alert('No se puede asignar un empleado sin puesto');
+      return;
+    }
+
+    console.log('Asignando tripulante al vuelo.');
+    const asignacion: IAsignacion = this._vueloConvertService.convertirTripulanteDTOAAignacion(empleado);
+    this._apiService.asignarTripulanteVuelo(this.vuelo.idVuelo, asignacion).subscribe({
+      next: () => {
+        console.log('Tripulante asignado al vuelo.');
+      },
+      error: (error) => {
+        if(error.mensaje){
+          alert(error.mensaje);
+        }
+        console.error('Error al asignar tripulante al vuelo:', error);
+      }
+    });
+  }
+   
+  quitarTripulante(empleado: ITripulanteDTO) {
+    console.log('Quitando tripulante del vuelo.');
+
+    this._apiService.quitarTripulanteVuelo(this.vuelo.idVuelo, empleado.idEmpleado).subscribe({
+      next: () => {
+        console.log('Tripulante quitado del vuelo.');
+      },
+      error: (error) => {
+        if(error.mensaje){
+          alert(error.mensaje);
+        }
+        console.error('Error al quitar tripulante del vuelo:', error);
+      }
+    });
+  }
+
+  // -------------------------------
+  // Inicia validación de formulario
+  // -------------------------------
   esFormularioValido(): boolean {
     return (
       this.vuelo.avion?.idAvion !== '' &&
@@ -135,7 +185,6 @@ export class VuelosGestionComponent implements OnInit {
       this.vuelo.estado?.nombre !== ''
     );
   }
-
   esFechaValida(): boolean {
     return (
       this.vuelo.fechaPartida !== null &&
@@ -143,6 +192,18 @@ export class VuelosGestionComponent implements OnInit {
       this.vuelo.fechaPartida < this.vuelo.fechaArribo
     );
   }
+
+  esTripulanteAsignado(empleado: ITripulanteDTO): boolean {
+    return empleado.puestoTripulante !== null && empleado.puestoTripulante?.idPuestoTripulante !== '';
+  }
+
+  esPuestoTripulanteAsignado(idEmpleado: string): boolean {
+    return !this.vuelo.tripulantes
+       || !this.vuelo.tripulantes?.find(tripulante => tripulante.idEmpleado === idEmpleado);
+  }
+  // -------------------------------
+  // Termina validación de formulario
+  // -------------------------------
 
 
   eliminarVuelo(idVuelo: string) {
@@ -181,10 +242,9 @@ export class VuelosGestionComponent implements OnInit {
 
 
 
-  // ------------
+  // ---------------------------------------------------------------------------
   // Inicio Pedidos HTTP para llenar los combos y lista de empleados disponibles
-  // ------------
-
+  // ---------------------------------------------------------------------------
   obtenerTripulantesParaVuelo(idVuelo?: string) {
     console.log('Buscando empleados disponibles y asignados al vuelo.');
     this._apiService.getTripulantesParaVuelo(idVuelo).subscribe({
@@ -269,56 +329,8 @@ export class VuelosGestionComponent implements OnInit {
       }
     });
   }
-
-  guardarVueloDTO(){
-    console.log('Guardando vuelo.');
-
-  }
-
-  asignarTripulante(idVuelo: string, empleado: ITripulanteDTO) {
-    console.log('Asignando tripulante al vuelo.');
-
-    const asignacion: IAsignacion = {
-      vuelo: {
-        idVuelo: idVuelo
-      },
-      empleado: {
-        idEmpleado: empleado.idEmpleado
-      },
-      puesto: {
-        idPuestoTripulante: empleado.puestoTripulante?.idPuestoTripulante ?? ''
-      }
-    };
-
-    this._apiService.asignarTripulanteVuelo(idVuelo, asignacion).subscribe({
-      next: () => {
-        console.log('Tripulante asignado al vuelo.');
-      },
-      error: (error) => {
-        if(error.mensaje){
-          alert(error.mensaje);
-        }
-        console.error('Error al asignar tripulante al vuelo:', error);
-      }
-    });
-  }
-
-  quitarTripulante(idVuelo: string, idTripulante: string) {
-    console.log('Quitando tripulante del vuelo.');
-    this._apiService.quitarTripulanteVuelo(idVuelo, idTripulante).subscribe({
-      next: () => {
-        console.log('Tripulante quitado del vuelo.');
-      },
-      error: (error) => {
-        if(error.mensaje){
-          alert(error.mensaje);
-        }
-        console.error('Error al quitar tripulante del vuelo:', error);
-      }
-    });
-  }
-  // ------------
+  // -----------------
   // Fin Pedidos HTTP
-  // ------------
+  // -----------------
 
 }

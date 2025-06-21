@@ -109,7 +109,7 @@
         </div>
 
         <div class="divTabla">
-            <table class="tabla">
+            <table class="tabla" [ngClass]="!modoEdicion ? 'ocultar': ''">
                 <tr class="headerTabla">
                     <th>Nombre</th>
                     <th>Apellido</th>
@@ -124,30 +124,23 @@
                         <td>{{ empleado.nroDocumento }}</td>
                         <td>
                             <select name="puestoTripulante" [id]="'puestoTripulante_' + empleado.idEmpleado" [(ngModel)]="empleado.puestoTripulante">
-                                @if(!empleado.puestoTripulante) {
+                                @if(!esTripulanteAsignado(empleado)) {
                                     <option [ngValue]="null" selected disabled>Puesto a ocupar</option>
-                                } @else {
-                                    <option [ngValue]="empleado.puestoTripulante" selected>
-                                        {{ empleado.puestoTripulante.puesto }}
-                                    </option>
                                 }
                                 @for(puesto of puestosTripulante; track puesto.idPuestoTripulante) {
-                                    <option [ngValue]="puesto">{{ puesto.puesto }}</option>
+                                    <option [ngValue]="puesto" [selected]="esTripulanteAsignado(empleado)">{{ puesto.puesto }}</option>
                                 }
                             </select>
                         </td>
                         <td>
                             <!-- El checkbox aparece marcado si el empleado tiene un puesto asignado (true) -->
-                            <!-- Si el empleado tiene un puesto asignado, se llama a la función quitarTripulante -->
-                            <!-- Si el empleado no tiene un puesto asignado, se llama a la función asignarTripulante -->
                             <input type="checkbox"
+                                    [(ngModel)]="empleado.puestoTripulante"
                                     [disabled]="puestosTripulante.length === 0 || !empleado.puestoTripulante"
-                                    [checked]="empleado.puestoTripulante"
+                                    [checked]="esTripulanteAsignado(empleado)"
                                     [name]="'asignadoEmpleado_' + $index"
                                     class="tripulanteAsignado"
-                                    (change)= "empleado.puestoTripulante
-                                    ? quitarTripulante(vuelo.idVuelo, empleado.idEmpleado)
-                                    : asignarTripulante(vuelo.idVuelo, empleado)">
+                                    (change)= "toggleAsignacion(empleado)">
                         </td>
                     </tr>
                 }
