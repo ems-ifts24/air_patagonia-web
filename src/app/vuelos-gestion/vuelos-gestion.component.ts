@@ -240,6 +240,12 @@ export class VuelosGestionComponent implements OnInit {
     );
   }
 
+  filtrarPuestosTripulante(idPuesto?: string): IPuestoTripulante[] {
+    if (!idPuesto)
+      return [...this.puestosTripulante];
+    else
+      return this.puestosTripulante.filter(puesto => puesto.idPuestoTripulante !== idPuesto);
+  }
 
 
   // ---------------------------------------------------------------------------

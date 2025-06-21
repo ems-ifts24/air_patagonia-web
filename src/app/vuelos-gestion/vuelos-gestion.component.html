@@ -124,11 +124,13 @@
                         <td>{{ empleado.nroDocumento }}</td>
                         <td>
                             <select name="puestoTripulante" [id]="'puestoTripulante_' + empleado.idEmpleado" [(ngModel)]="empleado.puestoTripulante">
-                                @if(!esTripulanteAsignado(empleado)) {
-                                    <option [ngValue]="null" selected disabled>Puesto a ocupar</option>
+                                @if(!esTripulanteAsignado(empleado)){
+                                    <option [ngValue]="null" disabled selected>Puesto a ocupar</option>
+                                }@else {
+                                    <option [ngValue]="empleado.puestoTripulante" disabled selected>{{empleado.puestoTripulante?.puesto}}</option>
                                 }
-                                @for(puesto of puestosTripulante; track puesto.idPuestoTripulante) {
-                                    <option [ngValue]="puesto" [selected]="esTripulanteAsignado(empleado)">{{ puesto.puesto }}</option>
+                                @for(puesto of filtrarPuestosTripulante(empleado.puestoTripulante?.idPuestoTripulante); track puesto.idPuestoTripulante){
+                                    <option [ngValue]="puesto">{{ puesto.puesto }}</option>
                                 }
                             </select>
                         </td>
