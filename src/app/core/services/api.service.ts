@@ -47,17 +47,17 @@ export class ApiService {
 
     // TODO revisar si pasar IVuelo o solo el id de tripulante
     public asignarTripulanteVuelo(idVuelo: string, tripulante: IAsignacion): Observable<void> {
-        return this._httpClient.put<void>(`${this.urlBackend + this.pathVuelos}/${idVuelo}/tripulante`, tripulante);
+        return this._httpClient.post<void>(`${this.urlBackend + this.pathVuelos}/${idVuelo}/tripulante`, tripulante);
     }
     
     // TODO revisar si pasar IVuelo o solo el id de tripulante
     public quitarTripulanteVuelo(idVuelo: string, idTripulante: string): Observable<void> {
-        return this._httpClient.delete<void>(`${this.urlBackend + this.pathVuelos}/${idVuelo}/${idTripulante}`);
+        return this._httpClient.delete<void>(`${this.urlBackend + this.pathTripulantesParaVuelo}/${idVuelo}/${idTripulante}`);
     }
     
     // Trae todos los empleados disponibles y si idVuelo no es nulo, también trae los asignados a ese vuelo
     public getTripulantesParaVuelo(idVuelo?: string): Observable<IEmpleado[]> {
-        return this._httpClient.get<IEmpleado[]>(`${this.urlBackend + this.pathTripulantesParaVuelo}/${idVuelo ? '/?idVuelo=' + idVuelo : ''}`);
+        return this._httpClient.get<IEmpleado[]>(`${this.urlBackend + this.pathTripulantesParaVuelo}/${idVuelo ? '?idVuelo=' + idVuelo : ''}`);
     }
 
     public getPuestosTripulante(): Observable<IPuestoTripulante[]> {
