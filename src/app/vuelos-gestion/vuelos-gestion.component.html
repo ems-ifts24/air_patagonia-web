@@ -123,13 +123,16 @@
                         <td>{{ empleado.apellido }}</td>
                         <td>{{ empleado.nroDocumento }}</td>
                         <td>
-                            <select name="puestoTripulante" [id]="'puestoTripulante_' + empleado.idEmpleado" [(ngModel)]="empleado.puestoTripulante">
+                            <!-- [disabled]="esTripulanteAsignado(empleado)" -->
+                            <select name="puestoTripulante" [id]="'puestoTripulante_' + empleado.idEmpleado" 
+                                [ngModel]="empleado.puestoTripulante" 
+                                (ngModelChange)="onPuestoChange(empleado, $event)">
                                 @if(!esTripulanteAsignado(empleado)){
                                     <option [ngValue]="null" disabled selected>Puesto a ocupar</option>
                                 }@else {
                                     <option [ngValue]="empleado.puestoTripulante" disabled selected>{{empleado.puestoTripulante?.puesto}}</option>
                                 }
-                                @for(puesto of filtrarPuestosTripulante(empleado.puestoTripulante?.idPuestoTripulante); track puesto.idPuestoTripulante){
+                                @for(puesto of puestosTripulante; track puesto.idPuestoTripulante){
                                     <option [ngValue]="puesto">{{ puesto.puesto }}</option>
                                 }
                             </select>
@@ -137,10 +140,10 @@
                         <td>
                             <!-- El checkbox aparece marcado si el empleado tiene un puesto asignado (true) -->
                             <input type="checkbox"
-                                    [(ngModel)]="empleado.puestoTripulante"
-                                    [disabled]="puestosTripulante.length === 0 || !empleado.puestoTripulante"
+                                    [disabled]="!esTripulanteAsignado(empleado)"
                                     [checked]="esTripulanteAsignado(empleado)"
-                                    [name]="'asignadoEmpleado_' + $index"
+                                    [name]="'asignadoEmpleado_' + empleado.idEmpleado"
+                                    [id]="'asignadoEmpleado_' + empleado.idEmpleado"
                                     class="tripulanteAsignado"
                                     (change)= "toggleAsignacion(empleado)">
                         </td>

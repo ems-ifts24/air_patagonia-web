@@ -137,14 +137,25 @@ export class VuelosGestionComponent implements OnInit {
     }
   }
 
-  asignarTripulante(empleado: ITripulanteDTO) {
-    if (!empleado.puestoTripulante) {
-      alert('No se puede asignar un empleado sin puesto');
-      return;
-    }
+  onPuestoChange(empleado: ITripulanteDTO, nuevoPuesto: IPuestoTripulante | null) {
+    if (!nuevoPuesto) return;
+    
+    let esNuevo = (empleado.puestoTripulante == null || empleado.puestoTripulante == undefined);
+    console.log('Cambiando puesto del tripulante: ' + empleado.puestoTripulante?.puesto + ' a ' + nuevoPuesto.puesto);
 
-    console.log('Asignando tripulante al vuelo.');
+    empleado.puestoTripulante = nuevoPuesto;
+
+    if (esNuevo){
+      this.asignarTripulante(empleado);
+    }else{
+      this.actualizarTripulante(empleado);
+    }
+  }
+
+  asignarTripulante(empleado: ITripulanteDTO) {
+    console.log('Asignando tripulante {} al vuelo con id: {}', empleado, this.vuelo.idVuelo);
     const asignacion: IAsignacion = this._vueloConvertService.convertirTripulanteDTOAAignacion(empleado);
+    asignacion.vuelo.idVuelo = this.vuelo.idVuelo; // fuerzo el id del vuelo porque no viene en el DTO
     this._apiService.asignarTripulanteVuelo(this.vuelo.idVuelo, asignacion).subscribe({
       next: () => {
         console.log('Tripulante asignado al vuelo.');
@@ -157,13 +168,31 @@ export class VuelosGestionComponent implements OnInit {
       }
     });
   }
-   
+
+  actualizarTripulante(empleado: ITripulanteDTO) {
+    console.log('Actualizando tripulante {} del vuelo con id: {}', empleado, this.vuelo.idVuelo);
+    const asignacion: IAsignacion = this._vueloConvertService.convertirTripulanteDTOAAignacion(empleado);
+    asignacion.vuelo.idVuelo = this.vuelo.idVuelo; // fuerzo el id del vuelo porque no viene en el DTO
+    this._apiService.actualizarTripulanteVuelo(this.vuelo.idVuelo, empleado.idEmpleado, asignacion).subscribe({
+      next: () => {
+        console.log('Tripulante actualizado al vuelo.');
+      },
+      error: (error) => {
+        if(error.mensaje){
+          alert(error.mensaje);
+        }
+        console.error('Error al actualizar tripulante del vuelo:', error);
+      }
+    });
+  }
+
   quitarTripulante(empleado: ITripulanteDTO) {
-    console.log('Quitando tripulante del vuelo.');
+    console.log('Quitando tripulante {} del vuelo con id: {}', empleado, this.vuelo.idVuelo);
 
     this._apiService.quitarTripulanteVuelo(this.vuelo.idVuelo, empleado.idEmpleado).subscribe({
       next: () => {
         console.log('Tripulante quitado del vuelo.');
+        this.obtenerTripulantesParaVuelo(this.vuelo.idVuelo);
       },
       error: (error) => {
         if(error.mensaje){
@@ -197,10 +226,6 @@ export class VuelosGestionComponent implements OnInit {
     return empleado.puestoTripulante !== null && empleado.puestoTripulante?.idPuestoTripulante !== '';
   }
 
-  esPuestoTripulanteAsignado(idEmpleado: string): boolean {
-    return !this.vuelo.tripulantes
-       || !this.vuelo.tripulantes?.find(tripulante => tripulante.idEmpleado === idEmpleado);
-  }
   // -------------------------------
   // Termina validación de formulario
   // -------------------------------
@@ -240,6 +265,7 @@ export class VuelosGestionComponent implements OnInit {
     );
   }
 
+  // Metodo que evita mostrar el puesto asignado al empleado dos veces en el select
   filtrarPuestosTripulante(idPuesto?: string): IPuestoTripulante[] {
     if (!idPuesto)
       return [...this.puestosTripulante];

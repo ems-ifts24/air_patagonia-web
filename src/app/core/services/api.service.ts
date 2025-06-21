@@ -47,9 +47,13 @@ export class ApiService {
 
     // TODO revisar si pasar IVuelo o solo el id de tripulante
     public asignarTripulanteVuelo(idVuelo: string, tripulante: IAsignacion): Observable<void> {
-        return this._httpClient.post<void>(`${this.urlBackend + this.pathVuelos}/${idVuelo}/tripulante`, tripulante);
+        return this._httpClient.post<void>(`${this.urlBackend + this.pathTripulantesParaVuelo}/${idVuelo}`, tripulante);
     }
-    
+
+    public actualizarTripulanteVuelo(idVuelo: string, idTripulante: string, tripulante: IAsignacion): Observable<void> {
+        return this._httpClient.put<void>(`${this.urlBackend + this.pathTripulantesParaVuelo}/${idVuelo}/${idTripulante}`, tripulante);
+    }
+
     // TODO revisar si pasar IVuelo o solo el id de tripulante
     public quitarTripulanteVuelo(idVuelo: string, idTripulante: string): Observable<void> {
         return this._httpClient.delete<void>(`${this.urlBackend + this.pathTripulantesParaVuelo}/${idVuelo}/${idTripulante}`);
