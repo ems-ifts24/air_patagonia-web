@@ -23,20 +23,20 @@
   
 }
 .divBotonVolver{
-  grid-column: 3/4;
+  grid-column: 1/2;
   grid-row:1/2 ;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  height: 70%;
+  height: 100%;
   
 }
 #botonVolverModificacion{
-  border-radius: 0.4rem;
+  border-radius: 1.25rem;
   background-color: rgba(0, 50, 91, 1); 
   color: white;
-  height: 50%;
+  height: 40%;
   width: 60%;
   
   

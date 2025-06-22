@@ -11,7 +11,6 @@ import { CommonModule } from '@angular/common';
 })
 export class PasajerosGestionComponent implements OnInit {
 
-  titleGestion = 'Gestión de Pasajeros';
   pasajeros: Pasajero[] = [];
   pasajerosFiltrados: Pasajero[] = [];
 

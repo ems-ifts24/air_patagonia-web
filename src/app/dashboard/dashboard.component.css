@@ -131,7 +131,7 @@
 }
 .alertaPasajero h2{
   text-align: center;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   grid-row: 1/2;
   width: 100%;
   
@@ -147,7 +147,6 @@
 
 .alertaPasajero #numeroAlertaPasajeros,
 .alertaPasajero p{
-  font-size: 0.8rem;
   text-align: center;
 }
 
@@ -169,7 +168,7 @@ grid-template-rows: 20% 75%;
   height: 100%;
 }
 .alertaVuelos-div-titulo h2{
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   text-align: center;
 }
 
@@ -197,9 +196,10 @@ text-align: center;
 padding: 0.4rem 0;
 height: 1%;
 width: 100%;
-font-size: 0.8rem;
+font-size: 1.5rem;
 
 }
+
 
 
 .parPVuelosRepCancel{
@@ -219,8 +219,8 @@ align-items: center;
     height: 30%;
 }
 
-#numeroVuelosReprogramados,#numeroVuelosCancelados, #numeroAlertaPasajeros{
-font-size: 1rem;
+#numeroVuelosReprogramados,#numeroVuelosCancelados{
+font-size: 1.3rem;
 }
 
 .alertaPasajero:hover,.alertaVuelos:hover,.vuelosHoy:hover{
@@ -282,13 +282,13 @@ grid-row: 6/8;
 .alertaVuelos-div-pVuelosRepCancel p,
 .alertaVuelos-div-pVuelosRepro p{
 
-  font-size: 0.6rem;
+  font-size: 1rem;
 
 }
 
 .alertaPasajero #numeroAlertaPasajeros,
 .alertaPasajero p{
-  font-size: 0.6rem;
+  font-size: 1rem;
 }
 
 .vuelosHoy{
