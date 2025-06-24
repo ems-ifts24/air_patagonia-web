@@ -24,6 +24,7 @@ export const routes: Routes = [
             { path: 'vuelos-gestion/:id', component: VuelosGestionComponent},   // ruta para editar
             { path: 'empleados', component: EmpleadosVistaGeneralComponent },   // Hasta que se realice este componente, se usara el DashboardComponent
             { path: 'empleados-gestion', component: EmpleadosGestionComponent },   // ruta para crear
+            { path: 'empleados-gestion/:id', component: EmpleadosGestionComponent },   // ruta para editar empleados
             { path: 'pasajeros', component: PasajerosGestionComponent },   // Hasta que se realice este componente, se usara el DashboardComponent
             { path: 'reportes', component: VuelosListadoComponent },
             { path: 'configuracion', component: DashboardComponent }   // Hasta que se realice el componente de configuracion, se usara el DashboardComponent
