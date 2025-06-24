@@ -1,0 +1,36 @@
+<div class="header-container">
+  <div class="header-content">
+    <h1 class="page-title">{{ pageTitle }}</h1>
+    
+    <div class="user-menu">
+      <button class="user-button" (click)="toggleUserMenu($event)" [attr.aria-expanded]="isMenuOpen">
+        <div class="user-avatar">
+          <span class="material-icons">person</span>
+        </div>
+        <div class="user-info">
+          <span class="user-name">{{ userInfo.name }}</span>
+        </div>
+        <span class="material-icons dropdown-arrow" [class.rotate-180]="isMenuOpen">arrow_drop_down</span>
+      </button>
+      
+      <div class="dropdown-menu" *ngIf="isMenuOpen" (click)="$event.stopPropagation()">
+        <div class="user-info-section">
+          <div class="user-email">
+            <span class="material-icons icon-white">email</span>
+            <span>{{ userInfo.email }}</span>
+          </div>
+          <div class="last-login">
+            <span class="material-icons icon-white">schedule</span>
+            <span>Último ingreso: {{ userInfo.lastLogin }}</span>
+          </div>
+        </div>
+        <button class="dropdown-item" (click)="logout()">
+          <div class="menu-item">
+            <span class="material-icons icon-white">logout</span>
+            <span>Cerrar sesión</span>
+          </div>
+        </button>        
+      </div>
+    </div>
+  </div>
+</div>

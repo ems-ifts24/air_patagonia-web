@@ -1,0 +1,106 @@
+<div class="contenedorPrincipal">
+  <div class="mainDashboard">
+
+    <div class="divBuscarPasajero  input-con-icono">
+      <input
+        type="search"
+        id="inputBuscarPasajero"
+        placeholder="Buscar Pasajero"
+        [(ngModel)]="filtroPasajero"
+        (input)="aplicarFiltroPasajeros()"
+      />
+      <span class="icono-busqueda">🔍</span>
+    </div>
+    <div class="divBtnAgregar">
+      <button (click)="agregarNuevo()">Agregar Pasajero</button>
+    </div>
+
+    <div class="divTabla">
+      <table class="tabla">
+        <thead>
+          <tr class="headerTabla">
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Documento</th>
+            <th>Email</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let pasajero of pasajerosFiltrados; let i = index" [id]="pasajero.id">
+            <td>{{ pasajero.nombre }}</td>
+            <td>{{ pasajero.apellido }}</td>
+            <td>{{ pasajero.dni }}</td>
+            <td>{{ pasajero.email }}</td>
+            <td>
+              <button (click)="editarPasajero(pasajero)">Editar</button>
+              <button (click)="eliminarPasajero(pasajero.id)">Eliminar</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div *ngIf="modoEdicion || modoCreacion" class="formularioPasajero">
+
+      <div class="nombre">
+        <label for="nombre">Nombre</label>
+        <input id="nombre" [(ngModel)]="pasajeroSeleccionado.nombre" />
+      </div>
+
+      <div class="apellido">
+        <label for="apellido">Apellido</label>
+        <input id="apellido" [(ngModel)]="pasajeroSeleccionado.apellido" />
+      </div>
+
+      <div class="documento">
+        <label for="documento">Documento</label>
+        <input id="documento" [(ngModel)]="pasajeroSeleccionado.dni" />
+      </div>
+      <div class="email">
+    <label for="email">Email</label>
+  <input
+    id="email"
+    name="email"
+    [(ngModel)]="pasajeroSeleccionado.email"
+    #emailCtrl="ngModel"
+    required
+    email
+  />
+  <small class="error" *ngIf="emailCtrl.invalid && emailCtrl.touched">
+    <span *ngIf="emailCtrl.errors?.['required']">El email es obligatorio.</span>
+    <span *ngIf="emailCtrl.errors?.['email']">Por favor, ingrese un email válido.</span>
+  </small>
+  </div> 
+   <div>
+   
+  
+</div>
+
+
+
+
+      <div class="divBtnGuardar">
+        <!-- <button (click)="guardarPasajero()" [disabled]="emailCtrl.invalid">Guardar</button> -->
+         <button (click)="intentarGuardar(emailCtrl)">Guardar</button>
+         <div class="error" *ngIf="(emailCtrl.touched || intentoGuardar) && emailCtrl.invalid">
+          Por favor, complete todos los campos correctamente.
+        </div>
+
+
+
+      </div>
+
+      
+
+      
+
+      <div class="divBtnCancelar">
+        <button (click)="cancelarModificacion()">Cancelar</button>
+      </div>
+
+    
+
+  </div>
+</div>
+

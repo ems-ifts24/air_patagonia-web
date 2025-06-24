@@ -1,0 +1,58 @@
+<div class="contenedorPrincipal">
+    <div class="mainDashboard">
+        <div class="divBotonCrear">
+            <button id="botonCrear" (click)="crearEmpleado()">
+                <i class="material-icons">add</i>
+                <span>CREAR</span>
+            </button>
+        </div>
+
+        <div class="divBtnLimpiarFiltros">
+            <button id="btnLimpiarFiltros" (click)="limpiarBusqueda()">
+                <i class="material-icons">refresh</i>
+                <span>Limpiar</span>
+            </button>
+        </div>
+
+        <div class="divInputBusqueda">
+            <input type="search" id="inputBusqueda" placeholder="Buscar" [(ngModel)]="inputBusqueda"
+                (input)="filtrarEmpleados()">
+        </div>
+
+        <div class="divTabla">
+            <table class="tabla">
+                <tr class="headerTabla">
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>DNI</th>
+                    <th>Rol</th>
+                    <th>Asignado</th>
+                    <th>Estado</th>
+                    <th>Acción</th>
+                </tr>
+                @for(Empleado of Empleados; track $index){
+                <tr id={{Empleado.id}}>
+                    <td>{{Empleado.nombre}}</td>
+                    <td>{{Empleado.apellido}}</td>
+                    <td>{{Empleado.dni}}</td>
+                    <td>{{Empleado.rol}}</td>
+                    <td>{{Empleado.asignado}}</td>
+                    <td>{{Empleado.estado}}</td>
+                    <td>
+                        <span class="accion-simple" 
+                            [class.deshabilitado]="!esEditable(Empleado.estado)" 
+                            (click)="editarEmpleado(Empleado.id)">
+                            <i class="material-icons">edit</i>
+                        </span>
+                        <span class="accion-simple" 
+                            [class.deshabilitado]="!esEditable(Empleado.estado)" 
+                            (click)="eliminarEmpleado(Empleado.id)">
+                            <i class="material-icons">delete</i>
+                        </span>
+                    </td>
+                </tr>
+                }
+            </table>
+        </div>
+    </div>
+</div>

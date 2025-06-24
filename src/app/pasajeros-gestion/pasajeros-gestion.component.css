@@ -1,0 +1,308 @@
+.contenedorPrincipal {
+  display: flex;
+  height: 90vh;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.mainDashboard {
+  width: 85%;
+  height: 85vh;
+  border-bottom: 0.5px rgba(255, 255, 255, 0.3) solid;
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: repeat(14, 1fr);
+  background-color: rgba(61, 107, 146, 0.9);
+  border-radius: 0.6rem;
+  padding: 1rem;
+  gap: 0.6rem;
+  color: white;
+  overflow-y: auto;
+}
+
+/* Botón volver */
+/* .divBotonVolver {
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+} */
+
+#botonVolverModificacion {
+  border-radius: 0.4rem;
+  background-color: rgba(0, 50, 91, 1);
+  color: white;
+  width: 60%;
+  height: 40%;
+  font-size: 1.2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+#botonVolverModificacion:hover {
+  cursor: pointer;
+  background-color: rgb(26, 145, 243);
+  transform: scale(1.1);
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.2);
+}
+
+
+
+/* Buscador */
+.divBuscarPasajero {
+  grid-column: 7 / 9;
+  grid-row: 1 / 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+#inputBuscarPasajero {
+  width: 90%;
+  height: 2.4rem; /* más altura */
+  background-color: rgba(33, 62, 90, 0.38);
+  color: white;
+  border-radius: 0.4rem;
+  font-size: 1rem;
+  border: none;
+  padding: 0 0.rem; /* espacio horizontal dentro */
+  line-height: 1.2rem;
+  box-sizing: border-box;
+}
+
+#inputBuscarPasajero:hover{
+   background-color: rgba(26, 145, 243, 0.3);
+   cursor: pointer;
+}
+
+.input-con-icono {
+  position: relative;
+ 
+}
+
+.icono-busqueda {
+  position: absolute;
+  right: 0.8rem;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: #ffffffaa;
+  font-size: 1.2rem;
+}
+
+
+/* Botón Agregar Pasajero */
+.divBtnAgregar {
+  grid-column: 7 / 9;
+  grid-row: 2 / 3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.divBtnAgregar button {
+  background-color: rgba(0, 50, 91, 1);
+  border: none;
+  color: white;
+  border-radius: 0.4rem;
+  padding: 0.3rem 1.2rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 90%;
+}
+
+.divBtnAgregar button:hover {
+  background-color: rgb(26, 145, 243);
+  transform: scale(1.05);
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.2);
+}
+
+/* Tabla de pasajeros */
+.divTabla {
+  grid-column: 1 / 9;
+  grid-row: 3 / 9;
+  overflow-y: auto;
+}
+
+.tabla {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 1rem;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 0.4rem;
+  color: white;
+}
+
+.headerTabla {
+  background-color: rgba(0, 50, 91, 0.8);
+  font-weight: 600;
+}
+
+.tabla th, .tabla td {
+  padding: 0.6rem;
+  text-align: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.tabla tbody tr:hover {
+  background-color: rgba(26, 145, 243, 0.3);
+}
+
+.tabla button {
+  background-color: rgba(0, 50, 91, 1);
+  border: none;
+  color: white;
+  padding: 0.3rem 0.7rem;
+  border-radius: 0.3rem;
+  margin: 0 0.2rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+}
+
+.tabla button:hover {
+  background-color: rgb(26, 145, 243);
+  transform: scale(1.05);
+  box-shadow: 0 0.15rem 0.3rem rgba(0, 0, 0, 0.2);
+}
+
+/* Formulario para crear/editar pasajero */
+.formularioPasajero {
+  grid-column: 1 / 9;
+  grid-row: 8 / 13;
+  background-color: rgba(0, 50, 91, 0.8);
+  border-radius: 0.6rem;
+  padding: 1rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(3,1fr);
+  color: white;
+  width: 95%;
+
+}
+.nombre{
+  grid-column: 1/2;
+  grid-row: 1/2;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+.apellido{
+  grid-column: 1/2;
+  grid-row: 2/3;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+.documento{
+  grid-column: 3/4;
+  grid-row: 1/2;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+.email{
+  grid-column: 3/4;
+  grid-row: 2/3;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.divBtnGuardar{
+   grid-column: 1/2;
+   grid-row: 3/4;
+  
+}
+.divBtnCancelar{
+   grid-column: 3/4;
+   grid-row: 3/4;
+}
+
+.formularioPasajero label {
+  margin-bottom: 0.4rem;
+  font-weight: 600;
+}
+
+.formularioPasajero input {
+  height: 2.2rem;
+  border-radius: 0.4rem;
+  border: none;
+  padding-left: 0.5rem;
+  margin-left: 0.5rem;
+  font-size: 1rem;
+  background-color: rgba(61, 107, 146, 0.5);
+  color: white;
+}
+
+.formularioPasajero input:hover {
+  background-color: rgba(26, 145, 243, 0.3);
+  cursor: pointer;
+}
+
+.divBtnGuardar, .divBtnCancelar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.divBtnGuardar button, .divBtnCancelar button {
+  background-color: rgba(0, 50, 91, 1);
+  border: none;
+  color: white;
+  border-radius: 0.4rem;
+  padding: 0.5rem 1.5rem;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.divBtnGuardar button:hover, .divBtnCancelar button:hover {
+  background-color: rgb(26, 145, 243);
+  transform: scale(1.05);
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.2);
+}
+
+
+/* Botón agregar fijo abajo derecha */
+.botonAgregarFijo {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+  background-color: rgba(0, 50, 91, 1);
+  color: white;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 0.5rem;
+  font-size: 1.1rem;
+  cursor: pointer;
+  box-shadow: 0 0.3rem 0.7rem rgba(0, 0, 0, 0.4);
+  transition: all 0.3s ease;
+}
+
+.botonAgregarFijo:hover {
+  background-color: rgb(26, 145, 243);
+  transform: scale(1.05);
+  box-shadow: 0 0.4rem 0.9rem rgba(0, 0, 0, 0.5);
+}
+
+.input-error {
+  border: 2px solid red;
+  background-color: rgba(255, 77, 77, 0.1);
+}
+
+.error {
+  color: rgb(232, 95, 95);
+  font-size: 0.85rem;
+  margin-top: 0.3rem;
+  font-style: italic;
+}
+

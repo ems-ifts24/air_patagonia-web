@@ -1,58 +1,108 @@
-# AirPatagoniaWeb
+# AirPatagonia - Sistema de Gestión de Vuelos
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.4.
+Aplicación web para la gestión de vuelos, tripulaciones y asignación de personal en aerolíneas. Esta plataforma permite a los administradores gestionar vuelos, asignar tripulaciones y supervisar las operaciones de vuelo de manera eficiente.
 
-## Development server
+## Características Principales
 
-To start a local development server, run:
+- Gestión completa de vuelos (creación, edición, eliminación)
+- Asignación de tripulaciones a vuelos
+- Gestión de empleados y sus roles
+- Visualización de vuelos programados
+- Interfaz intuitiva y responsiva
+
+## Tecnologías Utilizadas
+
+- **Frontend:**
+  - Angular 19
+  - TypeScript
+  - HTML5 / CSS3
+  - RxJS para manejo de estados asíncronos
+  - Angular Material para componentes de UI
+
+- **Herramientas de Desarrollo:**
+  - Angular CLI
+  - Node.js / npm
+  - Git para control de versiones
+
+## Instalación y Configuración
+
+### Requisitos Previos
+
+- Node.js (v18 o superior)
+- npm (v9 o superior) o yarn
+- Angular CLI (v19 o superior)
+
+### Instalación
+
+1. Clonar el repositorio:
+   ```bash
+   git clone [URL_DEL_REPOSITORIO]
+   cd air_patagonia-web
+   ```
+
+2. Instalar dependencias:
+   ```bash
+   npm install
+   ```
+
+3. Configurar variables de entorno:
+   Crear un archivo `environment.ts` en `src/environments/` con la configuración necesaria.
+
+## Iniciar la Aplicación
+
+Para iniciar el servidor de desarrollo:
 
 ```bash
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+La aplicación estará disponible en `http://localhost:4200/`
 
-## Code scaffolding
+## Estructura del Proyecto
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
+```
+src/
+├── app/
+│   ├── core/           # Servicios, guards, interceptores
+│   ├── shared/         # Componentes y módulos compartidos
+│   ├── features/       # Módulos de características
+│   └── app.module.ts   # Módulo principal
+└── assets/             # Archivos estáticos
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## Comandos Útiles
 
-```bash
-ng generate --help
-```
+- **Generar un nuevo componente:**
+  ```bash
+  ng generate component nombre-componente
+  ```
 
-## Building
+- **Construir para producción:**
+  ```bash
+  ng build --configuration production
+  ```
 
-To build the project run:
+- **Ejecutar pruebas unitarias:**
+  ```bash
+  ng test
+  ```
 
-```bash
-ng build
-```
+- **Ejecutar pruebas e2e:**
+  ```bash
+  ng e2e
+  ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+## Contribución
 
-## Running unit tests
+Las contribuciones son bienvenidas. Por favor, lee nuestras [guías de contribución](CONTRIBUTING.md) antes de enviar un pull request.
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+## Licencia
 
-```bash
-ng test
-```
+Este proyecto está bajo la Licencia MIT. Consulta el archivo [LICENSE](LICENSE) para más información.
 
-## Running end-to-end tests
+---
 
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+Desarrollado por [Tu Nombre o Equipo] - 2025eds.
 
 ## Additional Resources
 

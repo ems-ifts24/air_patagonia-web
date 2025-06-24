@@ -1,0 +1,37 @@
+<!-- [class.className] - Binding de Clases -->
+<!-- Agrega o quita la clase CSS 'open' al elemento, dependiendo del valor de 'isOpen' -->
+<div class="sidebar-content" [class.open]="isOpen">
+  <div class="logo-container">
+    <img src="img/logo_1.png" alt="Logo" class="logo">
+  </div>
+
+  <nav class="nav-menu">
+    @if(error){
+    <div class="error-state">
+      <i class="material-icons">error_outline</i>
+      <p>{{ error }}</p>
+      <button (click)="loadNavItems()" class="retry-btn">
+        <i class="material-icons">refresh</i>
+        Reintentar
+      </button>
+    </div>
+    }@else{ <!-- Si no hay error en el pedido de items, crea un elemento a por cada item de navItems -->
+      <!-- routerLink fija la ruta del botón,
+           routerLinkActive agrega la clase 'active' al botón cuando coincide con la ruta actual
+           routerLinkActiveOptions="{exact: true}" asegura que el botón se active solo cuando coincida con la ruta exacta (sin rutas hijas)
+           (click)="setActiveItem(item.id)" activa el item seleccionado
+           [class.active]= agrega la clase 'active' al botón si "activeItem === item.id", si no coincide la quita (está para sacar la clase 'active' del botón cuando hagan click en otro botón) -->
+      @for(item of navItems; track $index){
+        <a [routerLink]="item.route"
+           routerLinkActive="active"
+           class="nav-item"
+           (click)="setActiveItem(item.id,item.label)"
+           [class.active]="activeItem === item.id">
+        <i class="material-icons">{{ item.icon }}</i>
+        <span>{{ item.label }}</span>
+        </a>
+      }
+    }
+  </nav>
+
+</div>

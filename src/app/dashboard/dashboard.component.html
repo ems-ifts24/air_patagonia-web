@@ -1,0 +1,46 @@
+<div class="contendorPrincipal">
+    <div class="mainDashboard">
+      <div class="vuelosHoy">
+                  <h2>Vuelos de hoy</h2>
+                  <div class="divTabla">
+                      <table class="tabla">
+                          <tr>
+                              <th>Codigo </th>
+                              <th>Destino</th>
+                              <th>Fecha partida</th>
+                              <th>Estado</th>
+                          </tr>
+                          <tr *ngFor="let vuelo of vuelos">
+                              <td>{{ vuelo.vuelo }}</td>
+                              <td>{{ vuelo.destino.nombre }}</td>
+                              <td>{{ vuelo.fechaPartida }}</td>
+                              <td>{{ vuelo.estado }}</td>
+                          </tr>
+                      </table>
+                  </div>
+              </div>
+              <div class="alertaPasajero">
+                  <h2>Pasajeros</h2>
+                  <p id="numeroAlertaPasajeros">1000875</p>
+                  <p>Total de pasajeros este mes</p>
+              </div>
+              <div class="alertaVuelos">
+                      
+                      <div class="alertaVuelos-div-titulo">
+                        <h2>Alerta de Vuelos</h2>
+                      </div> 
+                      <div class="alertaVuelos-div-pVuelosRepro">
+                              <p id="numeroVuelosReprogramados">5</p>
+                               <p>Vuelos reprogramados</p>
+                          
+                      </div>
+                      <div class="alertaVuelos-div-pVuelosRepCancel">
+                         
+                              <p id="numeroVuelosCancelados">1</p>
+                              <p>Vuelos cancelados</p>
+                           
+                      </div>
+              </div>
+          </div>
+          </div>
+  
